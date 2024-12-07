@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to future guardians initiative</title>
+    <link rel="shortcut icon" href="./favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="./assets/css/animate.min.css">
+    <link rel="stylesheet" href="./assets/css/aos.css">
+    <link rel="stylesheet" href="./assets/css/bootstrap.css">
+    <link rel="stylesheet" href="./assets/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./assets/css/sweetalert2.min.css">
+    <link rel="stylesheet" href="./assets/icons/bootstrap-icons.min.css">
+    <style>
+        body {
+            background-color: #b3f3c123;
+            /* font-family: Arial; */
+        }
+        .initiative_logo {
+            width: 200px;
+            height: 200px;
+        }
+        .future-green{
+            color:#056D1B;
+        }
+        .bg-future-green {
+            background: #4FA40F;
+            color:#fff;
+        }
+        .header-initiative_logo {
+            width: 50px;
+            height: 50px;
+        }
+        .title-green {
+            color:#4FA40F;
+        }
+        .fw-medium {
+            font-weight: 400;
+        }
+        .join-prog-bt {
+            background:#2F6704;
+            color:#fff;
+            border-radius:10px;
+            padding:10px 5px;
+            border:none;
+            width: 80px;
+        }
+        .nav-tabs-bordered {
+            border-bottom: 2px solid #ebeef4;
+        }
+
+        .nav-tabs-bordered .nav-link {
+            margin-bottom: -2px;
+            border: none;
+            color: #2c384e;
+            font-size:13px;
+        }
+
+        .nav-tabs-bordered .nav-link:hover,.nav-tabs-bordered .nav-link:focus {
+            color: #1a5a00;
+        }
+
+        .nav-tabs-bordered .nav-link.active {
+            background-color: #fff;
+            color: #008521;
+            font-weight: 500;
+            border-bottom: 2px solid #105f00;
+        }
+        .inner-file,.bg-hehe {
+            background: #32333227;
+        }
+        .inner-file {
+            padding:10px 10px;
+        }
+        .bd-r-20 {
+            border-radius: 20px;
+        }
+        .bd-r-5 {
+            border-radius:5px;
+        }
+        .bd-r-15 {
+            border-radius: 15px;
+        }
+        .bd-r-10 {
+            border-radius: 10px;
+        }
+        .file-holder {
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+        .fileSize,.uploadDate {
+            font-size:12px;
+            font-weight: 500;
+            color:#050e3d85;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- The beginning of the navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-future-green">
+        <div class="container-fluid">
+            <a href="index.html" class="navbar-brand">
+                <a href="./home.html" class="navbar-brand"><center class="d-flex align-items-center"><img src="./favicon.png" alt="" class="rounded-corners mb-2 mt-1 header-initiative_logo"><h5 class="ms-3 p-0">Future Guardians initiative</h3></center></a>
+            </a>
+            <button data-bs-toggle="collapse" data-bs-target="#navBar" class="navbar-toggler"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse ms-5" id="navBar">
+                <ul class="navbar-nav">
+                    <li class="navbar-item">
+                        <a href="home.html" class="nav-link">Home</a>
+                    </li>
+                    <li class="navbar-item">
+                        <a href="learn.html" class="nav-link active">Learn</a>
+                    </li>
+                    <li class="navbar-item">
+                        <a href="#about" class="nav-link">About us</a>
+                    </li>
+                    <li class="navbar-item">
+                        <a href="#contact" class="nav-link">Contact us</a>
+                    </li>
+                    <li class="navbar-item">
+                        <a href="donate.html" class="nav-link">Support</a>
+                    </li>
+                    <li class="navbar-item">
+                        <a href="login.html" class="nav-link">Login</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+   
+    <!-- The end of the navbar -->
+     <!-- Beginning if the new body -->
+    <div class="container">
+        <div data-aos="fade-in" data-aos-delay="500" class="row mt-3">
+            <div class="col col-lg-6">
+                <form action="" role="form">
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="search_inp" required placeholder="Search here">
+                        <button class="btn bi bi-search btn-secondary"></button>
+                    </div>
+                </form>
+            </div>
+            <div class="card border-0 mt-3 mb-3">
+                <div class="card-body">
+    
+                  <!-- Bordered Tabs Justified -->
+                  <ul class="nav nav-tabs nav-tabs-bordered d-flex" id="borderedTabs" role="tablist">
+                    <li class="nav-item " role="presentation">
+                      <button class="nav-link w-100 active" id="home-tab" data-bs-toggle="tab" data-bs-target="#allTab" type="button" role="tab" aria-controls="all" aria-selected="true">All</button>
+                    </li>
+                    <li class="nav-item " role="presentation">
+                      <button class="nav-link w-100" id="profile-tab" data-bs-toggle="tab" data-bs-target="#imagesTab" type="button" role="tab" aria-controls="images" aria-selected="false">Images</button>
+                    </li>
+                    <li class="nav-item " role="presentation">
+                        <button class="nav-link w-100" id="contact-tab" data-bs-toggle="tab" data-bs-target="#videosTab" type="button" role="tab" aria-controls="videos" aria-selected="false">Videos</button>
+                      </li>
+                      <li class="nav-item " role="presentation">
+                        <button class="nav-link w-100" id="contact-tab" data-bs-toggle="tab" data-bs-target="#booksTab" type="button" role="tab" aria-controls="books" aria-selected="false">Books</button>
+                      </li>
+                    <li class="nav-item " role="presentation">
+                        <button class="nav-link w-100" id="contact-tab" data-bs-toggle="tab" data-bs-target="#discussTab" type="button" role="tab" aria-controls="discuss" aria-selected="false">Discuss</button>
+                      </li>
+                  </ul>
+                  <div class="tab-content pt-2" id="borderedTabContent">
+                    <div class="tab-pane fade show active" id="allTab" role="tabpanel" aria-labelledby="all-tab">
+                        <!-- This is the tab where all the learning resources will be displayed -->
+                      Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Tempora libero non est unde veniam est qui dolor. Ut sunt iure rerum quae quisquam autem eveniet perspiciatis odit. Fuga sequi sed ea saepe at unde.
+                    </div>
+                    <div class="tab-pane fade" id="imagesTab" role="tabpanel" aria-labelledby="images-tab">
+                        <!-- This is the tab where the images for learning will be displayed -->
+                      Nesciunt totam et. Consequuntur magnam aliquid eos nulla dolor iure eos quia. Accusantium distinctio omnis et atque fugiat. Itaque doloremque aliquid sint quasi quia distinctio similique. Voluptate nihil recusandae mollitia dolores. Ut laboriosam voluptatum dicta.
+                    </div>
+                    <div class="tab-pane fade" id="videosTab" role="tabpanel" aria-labelledby="videos-tab">
+                        <!-- This is the tab where all the vidoes for learning will be displayed -->
+                        Saepe animi et soluta ad odit soluta sunt. Nihil quos omnis animi debitis cumque. Accusantium quibusdam perspiciatis qui qui omnis magnam. Officiis accusamus impedit molestias nostrum veniam. Qui amet ipsum iure. Dignissimos fuga tempore dolor.
+                      </div>
+                      <div class="tab-pane fade" id="booksTab" role="tabpanel" aria-labelledby="books-tab">
+                        <!-- This is the tab where all the books will be displayed -->
+                        <!-- Trees card beginning -->
+                        <div class="file-holder bg-light">
+                            <div class="inner-file position-relative bd-r-10">
+                                <button class="position-absolute top-0 end-0 m-1 btn btn-primary"><i class="bi bi-download"></i></button>
+                                <p class="file-name bg-hehe ps-2 bd-r-5">
+                                    How to make trees in the moon.pdf 
+                                </p>
+                                <p class="file-desc">
+                                    Learn the importance fo conserving planting and make thins work out for you in a little while.
+                                </p>
+                                <span class="position-absolute bottom-0 start-0 ms-2 mb-1 fileSize bg-hehe rounded-pill ps-2 pe-2">26.35 Mbs</span>
+                                <span class="position-absolute bottom-0 end-0 me-2 mb-1 uploadDate bg-hehe rounded-pill ps-2 pe-2">5 days ago</span>
+                            </div>
+                        </div>
+                        <!-- Trees card end -->
+                         <!-- examples start -->
+                         <div class="file-holder bg-light">
+                            <div class="inner-file position-relative bd-r-10">
+                                <button class="position-absolute top-0 end-0 m-1 btn btn-primary"><i class="bi bi-download"></i></button>
+                                <p class="file-name bg-hehe ps-2 bd-r-5">
+                                    How to make trees in the moon.pdf 
+                                </p>
+                                <p class="file-desc">
+                                    Learn the importance fo conserving planting and make thins work out for you in a little while.
+                                </p>
+                                <span class="position-absolute bottom-0 start-0 ms-2 mb-1 fileSize bg-hehe rounded-pill ps-2 pe-2">26.35 Mbs</span>
+                                <span class="position-absolute bottom-0 end-0 me-2 mb-1 uploadDate bg-hehe rounded-pill ps-2 pe-2">5 days ago</span>
+                            </div>
+                        </div>
+                        <div class="file-holder bg-light">
+                            <div class="inner-file position-relative bd-r-10">
+                                <button class="position-absolute top-0 end-0 m-1 btn btn-primary"><i class="bi bi-download"></i></button>
+                                <p class="file-name bg-hehe ps-2 bd-r-5">
+                                    How to make trees in the moon.pdf 
+                                </p>
+                                <p class="file-desc">
+                                    Learn the importance fo conserving planting and make thins work out for you in a little while.
+                                </p>
+                                <span class="position-absolute bottom-0 start-0 ms-2 mb-1 fileSize bg-hehe rounded-pill ps-2 pe-2">26.35 Mbs</span>
+                                <span class="position-absolute bottom-0 end-0 me-2 mb-1 uploadDate bg-hehe rounded-pill ps-2 pe-2">5 days ago</span>
+                            </div>
+                        </div>
+                        <div class="file-holder bg-light">
+                            <div class="inner-file position-relative bd-r-10">
+                                <button class="position-absolute top-0 end-0 m-1 btn btn-primary"><i class="bi bi-download"></i></button>
+                                <p class="file-name bg-hehe ps-2 bd-r-5">
+                                    How to make trees in the moon.pdf 
+                                </p>
+                                <p class="file-desc">
+                                    Learn the importance fo conserving planting and make thins work out for you in a little while.
+                                </p>
+                                <span class="position-absolute bottom-0 start-0 ms-2 mb-1 fileSize bg-hehe rounded-pill ps-2 pe-2">26.35 Mbs</span>
+                                <span class="position-absolute bottom-0 end-0 me-2 mb-1 uploadDate bg-hehe rounded-pill ps-2 pe-2">5 days ago</span>
+                            </div>
+                        </div>
+                        <div class="file-holder bg-light">
+                            <div class="inner-file position-relative bd-r-10">
+                                <button class="position-absolute top-0 end-0 m-1 btn btn-primary"><i class="bi bi-download"></i></button>
+                                <p class="file-name bg-hehe ps-2 bd-r-5">
+                                    How to make trees in the moon.pdf 
+                                </p>
+                                <p class="file-desc">
+                                    Learn the importance fo conserving planting and make thins work out for you in a little while.
+                                </p>
+                                <span class="position-absolute bottom-0 start-0 ms-2 mb-1 fileSize bg-hehe rounded-pill ps-2 pe-2">26.35 Mbs</span>
+                                <span class="position-absolute bottom-0 end-0 me-2 mb-1 uploadDate bg-hehe rounded-pill ps-2 pe-2">5 days ago</span>
+                            </div>
+                        </div>
+                        <div class="file-holder bg-light">
+                            <div class="inner-file position-relative bd-r-10">
+                                <button class="position-absolute top-0 end-0 m-1 btn btn-primary"><i class="bi bi-download"></i></button>
+                                <p class="file-name bg-hehe ps-2 bd-r-5">
+                                    How to make trees in the moon.pdf 
+                                </p>
+                                <p class="file-desc">
+                                    Learn the importance fo conserving planting and make thins work out for you in a little while.
+                                </p>
+                                <span class="position-absolute bottom-0 start-0 ms-2 mb-1 fileSize bg-hehe rounded-pill ps-2 pe-2">26.35 Mbs</span>
+                                <span class="position-absolute bottom-0 end-0 me-2 mb-1 uploadDate bg-hehe rounded-pill ps-2 pe-2">5 days ago</span>
+                            </div>
+                        </div>
+                        <div class="file-holder bg-light">
+                            <div class="inner-file position-relative bd-r-10">
+                                <button class="position-absolute top-0 end-0 m-1 btn btn-primary"><i class="bi bi-download"></i></button>
+                                <p class="file-name bg-hehe ps-2 bd-r-5">
+                                    How to make trees in the moon.pdf 
+                                </p>
+                                <p class="file-desc">
+                                    Learn the importance fo conserving planting and make thins work out for you in a little while.
+                                </p>
+                                <span class="position-absolute bottom-0 start-0 ms-2 mb-1 fileSize bg-hehe rounded-pill ps-2 pe-2">26.35 Mbs</span>
+                                <span class="position-absolute bottom-0 end-0 me-2 mb-1 uploadDate bg-hehe rounded-pill ps-2 pe-2">5 days ago</span>
+                            </div>
+                        </div>
+                          <!-- Examples end -->
+                    </div>
+                      <div class="tab-pane fade" id="discussTab" role="tabpanel" aria-labelledby="discuss-tab">
+                        <!-- This is the tab where all the discussion forums and the discusions themselves will get displayed  -->
+                       aepe animi et soluta ad odit soluta sunt. Nihil quos omnis animi debitis cumque. Accusantium quibusdam perspiciatis qui qui omnis magnam. Officiis accusamus impedit molestias nostrum veniam. Qui amet ipsum iure. Dignissimos fuga tempore dolor.
+                            
+                    </div>
+                  </div><!-- End Bordered Tabs Justified -->
+    
+                </div>
+              </div>
+        </div>
+    </div>
+    <style>
+        footer {
+            background-color: #162709da;
+        }
+    </style>
+    <!-- THE BEGINNING OF THE FOOTER -->
+    <footer data-aos="fade-out" data-aos-delay="500" class="p-5 w-100">
+        <div class="container">
+            <div class="row flex-wrap">
+                <div class="col col-md-8 col-lg-4" id="contact">
+                    <h3 class="text-warning"><i>Get in touch</i></h3>
+                    <form action="" role="form">
+                        <div class="form-floating">
+                            <input type="text" class="form-control" id="username" placeholder="name" required>
+                            <label for="username">Your name</label>
+                        </div>
+                        <div class="form-floating mt-2">
+                            <input type="email" class="form-control" id="useremail" placeholder="Your Email" required>
+                            <label for="useremail">Your Email</label>
+                        </div>
+                        <div class="form-floating mt-2">
+                            <input type="text" class="form-control" id="usercountry" placeholder="Your Country" required>
+                            <label for="usercountry">Your Country</label>
+                        </div>
+                        <div class="form-floating mt-1">
+                            <textarea name="" id="userText" class="form-control" placeholder="Your text here*" style="height:200px;" required></textarea>
+                            <label for="userText">Your text here*</label>
+                        </div>
+                        <div class="form-group p-3">
+                            <button class="btn btn-warning w-100">Submit</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="col col-sm-11 col-lg-5 ms-1 justify-self-center">
+                    <h3 class="text-info">
+                        <i>Quick Links</i>
+                    </h3>
+                    <p class="bi bi-phone text-light"> +25479931413</p>
+                    <p class="bi bi-envelope text-light"> fgi@futureguardians.com</p>
+                    <p class="bi bi-facebook text-light"> Future Guardians</p>
+                    <p class="bi bi-twitter text-light"> Future Guardians</p>
+                    <p class="bi bi-whatsapp text-light"> +25479931413</p>
+                    <p class="bi bi-geo-alt text-light"> 99-40223 Kadongo</p>
+                    
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+<script>
+    function aosInit(){
+        AOS.init({
+            delay:600,
+            ease:'ease-in-out',
+            mirror:false,
+            once:true
+        });
+    }
+    window.addEventListener('load',aosInit);
+</script>
+<script src="./assets/js/aos.js"></script>
+<script src="./assets/js/bootstrap.bundle.min.js"></script>
+<script src="./assets/js/jquery-3.6.0.min.js"></script>
+<script src="./assets/js/sweetalert2@11.js"></script>
+</html>
