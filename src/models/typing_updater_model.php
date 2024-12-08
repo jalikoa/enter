@@ -4,7 +4,7 @@ class is_typing {
     private $userid;
     private $dissid;
     public function start($userid,$dissid){
-        if(){
+        if(empty($userid) || empty($dissid)){
             return false;
         } else {
             $this->userid = $userid;

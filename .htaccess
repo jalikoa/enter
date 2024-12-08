@@ -2,7 +2,7 @@ RewriteEngine On
 DefaultLanguage en
 AddDefaultCharset utf-8
 ServerSignature Off
-RewriteRule ^src/ - [F,L]
+#RewriteRule ^src/ - [F,L]
 Options -Indexes
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
