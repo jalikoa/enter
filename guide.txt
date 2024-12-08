@@ -12,4 +12,6 @@ The admiin has the following responsibilities
 
     As you login check if verified account
     Complete the part of user auth that is reset password and enter otp for the user to verify their accounts
+
+    Activity 0-image,1-video,2-text
     

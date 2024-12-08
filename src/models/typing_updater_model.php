@@ -13,7 +13,7 @@ class is_typing {
         }
     }
     public function update($conn){
-        $update = "UPDATE members SET typing = CURRENT_TIMESTAMP where id = '$this->uid'";
+        $update = "UPDATE dismembers SET typing = CURRENT_TIMESTAMP where id = '$this->userid' AND discussion_id = '$this->dissid'";
         $res = $conn->query($update);
         return ($res)?true:false;
     }

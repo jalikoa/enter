@@ -43,11 +43,15 @@ class discussion{
         return ($reg)?true:false;
     }
     public function edit_discussion($conn){
-        $edit = "UPDATE users SET name = '$this->name',image = '$this->image',about = '$this->about',type = '$this->type',whomess = '$this->whomess'";
+        $edit = "UPDATE discussions SET name = '$this->name',image = '$this->image',about = '$this->about',type = '$this->type',whomess = '$this->whomess'";
         $res = $conn->query($edit);
         return ($res)?true:false;
     }
     public function fetch_discussions(){
-        
+        //fetch discussions list based on user location
+    }
+    public function fetch_diss_members($conn,$dissid){
+        $fetch = "SELECT * FROM dissmembers WHERE disscussion_id = '$dissid'";
+        //join tables to make even the images of the members visible on the page
     }
 }

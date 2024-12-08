@@ -22,6 +22,9 @@ class login {
             return false;
         }
     }
+    public function check_blocked(){
+        return ($this->cred["status"] == "2")?true:false;
+    }
     public function check_acc_verified(){
         return ($this->cred["status"] == "1")?true:false;
     }

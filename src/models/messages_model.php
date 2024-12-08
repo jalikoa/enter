@@ -4,8 +4,8 @@ class message {
     private $message;
     private $sender;
     private $discussion;
-    private $type;#edited or original i.e orig->0 edited->1
-    private $reply_to;#if reply have the mess_id for the reply
+    private $type;#edited or original i.e orig->0 edited->1 forwarded -> 2
+    private $reply_to;#if reply have the mess_id for the reply else default 0
 
     public function setCred($sender,$message,$discussion,$type,$reply_to){
         if(empty($message) || empty($sender) || empty($discussion) || empty($type) || empty($reply_to)){
@@ -20,7 +20,7 @@ class message {
         }
     }
     public function send_message($conn){
-        $send = "INSERT INTO messages (sender,message,discussion,type,reply_to) VALUES ('$this->sender','$this->messgae','$this->discussion','$this->type','$this->reply_to')";
+        $send = "INSERT INTO messages (sender,message,discussion,type,reply_to) VALUES ('$this->sender','$this->message','$this->discussion','$this->type','$this->reply_to')";
         $res = $conn->query($res);
         return ($res)?true:false;        
     }
