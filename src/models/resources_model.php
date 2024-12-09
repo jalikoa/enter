@@ -16,8 +16,19 @@ class resources{
     private $books;
     private $images;
     private $videos;
-    public function setType($type){
-        $this->type = $type;
+    public function set_t($name,$type,$url,$description,$content,$bywho,$ratings){
+        if(empty($name) || empty($type) || empty($url) || empty($description) || empty($content) || empty($bywho) || empty($ratings)){
+            return false;
+        } else{
+            $this->name = $name;
+            $this->type = $type;
+            $this->url = $url;
+            $this->description = $description;
+            $this->content = $content;
+            $this->bywho = $bywho;
+            $this->ratings = $ratings;
+            return true;
+        }
     }
     public function add_new_resource($conn){
         $add = "INSERT INTO resources (name,type,url,description,content,bywho,ratings) VALUES ('$this->name','$this->type','$this->url','$this->description','$this->content','$this->bywho','$this->ratings')";

@@ -5,11 +5,17 @@
 class users  {
     private $userId;
     private $cred;
+    private $list;
     private $total;
     public function fetch_users($conn,$limit){
         $fetch = "SELECT firstname,lastname,username,phone,email,country,bio,last_seen,image,registered_at FROM users WHERE role = '1' AND status = '1'";
         $res = $conn->query($fetch);
         $this->cred = ($res->num_rows > 0)?$res->fetch_assoc():'0';
+        if($res->num_rows > 0){
+            while($row = $res->fetch_assoc()){
+                $this->list[] = $row;
+            }
+        }
         return ($res->num_rows > 0)?true:false;
     }   
     public function blockUser($conn,$usid){
@@ -44,5 +50,8 @@ class users  {
     }
     public function getTotal(){
         return $this->total;
+    }
+    public function get_users_list(){
+        return $this->list;
     }
 }
