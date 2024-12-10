@@ -10,7 +10,7 @@ if(isset($_POST["addactivity"])){
     $content = sanitize($_POST["activitycontent"]);
     $by = sanitize($_POST["activityby"]);
     $sessid = sanitize($_POST["sessid"]);
-    $userid = ""
+    $userid = "";
     if(isset($sessid)){
         $userid = $_SESSION[$sessid];
     }
@@ -43,7 +43,7 @@ if(isset($_POST["addactivity"])){
 if(isset($_POST["deleteactivity"])){
     $acid = sanitize($_POST["activityid"]);
     $sessid = sanitize($_POST["sessid"]);
-    $userid = ""
+    $userid = "";
     if(isset($sessid)){
         $userid = $_SESSION[$sessid];
     }
@@ -67,7 +67,7 @@ if(isset($_POST["deleteactivity"])){
 if(isset($_POST["viewactivity"])){
     $activity = new activity();
     if($activity->fetch_all_activities($conn)){
-        echo json_encode("success"=>true,"message"=>"Records fetched succesfully!","list"=>$activity->get_activity_list());
+        echo json_encode(["success"=>true,"message"=>"Records fetched succesfully!","list"=>$activity->get_activity_list()]);
     } else {
         echo json_encode(["success"=>false,"message"=>"No record exists!"]);
     }
@@ -82,7 +82,7 @@ if(isset($_POST["editactivity"])){
     $content = sanitize($_POST["activitycontent"]);
     $by = sanitize($_POST["activityby"]);
     $sessid = sanitize($_POST["sessid"]);
-    $userid = ""
+    $userid = "";
     if(isset($sessid)){
         $userid = $_SESSION[$sessid];
     }

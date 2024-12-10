@@ -16,7 +16,7 @@ if(isset($_POST["delete"])){
     $sessid = sanitize($_POST["sessid"]);
     $userid = "";
     if(isset($sessid)){
-        $userid = $_SESSION[$sessid]
+        $userid = $_SESSION[$sessid];
     }
     if($auth->check_logged_in($sessid)){
         if($auth->auth_admin($userid,$conn)){
@@ -24,7 +24,7 @@ if(isset($_POST["delete"])){
             if($resource->delete_res($conn,$resid)){
                 echo json_encode(["success" => true,"message" => "Resource deleted succesfully."]);
             } else {
-                echo json_encode(["success"=>,"message"=>"Sorry could not delete the resource try again later"]);
+                echo json_encode(["success"=>false,"message"=>"Sorry could not delete the resource try again later"]);
             }
         } else {
             echo json_encode(["success"=>false,"message"=>"Action incomplete!Only admins is authorised to do this"]);
@@ -39,7 +39,7 @@ if(isset($_POST["loadall"])){
     if($resource->load_all_res($conn)){
         echo json_encode(["success"=>true,"message"=>"Loaded all learning resources","list"=>$resource->get_all()]);
     } else {
-        echo json_encode(["success" => ,"message" => "Sorry no records exists in the database.Try again later please."]);
+        echo json_encode(["success" => false,"message" => "Sorry no records exists in the database.Try again later please."]);
     }
 }
 if(isset($_POST["loadimages"])){
@@ -47,7 +47,7 @@ if(isset($_POST["loadimages"])){
     if($resource->load_images($conn)){
         echo json_encode(["success"=>true,"message"=>"Loaded all learning resources","list"=>$resource->get_images()]);
     } else {
-        echo json_encode(["success" => ,"message" => "Sorry no records exists in the database.Try again later please."]);
+        echo json_encode(["success" => false,"message" => "Sorry no records exists in the database.Try again later please."]);
     }
 }
 if(isset($_POST["loadvideos"])){
@@ -55,7 +55,7 @@ if(isset($_POST["loadvideos"])){
     if($resource->load_videos($conn)){
         echo json_encode(["success"=>true,"message"=>"Loaded all learning resources","list"=>$resource->get_videos()]);
     } else {
-        echo json_encode(["success" => ,"message" => "Sorry no records exists in the database.Try again later please."]);
+        echo json_encode(["success" => false,"message" => "Sorry no records exists in the database.Try again later please."]);
     }
 }
 if(isset($_POST["loadbooks"])){
@@ -63,6 +63,6 @@ if(isset($_POST["loadbooks"])){
     if($resource->load_books($conn)){
         echo json_encode(["success"=>true,"message"=>"Loaded all learning resources","list"=>$resource->get_books()]);
     } else {
-        echo json_encode(["success" => ,"message" => "Sorry no records exists in the database.Try again later please."]);
+        echo json_encode(["success" => false,"message" => "Sorry no records exists in the database.Try again later please."]);
     }
 }

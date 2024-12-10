@@ -51,7 +51,7 @@ class resources{
         $del = "DELETE FROM resources WHERE id = '$resid'";
         $res = $conn->query($del);
         return ($res)?true:false;
-    }a
+    }
     public function load_all_res($conn){
         $load = "SELECT * FROM resources";
         $res = $conn->query($load);
