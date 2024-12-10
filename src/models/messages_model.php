@@ -19,6 +19,9 @@ class message {
             return true;
         }
     }
+    public function check_is_blocked(){
+        //Add logics in this function and aim at checkin when user is blocked by admin in the forum
+    }
     public function send_message($conn){
         $send = "INSERT INTO messages (sender,message,discussion,type,reply_to) VALUES ('$this->sender','$this->message','$this->discussion','$this->type','$this->reply_to')";
         $res = $conn->query($res);

@@ -41,11 +41,17 @@ class resources{
         $this->cred = ($res->num_rows > 0)?$res->fetch_assoc():'0';
         return ($res->num_rows > 0)?true:false;
     }
+    public function check_resid_exist($conn,$resid){
+        $check = "SELECT * FROM resources WHERE id = '$resid'";
+        $res = $conn->query($check);
+        $this->cred = ($res->num_rows > 0)?$res->fetch_assoc():'0';
+        return ($res->num_rows > 0)?true:false;
+    }
     public function delete_res($conn,$resid){
         $del = "DELETE FROM resources WHERE id = '$resid'";
         $res = $conn->query($del);
         return ($res)?true:false;
-    }
+    }a
     public function load_all_res($conn){
         $load = "SELECT * FROM resources";
         $res = $conn->query($load);
