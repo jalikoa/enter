@@ -16,7 +16,7 @@
                 $this->uid = $uid;
                 return false;
             }
-        }
+        }  
         public function setCred($uname,$uemail,$uphone,$ucountry,$urole){
             if(empty($uname) || empty($uemail) || empty($uphone) || empty($ucountry) || empty($urole)){
                 return false;

@@ -19,7 +19,17 @@ if(isset($_POST["deletemember"])){
     }
 }
 if(isset($_POST["editmember"])){
+    $auth = new Auth();
+   if($auth->){
+    if($auth->auth_admin($uid,$conn)){
 
+    } else {
+        echo json_encode(["success"=>false,"message"=>"Access denied!Only Admin is authorised to do this!"]);
+    }
+
+   } else {
+    echo json_encode(["success"=>false,"message"=>"Please Login to complete this action"]);
+   }
 }
 if(isset($_POST[""])){
 
