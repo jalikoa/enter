@@ -60,5 +60,8 @@
             $edit = "UPDATE members SET name = '$this->name',email = '$this->email',phone = '$this->phone',country = '$this->country',role = '$this->role' WHERE id = '$this->uid'";
             $res = $conn->query($sql);
             return ($res)?true:false;
-        }   
+        }  
+        public function get_member_list(){
+            return $this->members_list;
+        } 
     }

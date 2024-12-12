@@ -14,3 +14,4 @@ if(isset($_POST["fetchmessages"])){
 if(isset($_POST[""])){
 
 }
+//update model to auth the editor if is sender 
