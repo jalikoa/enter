@@ -21,6 +21,31 @@ class discussion{
             return true;
         }
     }
+    Public function add_member($conn,$userid,$discussion_id,$role,$typing){
+        $add = "INSERT INTO dissmembers (user_id,discussion_id,role,typing) VALUES ('$userid','$discussion_id','$role','$typing')";
+        $res = $conn->query($add);
+        return ($res)?true:false;
+    }
+    public function delete_member($conn,$userid){
+        $del = "DELETE FROM dissmembers WHERE id = '$userid'";
+        $res = $conn->query($sql);
+        return ($res)?true:false;
+    }
+    public function get_u_id($conn,$name){
+        return $this->cred();
+    }
+    public function check_m_exist($conn,$name){
+        $check = "SELECT * FROM users WHERE id = '$name'";
+        $res = $conn->query($sql);
+        $d = ($res->num_rows > 0)?$res->fetch_assoc():'0';
+        $this->cred = ($res->num_rows > 0)?$d["id"]:'0';
+        return ($res->num_rows > 0)?true:false;
+    }
+    public function block_member(){
+        //Block from accessing the group
+        //Block member from sending message
+    }
+    
     public function check_discussion_exist($conn){
         $check = "SELECT * FROM discussions WHERE name = '$this->name'";
         $res = $conn->query($check);

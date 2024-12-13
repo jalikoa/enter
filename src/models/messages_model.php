@@ -41,4 +41,9 @@ class message {
         #join tables to make it more easier for you to display the data when it comes to the front end
         $fetch = "SELECT  ";
     }
+    public function Check_is_member($conn,$userid,$disid){
+        $check = "SELECT * FROM dissmembers WHERE user_id = '$userid' AND discussion_id = '$disid'";
+        $res=$conn->query($check);
+        return ($res->num_rows > 0)?true:false;
+    }
 }
