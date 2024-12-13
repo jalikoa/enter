@@ -294,7 +294,7 @@ if(isset($_GET["auth"])){
             console.log(uoxhr.responseText);
             window.setTimeout(() => {
                 updateOnline();
-            }, 30000);
+            }, 2000);
         }
         const data = `updateonline=${encodeURIComponent('true')}&sessid=${encodeURIComponent('<?php echo $auth?>')}`;
         uoxhr.send(data);

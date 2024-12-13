@@ -1,6 +1,7 @@
 <?php
 
 class message {
+    private $message_list;
     private $message;
     private $sender;
     private $discussion;
@@ -45,5 +46,12 @@ class message {
         $check = "SELECT * FROM dissmembers WHERE user_id = '$userid' AND discussion_id = '$disid'";
         $res=$conn->query($check);
         return ($res->num_rows > 0)?true:false;
+    }
+    public function get_messages($conn){
+        $fetch = "SELECT *";
+        //Update this to make the messages to be fetched togethere with the sender credentials
+    }
+    public function get_mess_list(){
+        return $this->message_list;
     }
 }

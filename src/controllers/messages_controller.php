@@ -72,10 +72,16 @@ if(isset($_POST["deletemessage"])){
     $auth = new Auth();
     if($auth->check_logged_in($sessid)){
         $message = new message();
-        if($message->Check_is_member($conn,$userid,$disid)){
-            
+        $discussion = sanitize($_POST["discussionid"]);
+        $messid = sanitize($_POST["messageid"]);
+        if($message->Check_is_member($conn,$userid,$discussion)){
+            if($message->delete_message($conn,$messid)){
+                echo json_encode(["success"=>true,"message"=>"Message deleted"]);
+            } echo {
+                echo json_encode(["success"=>false,"message"=>"Could not delete the message please try again"]);
+            }
         } else {
-            echo json_encode(["success"=>false,"message"=>""]);
+            echo json_encode(["success"=>false,"message"=>"Failed you are not a member of this discussion."]);
         }
     } else {
         echo json_encode(["success"=>false,"message"=>"You need to login to complete this action"]);

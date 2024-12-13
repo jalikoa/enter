@@ -7,6 +7,7 @@ if (isset($_POST["updateonline"])){
     $auth = new Auth();
     $sessid = sanitize($_POST["sessid"]);
     if ($auth->check_logged_in($sessid)){
+        $sessid = sanitize($_POST["sessid"]);
         session_start();
         $userid = $_SESSION[$sessid];
         if($auth->auth_acc_verified($userid,$conn)){
