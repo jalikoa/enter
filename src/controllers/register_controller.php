@@ -2,6 +2,7 @@
   require_once "../src/config/db_config.php";
   require_once "../src/models/register_model.php";
   require_once "../src/helpers/sanitation.php";
+  use jalikoa\FGIprogramme\register;
 if (isset($_POST["register"])){
     $register = new register();
     $firstname = sanitize($_POST["firstname"]);

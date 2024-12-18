@@ -1,4 +1,6 @@
 <?php
+use jalikoa\FGIprogramme\Auth;
+use jalikoa\FGIprogramme\resources;
 if(isset($_POST["addnew"])){
     $name = sanitize($_POST["name"]);
     $type;

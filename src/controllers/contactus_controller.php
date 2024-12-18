@@ -2,7 +2,7 @@
 require_once "../src/models/contactus_model.php";
 require_once "../src/helpers/sanitation.php";
 require_once "../src/config/db_config.php";
-use JalSoft\contactus_model;
+use jalikoa\FGIprogramme\contact_us;
 if(isset($_POST["contactus"])){
     $email = sanitize($_POST["useremail"]);
     $text = sanitize($_POST["usertext"]);

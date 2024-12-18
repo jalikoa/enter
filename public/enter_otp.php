@@ -59,7 +59,7 @@ if(isset($_GET["uid"])){
                 <div class="card shadow h-100 border-0 mt-4 ms-3">
                     <center><img src="./favicon.png" alt="" class="rounded-corners mt-5 initiative_logo" data-aos="zoom-in" data-aos-delay="500"></center>
                    <div class="d-flex justify-content-center flex-column align-items-center">
-                    <h3 class="m-1 future-green fw-bold">Confirm password</h3>
+                    <h3 class="m-1 future-green fw-bold">Enter OTP</h3>
                    </div>
                    <div class="card mb-3 border-0">
 

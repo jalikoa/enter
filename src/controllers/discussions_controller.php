@@ -7,3 +7,4 @@
 // Admin block users
 // Admin add users no add user not in community
 // Admin delete chats as well as discussion forum
+use jalikoa\FGIprogramme\discussion;

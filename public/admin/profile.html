@@ -10,202 +10,21 @@
     <link rel="stylesheet" href="../assets/css/font-awesome.min.css">
     <link rel="stylesheet" href="../assets/css/sweetalert2.min.css">
     <link rel="stylesheet" href="../assets/icons/bootstrap-icons.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="shortcut icon" href="../favicon.png" type="image/x-icon">
     <style>
-        body {
-            background-color: #b3f3c123;
-            /* font-family: Arial; */
-        }
-        .initiative_logo {
-            width: 200px;
-            height: 200px;
-        }
-        .future-green{
-            color:#056D1B;
-        }
-        .bg-future-green {
-            background: #4FA40F;
-            color:#fff;
-        }
-        .header-initiative_logo {
-            width: 50px;
-            height: 50px;
-        }
-        .title-green {
-            color:#4FA40F;
-        }
-        .fw-medium {
-            font-weight: 400;
-        }
-        .join-prog-bt {
-            background:#2F6704;
-            color:#fff;
-            border-radius:10px;
-            padding:10px 5px;
-            border:none;
-            width: 80px;
-        }
-        .nav-sidebar {
-            margin-top:75px;
-            width:300px;
-            background:#ffffff;
-            min-height: 100vh;
-            overflow:auto;
-            position:fixed;
-            top:0;
-           left:0;
-        }
-        .nav-sidebar .navbar-container {
-            width:100%;
-            height:fit-content;
-        }
-        header {
-            position:fixed;
-            width:100%;
-            top:0;
-            padding:5px 5px;
-            right:0;
-            z-index:999;
-        }
-        .nav-sidebar .navbar-container .navbar-item {
-            width:90%;
-            height:50px;
-            padding:5px;
-            background:#0575790c;
-            margin:10px 0px;
-            list-style: none;
-            border-radius:10px;
-            display:flex;
-            align-items:center;
-            transition:all 0.3s ease;
-        }
-        .nav-sidebar .navbar-container .navbar-item:hover {
-            transform:translate(3px,-3px);
-            cursor:pointer;
-            box-shadow:10px 5px 10px rgba(96,96,96,0.1);
-        }
-        .nav-sidebar .navbar-container .navbar-item a {
-            text-decoration:none;
-            font-size:18px;
-        }
-    .main-body {
-        margin-top:80px;
-        margin-left:302px;
-        padding:10px 20px;
-    }
-    .cadi-bebaji {
-        flex-wrap:wrap;
-    }
-    .overflow {
-        overflow:auto;
-    }
-    .dd-container {
-        display:flex;
-        flex-direction:row;
-        background:#fff;
-        min-width:200px;
-        margin:10px;
-        transition: all 0.1s ease;
-    }
-    .dd-container:hover {
-        cursor: pointer;
-        transform: translate(3px,-2px);
-        box-shadow:2px 2px 10px rgba(96,96,96,0.1);
-    }
-    ::-webkit-scrollbar {
-        -webkit-appearance:none;
-        width:5px;
-        height:5px;
-        background:#8b8b8b67;
-    }
-    ::-webkit-scrollbar-thumb {
-        background:#333;
-    }
-    .img-holder {
-        justify-self:center;
-    }
-    .nav-image {
-        width:35px;
-        height:35px;
-        opacity:0.5;
-    }
-    .disp-img {
-        width:100px;
-        height:100px;
-    }
-    .dnav {
-        justify-content: space-between;
-    }
-    .dnav .not-prof-sec img{
-        width:30px;
-        height:30px;
-        object-fit:cover;
-        border-radius:50%;   
-    }
-    .logo-holder {
-        justify-self:flex-start;
-    }
-    .flex-direction-row {
-        flex-direction: row;
-    }
-    .prof-holder {
-        height:35px;
-        justify-content:center;
-        background:#1a17179c;
-        padding:3px 3px;
-        border-radius:3px;
-    }
-    .prof-holder:hover {
-        cursor: pointer;
-    }
-    .dropdown hr {
-        margin:0;
-    }
-    .dropdown {
-        z-index:999;
-    }
-    .dropdown-menu {
-        padding:0;
-        margin:0;
-    }
-    .dropdown a {
-        text-decoration:none;
-    }
-    .text-small {
-        font-size:12px;
-    }
-    .img-section {
-        margin-right:10px;
-    }
-    .dropdown-menu {
-        border:1px solid #0813041f;
-        padding:10px 10px;
-    }
-    .dropdown {
-        width:fit-content;
-    }
-    .dropdown-item {
-        padding:0;
-    }
-    .notii {
-        width:30px;
-        height:30px;
-        display:flex;
-        align-items:baseline;
-    }
-    .prof-pic-preview {
-        width:100px;
-        height:100px;
-        border-radius: 50%;
-        object-fit: cover;
-    }
     </style>
 </head>
 <body>
+    <!-- This is the beginning of the spinner body it will spin as the page loads info -->
+    <div class="spinner-holder d-flex" id="loaderIndicator">
+        <div class="spinner-border text-primary spin-style"></div>
+     </div>
     <!-- This is the beginning of the header -->
     <header class="bg-future-green">
         <div class="container-fluid d-flex dnav">
             <a href="index.html" class="logo-holder">
-                <a href="./home.html" class="navbar-brand"><center class="d-flex align-items-center"><img src="../favicon.png" alt="" class="rounded-corners mb-2 mt-1 header-initiative_logo"><h5 class="ms-3 p-0">Future Guardians initiative</h3></center></a>
+                <a href="./home.html" class="navbar-brand"><center class="d-flex align-items-center"><img src="../favicon.png" alt="" class="rounded-corners mb-2 mt-1 header-initiative_logo"><h5 class="ms-3 p-0 fgi">Future Guardians initiative</h3></center></a>
             </a>
             <div class="not-prof-sec mt-3 d-flex flex-direction-row p-0">
                 <span class="ms-3 me-3 position-relative notii" data-bs-toggle="dropdown">
@@ -311,7 +130,7 @@
                             <center><img class="m-0 prof-pic-preview" src="../assets/img/messages-3.jpg" alt="" id="prof-pic-holder"></center>
                         </li>
                         <center>
-                            <p class="m-1 text-secondary p-0 m-0 fw-medium" id="name-holder">Calvince Owino</p>
+                            <p class="m-1 text-secondary p-0 m-0 fw-medium userName" id="name-holder">Calvince Owino</p>
                             <p class="m-1 text-secondary p-0 m-0 fw-medium" id="user-type">Admin</p>
                         </center>
                         <hr class="dropdow-divider">
@@ -346,31 +165,31 @@
                 <a href="./dashboard.html" class="navbar-link fw-medium text-muted"><i class="bi bi-house-door-fill"></i> Home</a>
             </li>
             <li class="navbar-item">
-                <a href="" class="navbar-link fw-medium text-secondary"><i class="bi bi-person-lines-fill"></i> Discussions</a>
+                <a href="./discussions.html" class="navbar-link fw-medium text-secondary"><i class="bi bi-person-lines-fill"></i> Discussions</a>
             </li>
             <li class="navbar-item">
                 <a href="./users.html" class="navbar-link fw-medium text-secondary"><i class="bi bi-people-fill"></i> Users</a>
             </li>
             <li class="navbar-item">
-                <a href="" class="navbar-link fw-medium text-secondary"><i class="bi bi-tropical-storm"></i> Activities</a>
+                <a href="./activities.html" class="navbar-link fw-medium text-secondary"><i class="bi bi-tropical-storm"></i> Activities</a>
             </li>
             <li class="navbar-item">
-                <a href="" class="navbar-link fw-medium text-secondary"><img src="../assets/img/Coin Hand.png" class="nav-image" alt=""> Donations</a>
+                <a href="./donations.html" class="navbar-link fw-medium text-secondary"><img src="../assets/img/Coin Hand.png" class="nav-image" alt=""> Donations</a>
             </li>
             <li class="navbar-item">
-                <a href="" class="navbar-link fw-medium text-secondary"><i class="bi bi-chat-right-dots"></i> Queries</a>
+                <a href="./queries.html" class="navbar-link fw-medium text-secondary"><i class="bi bi-chat-right-dots"></i> Queries</a>
             </li>
             <li class="navbar-item">
-                <a href="" class="navbar-link fw-medium text-secondary"><i class="bi bi-people"></i> Members</a>
+                <a href="./members.html" class="navbar-link fw-medium text-secondary"><i class="bi bi-people"></i> Members</a>
             </li>
             <li class="navbar-item">
-                <a href="" class="navbar-link fw-medium text-secondary"><i class="bi bi-image-fill"></i> Images</a>
+                <a href="./resources.html?images='1'" class="navbar-link fw-medium text-secondary"><i class="bi bi-image-fill"></i> Images</a>
             </li>
             <li class="navbar-item">
-                <a href="" class="navbar-link fw-medium text-secondary"><i class="bi bi-book-half"></i> Books</a>
+                <a href="./resources.html?books='1'" class="navbar-link fw-medium text-secondary"><i class="bi bi-book-half"></i> Books</a>
             </li>
             <li class="navbar-item">
-                <a href="" class="navbar-link fw-medium text-secondary"><i class="bi bi-camera-reels"></i> Videos</a>
+                <a href="./resources.html?videos='1'" class="navbar-link fw-medium text-secondary"><i class="bi bi-camera-reels"></i> Videos</a>
             </li>
         </ul>
     </div>
@@ -381,6 +200,8 @@
 </body>
 <script src="../assets/js/aos.js"></script>
 <script src="../assets/js/bootstrap.bundle.min.js"></script>
+<script src="../assets/js/general.js"></script>
+<script src="../assets/js/aosInit.js"></script>
 <script src="../assets/js/jquery-3.6.0.min.js"></script>
 <script src="../assets/js/sweetalert2@11.js"></script>
 </html>

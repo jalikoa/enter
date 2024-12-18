@@ -1,9 +1,31 @@
+<?php
+use jalikoa\FGIprogramme\Auth;
+session_start();
+if(isset($_GET["auth"])){
+    require_once "../../src/config/db_config.php";
+    require_once "../../src/middlewares/auth_middleware.php";
+    
+    $auth = htmlspecialchars($_GET["auth"]);
+    if(!isset($_SESSION[$auth])){
+        header("location:../login.html");
+    }
+    $auth = new Auth;
+    $sessid = $_GET["auth"];
+    $uid = $_SESSION[$sessid];
+    if(!$auth->auth_admin($uid,$conn)){
+        header("location:../users/dashboard.php?auth='$sessid'");
+    }
+} else {
+    header("location:../login.html");
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin dashboard</title>
+    <link rel="shortcut icon" href="../favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="../assets/css/animate.min.css">
     <link rel="stylesheet" href="../assets/css/aos.css">
     <link rel="stylesheet" href="../assets/css/bootstrap.css">
@@ -13,6 +35,10 @@
     <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 <body>
+    <!-- This is the beginning of the spinner body it will spin as the page loads info -->
+    <div class="spinner-holder d-flex" id="loaderIndicator">
+        <div class="spinner-border text-primary spin-style"></div>
+     </div>
     <!-- This is the beginning of the header -->
     <header class="bg-future-green">
         <div class="container-fluid d-flex dnav">
@@ -152,37 +178,37 @@
         </Section>
     </nav>
     <!-- This is thr beginnig of the nav in the desktop versions -->
-    <div class="nav-sidebar" data-aos="fade-right" data-aos-delay="800">
+    <div class="nav-sidebar">
         <ul class="navbar-container">
             <li class="navbar-item alert alert-success border-0">
                 <a href="./dashboard.html" class="navbar-link fw-medium text-muted"><i class="bi bi-house-door-fill"></i> Home</a>
             </li>
             <li class="navbar-item">
-                <a href="" class="navbar-link fw-medium text-secondary"><i class="bi bi-person-lines-fill"></i> Discussions</a>
+                <a href="./discussions.html" class="navbar-link fw-medium text-secondary"><i class="bi bi-person-lines-fill"></i> Discussions</a>
             </li>
             <li class="navbar-item">
                 <a href="./users.html" class="navbar-link fw-medium text-secondary"><i class="bi bi-people-fill"></i> Users</a>
             </li>
             <li class="navbar-item">
-                <a href="" class="navbar-link fw-medium text-secondary"><i class="bi bi-tropical-storm"></i> Activities</a>
+                <a href="./activities.html" class="navbar-link fw-medium text-secondary"><i class="bi bi-tropical-storm"></i> Activities</a>
             </li>
             <li class="navbar-item">
-                <a href="" class="navbar-link fw-medium text-secondary"><img src="../assets/img/Coin Hand.png" class="nav-image" alt=""> Donations</a>
+                <a href="./donations.html" class="navbar-link fw-medium text-secondary"><img src="../assets/img/Coin Hand.png" class="nav-image" alt=""> Donations</a>
             </li>
             <li class="navbar-item">
-                <a href="" class="navbar-link fw-medium text-secondary"><i class="bi bi-chat-right-dots"></i> Queries</a>
+                <a href="./queries.html" class="navbar-link fw-medium text-secondary"><i class="bi bi-chat-right-dots"></i> Queries</a>
             </li>
             <li class="navbar-item">
-                <a href="" class="navbar-link fw-medium text-secondary"><i class="bi bi-people"></i> Members</a>
+                <a href="./members.php?auth=<?php echo $sessid;?>" class="navbar-link fw-medium text-secondary"><i class="bi bi-people"></i> Members</a>
             </li>
             <li class="navbar-item">
-                <a href="" class="navbar-link fw-medium text-secondary"><i class="bi bi-image-fill"></i> Images</a>
+                <a href="./resources.html?images='1'" class="navbar-link fw-medium text-secondary"><i class="bi bi-image-fill"></i> Images</a>
             </li>
             <li class="navbar-item">
-                <a href="" class="navbar-link fw-medium text-secondary"><i class="bi bi-book-half"></i> Books</a>
+                <a href="./resources.html?books='1'" class="navbar-link fw-medium text-secondary"><i class="bi bi-book-half"></i> Books</a>
             </li>
             <li class="navbar-item">
-                <a href="" class="navbar-link fw-medium text-secondary"><i class="bi bi-camera-reels"></i> Videos</a>
+                <a href="./resources.html?videos='1'" class="navbar-link fw-medium text-secondary"><i class="bi bi-camera-reels"></i> Videos</a>
             </li>
         </ul>
     </div>
@@ -260,26 +286,61 @@
                     </div>
   
                     <h5 class="text-info ms-2 mt-2">
-                        Recents
+                        Recent Resources
                     </h5>
                     <p class="text-danger m-3 fw-medium">No recents</p>
                 </div> 
             </div>
             <div class="col col-12 col-sm-6">
-                <div class="card w-100 border-0 shadow mt-1">
-                    The best is here please note that please 
-                </div> 
-            </div>
-            <div class="col col-12 col-sm-12 mt-1">
-                <div class="card w-100 border-0 shadow">
-                    The best is here please note that please 
+                <div class="card w-100 border-0 shadow mt-1 position-relative">
+                    <i class="bi bi-three-dots-vertical position-absolute top-0 end-0 m-1" data-bs-toggle="dropdown"></i>
+                    <!-- Dropdown -->
+                    <div class="dropdown">
+                         <ul class="dropdown-menu">
+                            <h6 class="text-secondary ms-2 mt-1">
+                                Filter
+                            </h6>
+                            <li><a class="dropdown-item text-secondary" href="#"><i class="bi bi-sort-down-alt"></i> Date ASC</a></li>
+                            <hr class="dropdown-divider">
+                            <li><a class="dropdown-item text-secondary" href="#"><i class="bi bi-sort-up"></i> Date DESC</a></li>
+                            <hr>
+                            <li><a class="dropdown-item text-secondary" href="#"><i class="bi bi-sort-alpha-down"></i> A-Z</a></li>
+                            <hr>
+                            <li><a class="dropdown-item text-secondary" href="#"><i class="bi bi-sort-alpha-down-alt"></i> Z-A</a></li>
+                        </ul>
+                    </div>
+  
+                    <h5 class="text-info ms-2 mt-2">
+                        Recent activities
+                    </h5>
+                    <p class="text-danger m-3 fw-medium">No recent Activity</p>
+                    <div class="alert alert-warning  alert-dismissible fade show me-1 ms-1 mt-1" role="alert">
+                        <p class="mb-0">Added new member</p>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                      </div>
+                      <div class="alert alert-danger  alert-dismissible fade show me-1 ms-1 mt-1" role="alert">
+                        <p class="mb-0">Deleted a member</p>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                      </div>
+                      <div class="alert alert-info  alert-dismissible fade show me-1 ms-1 mt-1" role="alert">
+                        <p class="mb-0">Added a book</p>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                      </div>
+                      <div class="alert alert-success alert-dismissible fade show me-1 ms-1 mt-1" role="alert">
+                        <p class="mb-0">Added a new user</p>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                      </div>
                 </div> 
             </div>
          </div>
     </div>
     
 </body>
+<script>
+    const sessid = '<?php echo $sessid?>';
+</script>
 <script src="../assets/js/aos.js"></script>
+<script src="../assets/js/general.js"></script>
 <script src="../assets/js/aosInit.js"></script>
 <script src="../assets/js/bootstrap.bundle.min.js"></script>
 <script src="../assets/js/jquery-3.6.0.min.js"></script>

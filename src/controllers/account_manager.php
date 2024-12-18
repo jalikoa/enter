@@ -2,6 +2,7 @@
 require_once "../src/config/db_config.php";
 require_once "../src/helpers/sanitation.php";
 require_once "../src/models/acc_man_model.php";
+use jalikoa\FGIprogramme\manage_account;
 if(isset($_POST["enter_otp"])){
     // Check and verify entered otp
     $userid = sanitize($_POST["userid"]);

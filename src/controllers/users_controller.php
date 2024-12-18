@@ -7,6 +7,9 @@
     // Auth user logged in
     // Auth user is admin
     // Auth user verified account
+    use jalikoa\FGIprogramme\reister;
+    use jalikoa\FGIprogramme\Auth;
+    use jalikoa\FGIprogramme\users;
 if(isset($_POST["adduser"])){
     $register = new register();
     $firstname = sanitize($_POST["firstname"]);

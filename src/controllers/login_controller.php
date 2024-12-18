@@ -2,6 +2,7 @@
     require_once "../src/config/db_config.php";
     require_once "../src/models/login_model.php";
     require_once "../src/helpers/sanitation.php";
+    use jalikoa\FGIprogramme\login;
     if(isset($_POST["login"])){
     $email = sanitize($_POST["useremail"]);
     $password = sanitize($_POST["userpassword"]);
@@ -12,7 +13,7 @@
         if($user_login->check_acc_verified()){
             if($user_login->check_password()){
                 if($user_login->login_user()){
-                    echo json_encode(["success" => true,"message" => "Login successfull","auth" => $user_login->getI()]);
+                    echo json_encode(["success" => true,"message" => "Login successfull","auth" => $user_login->getI(),"role"=>$user_login->getUserRole()]);
                 } else {
                     echo json_encode(["success" => false,"message" => "There was a problem logging you in please try again later"]);
                 }

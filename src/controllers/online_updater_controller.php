@@ -3,13 +3,17 @@ require_once "../src/models/online_updater_model.php";
 require_once "../src/helpers/sanitation.php";
 require_once "../src/config/db_config.php";
 require_once "../src/middlewares/auth_middleware.php";
+use jalikoa\FGIprogramme\isOnline;
+use jalikoa\FGIprogramme\Auth;
 if (isset($_POST["updateonline"])){
     $auth = new Auth();
     $sessid = sanitize($_POST["sessid"]);
+    session_start();
     if ($auth->check_logged_in($sessid)){
         $sessid = sanitize($_POST["sessid"]);
-        session_start();
-        $userid = $_SESSION[$sessid];
+        if(isset($sessid)){
+            $userid = $_SESSION[$sessid];
+        }
         if($auth->auth_acc_verified($userid,$conn)){
             $update = new isOnline();
             if($update->start($userid)){

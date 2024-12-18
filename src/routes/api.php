@@ -20,6 +20,15 @@
     elseif(isset($_POST["updateonline"])){
     require_once "../src/controllers/online_updater_controller.php";
     }
+    elseif(isset($_POST["addnewmember"])){
+        require_once "../src/controllers/members_controller.php";
+    }
+    elseif(isset($_POST["searchmember"])){
+        require_once "../src/controllers/members_controller.php";
+    } 
+    elseif(isset($_POST["fetchmebers"])){
+        require_once "../src/controllers/members_controller.php";
+    } 
     else {
         require_once "./index.html";
     }

@@ -3,6 +3,8 @@
     require_once "../src/helpers/sanitation.php";
     require_once "../src/config/db_config.php";
     require_once "../src/middlewares/auth_middleware.php";
+    use jalikoa\FGIprogramme\Auth;
+    use jalikoa\FGIprogramme\profile;
 if (isset($_POST["update_profile"])){
     $sessid = sanitize($_POST["sessid"]);
     $firstname = sanitize($_POST["firstname"]);

@@ -45,11 +45,25 @@ namespace jalikoa\FGIprogramme;
             $this->cred = ($res->num_rows > 0)?$res->fetch_assoc():0;
             return ($res->num_rows > 0)?true:false;
         }
-        public function fetch_members($conn){
-            $fetch = "SELECT * FROM members";
+        public function fetch_members($conn,$start,$limit){
+            $fetch = "SELECT * FROM members LIMIT $start,$limit";
             $res = $conn->query($fetch);
             if($res->num_rows > 0){
-                $this->members_list = $res->fetch_assoc();
+                while($row = $res->fetch_assoc()){
+                    $this->members_list[] = $row;
+                }
+                return true;
+            } else {
+                return false;
+            }
+        }
+        public function search_members($conn,$nm_em){
+            $fetch = "SELECT * FROM members WHERE name REGEXP '$nm_em' OR email REGEXP '$nm_em'";
+            $res = $conn->query($fetch);
+            if($res->num_rows > 0){
+                while($row = $res->fetch_assoc()){
+                    $this->members_list[] = $row;
+                }
                 return true;
             } else {
                 return false;

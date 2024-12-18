@@ -14,8 +14,8 @@ body {
     color:#fff;
 }
 .header-initiative_logo {
-    width: 50px;
-    height: 50px;
+    width: 30px;
+    height: 30px;
 }
 .title-green {
     color:#4FA40F;
@@ -222,7 +222,7 @@ object-fit: cover;
     border-radius:5px;
 }
 .dropdown {
-    z-index:1000;
+    z-index:900;
 }
 .activity-holder .dropdown .ihmg {
     width:350px;
@@ -238,4 +238,50 @@ object-fit: cover;
     width:50px;
     height:50px;
     border-radius:50%;
+}
+.spinner-holder {
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100vh;
+    z-index:1000;
+    background-color:rgb(224, 255, 224);
+    transition: all .3s ease;
+}
+.spin-style {
+    width:50px;
+    height:50px;
+}
+.footer-img-holder {
+    margin:0px 10px;
+}
+.footer-img-holder img {
+    width:200px;
+    height:200px;
+    border-radius:50%;
+    object-fit: cover;
+}
+footer {
+    background-color: #050703da;
+}
+.team-holder {
+    overflow:auto;
+}
+.login-btn {
+    background: #4FA40F;
+    width:150px;
+    border:none;
+    color:#fff;
+    padding:5px 5px;
+    border-radius:10px;
+    font-weight: 500px;
+}
+.purple {
+    color:#CA076C;
+}
+.deco-none {
+    text-decoration:none;
 }

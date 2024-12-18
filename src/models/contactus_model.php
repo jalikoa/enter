@@ -9,7 +9,7 @@
  * CEO JalSoft Calvince Owino
  * @see contact at +254799311413
  */
-namespace JalSoft\contactus_model;
+namespace jalikoa\FGIprogramme;
 
 class contact_us {
     private $email;

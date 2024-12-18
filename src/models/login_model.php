@@ -55,4 +55,7 @@ class login {
     public function getI(){
         return md5($this->cred["id"]);
     }
+    public function getUserRole(){
+        return $this->cred["role"];
+    }
 }

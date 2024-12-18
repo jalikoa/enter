@@ -2,6 +2,7 @@
 // Add new
 // Delete 
 // Edit activity
+use jalikoa\FGIprogramme\activity;
 if(isset($_POST["addactivity"])){
     $type = sanitize($_POST["activitytype"]);
     $name = sanitize($_POST["activitysubject"]);
