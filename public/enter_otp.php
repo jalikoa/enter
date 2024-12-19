@@ -53,6 +53,7 @@ if(isset($_GET["uid"])){
 </head>
 
 <body>
+    <!-- this is the begginning of the main body -->
     <div class="container row">
         <div class="row d-flex justify-content-center">
             <div class="col col-lg-6 col-xl-5 mb-5"  data-aos="zoom-out" data-aos-delay="500">
