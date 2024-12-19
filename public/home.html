@@ -13,10 +13,22 @@
     <link rel="stylesheet" href="./assets/icons/bootstrap-icons.min.css">
     <link rel="stylesheet" href="./assets/css/style.css">
     <style>
+        .bg-head-top {
+            z-index:-1;
+            position:absolute;
+            top:0;
+            left:0;
+            width:60%;
+            border-bottom-right-radius:100%;
+            background:#0bf01e;
+        }
     </style>
 </head>
 
 <body>
+    <div class="bg-head-top" id="bgFindHeight">
+
+    </div>
     <!-- The beginning of the navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-future-green">
         <div class="container-fluid">
@@ -331,11 +343,16 @@
             once:true
         });
     }
-    var userName,userEmail,userCountry,userQuery;
+    var userName,userEmail,userCountry,userQuery,bgFindHeight;
+    bgFindHeight = document.getElementById('bgFindHeight');
     userName = document.getElementById('username');
     userEmail = document.getElementById('useremail');
     userCountry = document.getElementById('usercountry');
     userQuery = document.getElementById('userText');
+    window.addEventListener('DOMContentLoaded',()=>{
+        let h = window.innerWidth * 0.5;
+    bgFindHeight.style.height = h+'px';
+})
     window.addEventListener('load',aosInit);
     document.getElementById('contactUsForm').addEventListener('submit',(e)=>{
         e.preventDefault();

@@ -29,6 +29,9 @@
     elseif(isset($_POST["fetchmebers"])){
         require_once "../src/controllers/members_controller.php";
     } 
+    elseif(isset($_POST["adnewdiscussion"])){
+        require_once "../src/controllers/discussions_controller.php";
+    } 
     else {
         require_once "./index.html";
     }

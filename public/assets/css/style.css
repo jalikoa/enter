@@ -9,6 +9,7 @@ body {
 .future-green{
     color:#056D1B;
 }
+/* https://dribbble.com/shots/21739016-Donation-App-UI */
 .bg-future-green {
     background: #4FA40F;
     color:#fff;
@@ -148,7 +149,7 @@ cursor: pointer;
 margin:0;
 }
 .dropdown {
-z-index:999;
+z-index:900;
 }
 .dropdown-menu {
 padding:0;
@@ -221,9 +222,12 @@ object-fit: cover;
     padding:10px 10px;
     border-radius:5px;
 }
-.dropdown {
-    z-index:900;
-}
+/* .dropdown {
+    z-index:800;
+}*/
+.dropdown-menu {
+    z-index:910;
+} 
 .activity-holder .dropdown .ihmg {
     width:350px;
     height:auto;
@@ -233,8 +237,8 @@ object-fit: cover;
     margin-top:50px;
     z-index:999;
     position:fixed;
-    bottom:50px;
-    right:20px;
+    bottom:60px;
+    right:5px;
     width:50px;
     height:50px;
     border-radius:50%;
@@ -284,4 +288,80 @@ footer {
 }
 .deco-none {
     text-decoration:none;
+}
+.discussions-chat-holder {
+    border-radius:5px;
+    margin-bottom:5px;
+    border: 1px solid #3333336e;
+    display:grid;
+    grid-template-columns:300px auto;
+}
+.discussions-chat-holder .discussion-holder{
+    background:#ffffff;
+    margin:10px 5px;
+    padding:2px 2px;
+    border-radius:5px;
+}
+.discussions-holder .dis-img-holder img {
+    width:50px;
+    height:50px;
+    border-radius:50%;
+    object-fit:cover;
+}
+.overflow-hidden {
+    overflow: hidden;
+}
+.discussion-name-holder,.last-message-holder {
+    height:20px;
+}
+.cursor-pointer {
+    cursor: pointer;
+}
+.no-chat-selected {
+    align-items: center;
+    justify-content: center;
+    height:600px;
+    background:#1bbd060a;
+}
+.no-chat-selected .no-chat-holder img {
+    width:60px;
+}
+.dis-messages-box {
+    background:#1bbd060a;
+    height:500px; 
+    overflow: auto;
+    display: flex;
+    flex-direction:column;
+    padding:10px 10px;
+}
+.input-group {
+    align-items: center;
+}
+.message-received {
+    align-self:flx-start;
+    background:rgba(6, 211, 91, 0.281);
+    max-width:60%;
+    padding:5px;
+    padding-bottom:10px;
+    border-bottom-right-radius:20px;
+    border-bottom-left-radius:10px;
+}
+.message-sent {
+    align-self:flex-end;
+    background:rgba(35, 75, 3, 0.374);
+    max-width:60%;
+    padding:5px;
+    padding-bottom:10px;
+    border-bottom-right-radius:10px;
+    border-bottom-left-radius:20px;
+}
+.senderCred {
+    padding:2px 2px;
+    background:#2f670411;
+    justify-content:space-between;
+}
+.senderCred img {
+    width:40px;
+    height:40px;
+    border-radius:50%;
 }
