@@ -51,6 +51,11 @@ class discussion{
         $this->cred = ($res->num_rows > 0)?$d["id"]:'0';
         return ($res->num_rows > 0)?true:false;
     }
+    public function isAdmin($conn,$uid){
+        $check = "SELECT * FROM dissmembers WHERE id = '$uid'";
+        $res = $conn->query($check);
+        return ($res->fetch_assoc()["role"]=="0")?true:false;
+    }
     public function block_member(){
         //Block from accessing the group
         //Block member from sending message
