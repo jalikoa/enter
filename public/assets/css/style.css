@@ -32,7 +32,7 @@ body {
     border:none;
     width: 80px;
 }
-.nav-sidebar {
+.nav-sidebar,.nav-sidebar-phone {
     margin-top:75px;
     width:300px;
     background:#ffffff;
@@ -42,7 +42,7 @@ body {
     top:0;
    left:0;
 }
-.nav-sidebar .navbar-container {
+.nav-sidebar .navbar-container,.nav-sidebar-phone .navbar-container  {
     width:100%;
     height:fit-content;
 }
@@ -54,7 +54,7 @@ header {
     right:0;
     z-index:999;
 }
-.nav-sidebar .navbar-container .navbar-item {
+.nav-sidebar .navbar-container .navbar-item,.nav-sidebar-phone .navbar-container .navbar-item {
     width:90%;
     height:50px;
     padding:5px;
@@ -66,19 +66,33 @@ header {
     align-items:center;
     transition:all 0.3s ease;
 }
-.nav-sidebar .navbar-container .navbar-item:hover {
+.nav-sidebar-phone {
+    z-index:10;
+    transition: all 0.3s ease;
+    animation:slide-left 0.3s 1 linear;
+}
+@keyframes slide-left {
+    from{
+        transform:translateX(-300px);
+    }
+    to {
+        transform:translateX(0px);
+    }
+}
+
+.nav-sidebar .navbar-container .navbar-item:hover,.nav-sidebar-phone .navbar-container .navbar-item:hover {
     transform:translate(2px,-2px);
     cursor:pointer;
     box-shadow:10px 5px 10px rgba(96,96,96,0.1);
 }
-.nav-sidebar .navbar-container .navbar-item a {
+.nav-sidebar .navbar-container .navbar-item a,.nav-sidebar-phone .navbar-container .navbar-item a{
     text-decoration:none;
     font-size:18px;
 }
 .main-body {
 margin-top:80px;
 margin-left:302px;
-padding:10px 20px;
+padding:10px 0px;
 }
 .cadi-bebaji {
 flex-wrap:wrap;
@@ -196,6 +210,14 @@ object-fit: cover;
 .men-toggler {
     display: block;
 }
+}
+@media (min-width:1000px) {
+    #menuButton {
+        display:none;
+    }
+    #phoneSidebar {
+        display:none;
+    }
 }
 @media (max-width:620px){
 .fgi {
@@ -364,4 +386,14 @@ footer {
     width:40px;
     height:40px;
     border-radius:50%;
+}
+#yourProfPic {
+    width:100px;
+    height:100px;
+    border-radius:100px;
+    object-fit:cover;
+    /* Add more features to allow viewing of the image when the user clicks on the image */
+}
+.input-group {
+    width:99%;
 }

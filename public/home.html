@@ -351,6 +351,9 @@
     userQuery = document.getElementById('userText');
     window.addEventListener('DOMContentLoaded',()=>{
         let h = window.innerWidth * 0.5;
+        if(h<450){
+            h= 450
+        }
     bgFindHeight.style.height = h+'px';
 })
     window.addEventListener('load',aosInit);

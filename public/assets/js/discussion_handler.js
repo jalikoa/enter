@@ -35,5 +35,30 @@ addDiscussionForm.addEventListener('submit',(e)=>{
         data.append('whomess',disWhoMess.value);
         adDiXhr.send(data);
     }
-
 });
+function sendMessage(senderId,dissId,message,type,replyto){
+    // The type of the message here is either edited original or more as time goes
+    const sendXhr = checkXml();
+    sendXhr.open('POST',route,true);
+    setHeader(sendXhr);
+    sendXhr.onload = ()=>{
+        console.log(sendXhr.responseText);
+    }
+    const data = ``;
+    sendXhr.send(data);
+}
+function editMessage(){
+
+}
+function deleteMessage(){
+
+}
+function fetchMembers(){
+
+}
+function deleteMember(){
+
+}
+function checkAdmin(){
+
+}

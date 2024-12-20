@@ -63,6 +63,10 @@ function searchMember(char){
         if(response.success){
             populateTable(response.list);
         }
+        else if (!response.success){
+            const content = `<center><p class="text-danger fw-medium">${response.message}</p></center>`;
+            membersListTable.innerHTML = content;
+        }
     }
     const data = `searchmember=${enc('true')}&searchitem=${enc(char)}&sessid=${sessid}`;
     searchXhr.send(data);
