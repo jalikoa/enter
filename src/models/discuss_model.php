@@ -18,6 +18,8 @@ class discussion{
     private $type;
     private $whomess;
     private $cred;
+    private $discussionslist;
+    private $discussion_members;
     public function setCred($name,$admin,$image,$about,$type,$whomess){
         if(empty($name) || empty($admin) || empty($image) || empty($about) || empty($type) || empty($whomess)){
             return false;
@@ -73,7 +75,7 @@ class discussion{
         return ($res)?true:false;
     }
     public function delete_messages($conn,$disid){
-        $delete = "DELETE * FROM messages WHERE id = '$disid'";
+        $delete = "DELETE * FROM messages WHERE discussion = '$disid'";
         $res = $conn->query($delete);
         return ($res)?true:false;
     }
@@ -88,10 +90,76 @@ class discussion{
         return ($res)?true:false;
     }
     public function fetch_discussions(){
-        //fetch discussions list based on user location
+        //fetch discussions list based on user location or based on the preference
+        $fetch = "SELECT d.name AS groupname,
+    d.admin AS adminid,
+    d.about,
+    d.type,
+    d.whomess,
+    d.image AS grouplogo,
+    u.username,
+    u.country,
+    u.bio,
+    u.image AS userimage FROM 
+	discussions AS d
+    JOIN users AS u
+    ON u.id = d.admin;";
+    $res = $conn->query($sql);
+    if($res->num_rows > 0){
+        while($row = $res->fetch_assoc()){
+            $this->discussionslist[] = $row; 
+        }
+        return true;
+    } else {
+        return false;
     }
+}
+public function get_dis_list(){
+    return $this->discussionslist;
+}
     public function fetch_diss_members($conn,$dissid){
-        $fetch = "SELECT * FROM dissmembers WHERE disscussion_id = '$dissid'";
-        //join tables to make even the images of the members visible on the page
+        $fetch = "SELECT d.user_id AS id,
+        d.role,d.typing,
+        d.created_at AS datejoined ,
+        u.username,
+        u.country,
+        u.last_seen AS online,
+        u.bio,
+        u.image FROM dissmembers AS d 
+        JOIN users AS u
+        ON u.id = d.user_id WHERE d.discussion_id = '$dissid' ORDER BY typing DESC;";
+        $res = $conn->query($fetch);
+        if($res->num_rows > 0){
+            while($row = $res->fetch_assoc()){
+                $this->discussion_members[]=$row;
+            }
+            return true;
+        } else {
+            return false;
+        }
+    }
+    public function get_dis_info($conn,$dissid){
+        $get = "SELECT d.name AS groupname,
+    d.admin AS adminid,
+    d.about,
+    d.type,
+    d.whomess,
+    d.image AS grouplogo,
+    u.username,
+    u.country,
+    u.bio,
+    u.image AS userimage FROM 
+	discussions AS d
+    JOIN users AS u
+    ON u.id = d.admin WHERE d.id = '$dissid';";
+        $res = $conn->query($get);
+        $li;
+        while($row = $res->fetch_assoc()){
+            $li[] = $row;
+        }
+        return $li;
+    }
+    public function get_dis_members(){
+        return $this->discussion_members;
     }
 }

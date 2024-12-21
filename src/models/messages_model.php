@@ -32,6 +32,7 @@ class message {
     }
     public function check_is_blocked(){
         //Add logics in this function and aim at checkin when user is blocked by admin in the forum
+
     }
     public function send_message($conn){
         $send = "INSERT INTO messages (sender,message,discussion,type,reply_to) VALUES ('$this->sender','$this->message','$this->discussion','$this->type','$this->reply_to')";
@@ -48,18 +49,41 @@ class message {
         $res = $conn->query($del);
         return ($res)?true:false;
     }
-    public function fetch_messages($conn){
+    public function fetch_messages($conn,$dissid){
         #join tables to make it more easier for you to display the data when it comes to the front end
-        $fetch = "SELECT  ";
+        $fetch = "SELECT m.id,
+        m.sender,
+        m.message,
+        m.discussion,
+        m.type,
+        m.reply_to,
+        m.created_at AS timesent,
+        u.username,
+        u.country,
+        u.last_seen AS online,
+        d.typing,
+        u.bio,
+        u.image  FROM `messages` AS m
+         JOIN users AS u 
+         ON u.id = m.sender 
+         JOIN dissmembers AS d
+          ON d.user_id = u.id 
+          WHERE discussion = '$dissid'
+          ORDER BY m.id ASC;";
+          $res = $con->query($fetch);
+          if($res->num_rows > 0){
+            while($row = $res->fetch_assoc()){
+                $this->message_list[] = $row;
+                return true;
+            }
+          } else {
+            return false;
+          }
     }
-    public function Check_is_member($conn,$userid,$disid){
-        $check = "SELECT * FROM dissmembers WHERE user_id = '$userid' AND discussion_id = '$disid'";
+    public function Check_is_member($conn,$userid,$dissid){
+        $check = "SELECT * FROM dissmembers WHERE user_id = '$userid' AND discussion_id = '$dissid'";
         $res=$conn->query($check);
         return ($res->num_rows > 0)?true:false;
-    }
-    public function get_messages($conn){
-        $fetch = "SELECT *";
-        //Update this to make the messages to be fetched togethere with the sender credentials
     }
     public function get_mess_list(){
         return $this->message_list;

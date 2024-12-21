@@ -1,4 +1,5 @@
 <?php
+
 use jalikoa\FGIprogramme\message;
 if(isset($_POST["sendmessage"])){
     $text = sanitize($_POST["message"]);

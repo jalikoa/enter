@@ -1,4 +1,14 @@
 <?php
+/**
+ * Future guardians initiative 
+ *
+ * @see       https://github.com/jalikoa/fgi/ The future guardians repository
+ * @author    Calvince Owino Jalikoa (Kenya) <d34calvo@gmail.com>
+ * @copyright 2024 - 2025 Calvince Owino CEO Jalsoft
+ * @license   Thi programe is written for the specific needs of future guardians initiative and no part can be taken away without prior permissions
+ * CEO JalSoft Calvince Owino
+ * @see contact at +254799311413
+ */
 // Add new
 // Send text
 // Record someone is online
@@ -75,5 +85,16 @@ if(isset($_POST["blockuser"])){
 
 }
 if(isset($_POST["clearchats"])){
+    $sessid = $_POST['sessid'];
+    $auth = new Auth();
+    if($auth->check_logged_in($sessid)){
+        $discussion = new discussion();
+        if($discussion->){
 
+        } else {
+            echo json_encode("success"=>false,"message"=>"");
+        }
+    } else {
+        echo json_encode(["success"=>false,"message"=>"Please Login to complete this action"]);
+    }
 }
