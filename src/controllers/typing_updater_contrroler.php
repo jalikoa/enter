@@ -15,11 +15,12 @@ require_once "../src/config/db_config.php";
 require_once "../src/middlewares/auth_middleware.php";
 use jalikoa\FGIprogramme\Auth;
 use jalikoa\FGIprogramme\is_typing;
-if (isset($_POST["updatetyping"])){
+if (isset($_POST["updateTyping"])){
     $auth = new Auth();
     $sessid = sanitize($_POST["sessid"]);
+    $dissid = sanitize($_POST["dissid"]);
+    session_start();
     if ($auth->check_logged_in($sessid)){
-        session_start();
         $userid = $_SESSION[$sessid];
         if($auth->auth_acc_verified($userid,$conn)){
             $update = new is_typing();

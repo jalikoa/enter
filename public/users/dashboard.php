@@ -9,7 +9,6 @@ if(isset($_GET["auth"])){
     header("location:../login.html");
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -181,13 +180,13 @@ if(isset($_GET["auth"])){
      <div class="nav-sidebar">
         <ul class="navbar-container">
             <li class="navbar-item alert alert-success border-0">
-                <a href="./dashboard.html" class="navbar-link fw-medium text-muted"><i class="bi bi-house-door-fill"></i> Home</a>
+                <a href="./dashboard.php?auth=<?php echo $auth;?>" class="navbar-link fw-medium text-muted"><i class="bi bi-house-door-fill"></i> Home</a>
             </li>
             <li class="navbar-item">
-                <a href="./discussions.html" class="navbar-link fw-medium text-secondary"><i class="bi bi-person-lines-fill"></i> Discussions</a>
+                <a href="./discussions.php?auth=<?php echo $auth;?>" class="navbar-link fw-medium text-secondary"><i class="bi bi-person-lines-fill"></i> Discussions</a>
             </li>
             <li class="navbar-item">
-                <a href="./users.html" class="navbar-link fw-medium text-secondary"><i class="bi bi-people-fill"></i> Users</a>
+                <a href="./learn.php?auth=<?php echo $auth;?>" class="navbar-link fw-medium text-secondary"><i class="bi bi-people-fill"></i> Learn</a>
             </li>
             <li class="navbar-item">
                 <a href="./activities.html" class="navbar-link fw-medium text-secondary"><i class="bi bi-tropical-storm"></i> Activities</a>
@@ -216,13 +215,13 @@ if(isset($_GET["auth"])){
     <div class="nav-sidebar-phone d-none" id="phoneSidebar">
         <ul class="navbar-container">
             <li class="navbar-item alert alert-success border-0">
-                <a href="./dashboard.html" class="navbar-link fw-medium text-muted"><i class="bi bi-house-door-fill"></i> Home</a>
+                <a href="./dashboard.php?auth=<?php echo $auth;?>" class="navbar-link fw-medium text-muted"><i class="bi bi-house-door-fill"></i> Home</a>
             </li>
             <li class="navbar-item">
-                <a href="./discussions.html" class="navbar-link fw-medium text-secondary"><i class="bi bi-person-lines-fill"></i> Discussions</a>
+                <a href="./discussions.php?auth=<?php echo $auth;?>" class="navbar-link fw-medium text-secondary"><i class="bi bi-person-lines-fill"></i> Discussions</a>
             </li>
             <li class="navbar-item">
-                <a href="./users.html" class="navbar-link fw-medium text-secondary"><i class="bi bi-people-fill"></i> Users</a>
+                <a href="./learn.php?auth=<?php echo $auth;?>" class="navbar-link fw-medium text-secondary"><i class="bi bi-people-fill"></i> Users</a>
             </li>
             <li class="navbar-item">
                 <a href="./activities.html" class="navbar-link fw-medium text-secondary"><i class="bi bi-tropical-storm"></i> Activities</a>

@@ -32,6 +32,15 @@
     elseif(isset($_POST["adnewdiscussion"])){
         require_once "../src/controllers/discussions_controller.php";
     } 
+    elseif(isset($_POST["updateTyping"])){
+        require_once "../src/controllers/typing_updater_contrroler.php";
+    }
+    elseif(isset($_POST["sendmessage"])){
+        require_once "../src/controllers/messages_controller.php";
+    }
+    elseif(isset($_POST["fetchmessages"])){
+        require_once "../src/controllers/messages_controller.php";
+    }
     else {
         require_once "./index.html";
     }

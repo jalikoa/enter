@@ -1,3 +1,14 @@
+<?php
+session_start();
+if(isset($_GET["auth"])){
+    $auth = htmlspecialchars($_GET["auth"]);
+    if(!isset($_SESSION[$auth])){
+        header("location:../login.html");
+    }
+} else {
+    header("location:../login.html");
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -156,13 +167,13 @@
     <div class="nav-sidebar">
         <ul class="navbar-container">
             <li class="navbar-item alert alert-success border-0">
-                <a href="./dashboard.html" class="navbar-link fw-medium text-muted"><i class="bi bi-house-door-fill"></i> Home</a>
+                <a href="./dashboard.php?auth=<?php echo $auth;?>" class="navbar-link fw-medium text-muted"><i class="bi bi-house-door-fill"></i> Home</a>
             </li>
             <li class="navbar-item">
-                <a href="./discussions.html" class="navbar-link fw-medium text-secondary"><i class="bi bi-person-lines-fill"></i> Discussions</a>
+                <a href="./discussions.php?auth=<?php echo $auth;?>" class="navbar-link fw-medium text-secondary"><i class="bi bi-person-lines-fill"></i> Discussions</a>
             </li>
             <li class="navbar-item">
-                <a href="./users.html" class="navbar-link fw-medium text-secondary"><i class="bi bi-people-fill"></i> Users</a>
+                <a href="./learn.php?auth=<?php echo $auth;?>" class="navbar-link fw-medium text-secondary"><i class="bi bi-people-fill"></i> Users</a>
             </li>
             <li class="navbar-item">
                 <a href="./activities.html" class="navbar-link fw-medium text-secondary"><i class="bi bi-tropical-storm"></i> Activities</a>
@@ -414,25 +425,7 @@
             <!-- ====== Div no discussion selected end ========== -->
             <!-- ====== Div discussion selected start ========== -->
              <style>
-                .dis-chat-selected .discussion-meta-information {
-                    justify-content: space-between;
-                    align-items: center;
-                    background:#f1f1fff6;
-                    padding:0px 10px;
-                }
-                .dis-chat-selected .discussion-meta-information .dissImage {
-                    width:50px;
-                    height:50px;
-                    object-fit: cover;
-                    border-radius:50%;
-                    margin:3px 10px;
-                }
-                .h-30 {
-                    height:30px;
-                }
-                .h-60 {
-                    height:60px;
-                }
+                
              </style>
              <div class="dis-chat-selected d-flex flex-column">
                 <div class="discussion-meta-information d-flex">
@@ -545,129 +538,15 @@
                           </ul>
                     </div>
                 </div>
-                <div class="dis-messages-box">
-                    <!--============= The sample messages here ========================-->
-                    <div class="message-text message-received position-relative mt-3">
-                        <p class="message-text-text mb-4">
-                           Hey hello this is the CEO of JalSoft Ukoje lakini bro
-                        </p>
-                        <span class="received-time text-small position-absolute end-0 m-1 bottom-0">
-                           00:34 AM
-                        </span>
-                      </div>
-                      <div class="message-text message-sent position-relative mt-3">
-                        <p class="message-text-text mb-4">
-                           Hey hello this is the CEO of JalSoft Ukoje lakini bro
-                        </p>
-                        <span class="received-time text-small position-absolute start-0 m-1 bottom-0">
-                            00:34 AM
-                         </span>
-                         <span class="sent-status bi text-primary bi-check2-all position-absolute end-0 m-1 bottom-0">
-                                <!-- Here the user will get notified whether message is sent -->
-                         </span>
-                      </div>
-                      <div class="message-text message-received position-relative mt-3">
-                        <p class="message-text-text mb-4">
-                           Hey hello this is the CEO of JalSoft Ukoje lakini bro
-                        </p>
-                        <span class="received-time text-small position-absolute end-0 m-1 bottom-0">
-                           00:34 AM
-                        </span>
-                      </div>
-                      <div class="message-text message-received position-relative mt-3">
-                        <p class="message-text-text mb-4">
-                           Hey hello this is the CEO of JalSoft Ukoje lakini bro
-                        </p>
-                        <span class="received-time text-small position-absolute end-0 m-1 bottom-0">
-                           00:34 AM
-                        </span>
-                      </div>
-                      <div class="message-text message-sent position-relative mt-3">
-                        <p class="message-text-text mb-4">
-                           Hey hello this is the CEO of JalSoft Ukoje lakini bro
-                        </p>
-                        <span class="received-time text-small position-absolute start-0 m-1 bottom-0">
-                            00:34 AM
-                         </span>
-                         <span class="sent-status bi text-primary bi-check2-all position-absolute end-0 m-1 bottom-0">
-                                <!-- Here the user will get notified whether message is sent -->
-                         </span>
-                      </div>
-                      <div class="message-text message-received position-relative mt-3">
-                        <p class="message-text-text mb-4">
-                           Hey hello this is the CEO of JalSoft Ukoje lakini bro
-                        </p>
-                        <span class="received-time text-small position-absolute end-0 m-1 bottom-0">
-                           00:34 AM
-                        </span>
-                      </div>
-                      <div class="message-text message-received position-relative mt-3">
-                        <p class="message-text-text mb-4">
-                           Hey hello this is the CEO of JalSoft Ukoje lakini bro
-                        </p>
-                        <span class="received-time text-small position-absolute end-0 m-1 bottom-0">
-                           00:34 AM
-                        </span>
-                      </div>
-                      <div class="message-text message-sent position-relative mt-3">
-                        <p class="message-text-text mb-4">
-                           Hey hello this is the CEO of JalSoft Ukoje lakini bro
-                        </p>
-                        <span class="received-time text-small position-absolute start-0 m-1 bottom-0">
-                            00:34 AM
-                         </span>
-                         <span class="sent-status bi text-primary bi-check2-all position-absolute end-0 m-1 bottom-0">
-                                <!-- Here the user will get notified whether message is sent -->
-                         </span>
-                      </div>
-                      <div class="message-text message-received position-relative mt-3">
-                        <p class="message-text-text mb-4">
-                           Hey hello this is the CEO of JalSoft Ukoje lakini bro
-                        </p>
-                        <span class="received-time text-small position-absolute end-0 m-1 bottom-0">
-                           00:34 AM
-                        </span>
-                      </div>
-                      <div class="message-text message-received position-relative mt-3">
-                        <p class="message-text-text mb-4">
-                           Hey hello this is the CEO of JalSoft Ukoje lakini bro
-                        </p>
-                        <span class="received-time text-small position-absolute end-0 m-1 bottom-0">
-                           00:34 AM
-                        </span>
-                      </div>
-                      <div class="message-text message-sent position-relative mt-3">
-                        <p class="message-text-text mb-4">
-                           Hey hello this is the CEO of JalSoft Ukoje lakini bro
-                        </p>
-                        <span class="received-time text-small position-absolute start-0 m-1 bottom-0">
-                            00:34 AM
-                         </span>
-                         <span class="sent-status bi text-primary bi-check2-all position-absolute end-0 m-1 bottom-0">
-                                <!-- Here the user will get notified whether message is sent -->
-                         </span>
-                      </div>
-                      <div class="message-text message-received position-relative mt-3">
-                        <span class="senderCred d-flex">
-                            <img src="../assets/img/default.png" alt="">
-                            <span class="h-30 overflow-hidden fw-medium">Hans Jalikoa</span>
-                            <span class="h-30 overflow-hidden">Kenya</span>
-                        </span>
-                        <p class="message-text-text mb-4">
-                           Hey hello this is the CEO of JalSoft Ukoje lakini bro
-                        </p>
-                        <span class="received-time text-small position-absolute end-0 m-1 bottom-0">
-                           00:34 AM
-                        </span>
-                      </div>
-                       <!--End of sample messages sent and received  -->
+                <div class="dis-messages-box" id="messagesHolder">
+                    <!--============= The messages will apear here after selecting a discussion ========================-->
                 </div>
                 <div class="dis-action-box">
-                    <form action="">
+                    <form action="" id="messagesForm">
                         <div class="input-group">
                             <button type="button" class="h-60 bi bi-paperclip btn btn-light"></button>
                             <button type="button" class="h-60 bi bi-emoji-frown btn btn-light"></button>
-                            <textarea type="text" class="form-control" required></textarea>
+                            <textarea type="text" class="form-control" required id="messageBox"></textarea>
                             <button class="h-60 bi bi bi-send btn btn-secondary"></button>
                         </div>
                     </form>
@@ -854,6 +733,9 @@
 </footer>
 </body>
 <script>
+</script>
+<script>
+    const sessid = '<?php echo $auth;?>';
 </script>
 <script src="../assets/js/aos.js"></script>
 <script src="../assets/js/aosInit.js"></script>

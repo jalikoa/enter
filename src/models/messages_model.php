@@ -18,25 +18,26 @@ class message {
     private $type;#edited or original i.e orig->0 edited->1 forwarded -> 2
     private $reply_to;#if reply have the mess_id for the reply else default 0
 
-    public function setCred($sender,$message,$discussion,$type,$reply_to){
-        if(empty($message) || empty($sender) || empty($discussion) || empty($type) || empty($reply_to)){
+    public function setCred($msender,$mmessag,$mdiscussion,$mtype,$mreply_to){
+        if(empty($msender) || empty($mmessag) || empty($mdiscussion)){
             return false;
         } else {
-            $this->sender = $sender;
-            $this->message = $message;
-            $this->discussion = $discussion;
-            $this->type = $type;
-            $this->reply_to = $reply_to;
+            $this->sender = $msender;
+            $this->message = $mmessag;
+            $this->discussion = $mdiscussion;
+            $this->type = $mtype;
+            $this->reply_to = $mreply_to;
             return true;
         }
     }
     public function check_is_blocked(){
         //Add logics in this function and aim at checkin when user is blocked by admin in the forum
+        return '0';
 
     }
     public function send_message($conn){
         $send = "INSERT INTO messages (sender,message,discussion,type,reply_to) VALUES ('$this->sender','$this->message','$this->discussion','$this->type','$this->reply_to')";
-        $res = $conn->query($res);
+        $res = $conn->query($send);
         return ($res)?true:false;        
     }
     public function edit_message($conn,$new_sms,$messid){
@@ -49,7 +50,7 @@ class message {
         $res = $conn->query($del);
         return ($res)?true:false;
     }
-    public function fetch_messages($conn,$dissid){
+    public function fetch_messages($conn,$userid,$dissid){
         #join tables to make it more easier for you to display the data when it comes to the front end
         $fetch = "SELECT m.id,
         m.sender,
@@ -70,12 +71,15 @@ class message {
           ON d.user_id = u.id 
           WHERE discussion = '$dissid'
           ORDER BY m.id ASC;";
-          $res = $con->query($fetch);
+          $res = $conn->query($fetch);
           if($res->num_rows > 0){
+            $i = 0;
             while($row = $res->fetch_assoc()){
                 $this->message_list[] = $row;
-                return true;
+                $this->message_list[$i]["you"] = ($userid === $row["sender"])?true:false;
+                $i++;
             }
+            return true;
           } else {
             return false;
           }

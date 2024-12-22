@@ -397,3 +397,22 @@ footer {
 .input-group {
     width:99%;
 }
+.dis-chat-selected .discussion-meta-information {
+    justify-content: space-between;
+    align-items: center;
+    background:#f1f1fff6;
+    padding:0px 10px;
+}
+.dis-chat-selected .discussion-meta-information .dissImage {
+    width:50px;
+    height:50px;
+    object-fit: cover;
+    border-radius:50%;
+    margin:3px 10px;
+}
+.h-30 {
+    height:30px;
+}
+.h-60 {
+    height:60px;
+}
