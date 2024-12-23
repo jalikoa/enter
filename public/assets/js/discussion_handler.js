@@ -170,5 +170,5 @@ function populateChats(list){
             }
         }
     }
-    messagesHolder.scrollTo(messagesHolder.innerHeight);
+    messagesHolder.scrollTo(messagesHolder.style.height.value);
 }

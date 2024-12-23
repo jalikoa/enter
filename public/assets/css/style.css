@@ -363,6 +363,7 @@ footer {
     align-self:flx-start;
     background:rgba(6, 211, 91, 0.281);
     max-width:60%;
+    min-width:60%;
     padding:5px;
     padding-bottom:10px;
     border-bottom-right-radius:20px;
@@ -372,6 +373,7 @@ footer {
     align-self:flex-end;
     background:rgba(35, 75, 3, 0.374);
     max-width:60%;
+    min-width:60%;
     padding:5px;
     padding-bottom:10px;
     border-bottom-right-radius:10px;
