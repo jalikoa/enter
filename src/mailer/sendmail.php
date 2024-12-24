@@ -18,7 +18,7 @@ try {
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
     $mail->Port = 587;
 
-    $mail->setFrom('d34calvo@gmail.com', 'Future Guardians Initiative');
+    $mail->setFrom('jalsoft@gmail.com', 'Future Guardians Initiative <NO REPLY>');
     $mail->addAddress($address);
     $mail->isHTML(true);
     $mail->Subject = $mesSubject;
