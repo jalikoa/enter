@@ -13,7 +13,7 @@
 // Update that the user is typing on the other end
 // Make the ui to more or quite professinall
 var addDiscussionForm,disName,disImage,disAbout,disType,disWhoMess,messageBox,messagesHolder,messagesForm;
-let sendTypeR,sendMessR;
+let sendTypeR,sendMessR,newMList,messLen;
 sendTypeR = true;
 sendMessR = true;
 addDiscussionForm = byId('addDiscussionForm');
@@ -134,14 +134,15 @@ window.onload = ()=>{
 }
 function populateChats(list){
     messagesHolder.innerHTML = "";
+    messLen = list.length;
     for(let i = 0;i < list.length;i++){
         if(list[i].you){
             const cont = `<span class="senderCred d-flex">
-                <img src="../assets/img/default.png" alt="">
-                <span class="h-30 overflow-hidden fw-medium">You</span>
+                <img src="../assets/img/messages-2.jpg" alt="">
+                <span class="h-30 overflow-hidden fw-medium text-small">You</span>
                 <span class="h-30 overflow-hidden">${list[i].country}</span>
             </span>
-            <p class="message-text-text mb-4">${list[i].message}</p>
+            <p class="message-text-text mb-4" style="font-size:14px;">${list[i].message}</p>
             <span class="received-time text-small position-absolute start-0 m-1 bottom-0"> 00:34 AM</span>
             <span class="sent-status bi text-primary bi-check2-all position-absolute end-0 m-1 bottom-0"></span>`;
         const sentDiv = document.createElement('div');
@@ -154,7 +155,7 @@ function populateChats(list){
         } else {
             if(!list[i].you){
                 const cont = `<span class="senderCred d-flex">
-                <img src="../assets/img/default.png" alt="">
+                <img src="../assets/img/messages-3.jpg" alt="">
                 <span class="h-30 overflow-hidden fw-medium">${list[i].username}</span>
                 <span class="h-30 overflow-hidden">${list[i].country}</span>
             </span>
@@ -171,4 +172,30 @@ function populateChats(list){
         }
     }
     messagesHolder.scrollTo(messagesHolder.style.height.value);
+    checkNewMessage();
+}
+function checkNewMessage(){
+    const fetchNewMess = checkXml();
+    fetchNewMess.open('POST',route,true);
+    setHeader(fetchNewMess);
+    fetchNewMess.onload = ()=>{
+        // console.log(fetchNewMess.responseText);
+        let response;
+        try{response = JSON.parse(fetchNewMess.responseText)} catch(e){
+            swal.fire('Sorry','An uncaught exception occured while trying to load chats from the database','error');
+        }
+        if(response){
+            if(response.success){
+                if(response.messList.length  > messLen){
+                    populateChats(response.messList);
+                } else {
+                    checkNewMessage();
+                }
+            } else {
+                swal.fire('Sorry',`${response.message}`,'error');
+            }
+        }
+    }
+    const data = `fetchmessages=${enc('true')}&sessid=${enc(sessid)}&discussionid=${enc('1')}`;
+    fetchNewMess.send(data);
 }
