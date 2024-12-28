@@ -133,19 +133,19 @@
                             <p class="m-1 text-secondary p-0 m-0 fw-medium userName" id="name-holder">Calvince Owino</p>
                             <p class="m-1 text-secondary p-0 m-0 fw-medium" id="user-type">Admin</p>
                         </center>
-                        <hr class="dropdow-divider">
+                        <hr class="dropdown-divider">
                         <li class="dropdown-item">
                             <a href="./profile.html" class="text-secondary"><i class="bi bi-pencil-square"></i> Edit profile</a>
                         </li>
-                        <hr class="dropdow-divider">
+                        <hr class="dropdown-divider">
                         <li class="dropdown-item">
                             <a href="./profile.html" class="text-secondary"><i class="bi bi-gear-fill"></i> Profile settings</a>
                         </li>
-                        <hr class="dropdow-divider">
+                        <hr class="dropdown-divider">
                         <li class="dropdown-item">
                             <a href="" class="text-secondary"><i class="bi bi-box-arrow-right"></i>Logout</a>
                         </li>
-                        <hr class="dropdow-divider">
+                        <hr class="dropdown-divider">
                     </ul>
                 </div>
             </div>
@@ -195,6 +195,145 @@
     </div>
     <div class="main-body">
         
+        <h5 class="text-secondary m-2">
+            Dashboard/Profile
+        </h5>
+        <div class="row mb-4">
+            <div class="col col-12 col-md-3 m-1">
+                <br>
+               <div class="card border-0">
+                <center>
+                    <img src="../assets/img/messages-1.jpg" class="mt-2" id="yourProfPic" alt="">
+                </center>
+                <center>
+                    <h3 class="text-muted fw-medium mt-3">
+                        Calvince Owino
+                    </h3>
+                    <p class="text-secondary fw-medium">
+                        Environmetal Activist
+                    </p>
+                </center>
+               </div>
+            </div>
+            <div class="col col-12 col-md-8 m-1 position-relative">
+                <div class="dropdown position-absolute top-0 end-0 me-3">
+                    <i class="bi bi-three-dots-vertical" data-bs-toggle="dropdown"></i>
+                    <ul class="dropdown-menu">
+                        <li class="dropdown-item mt-1" onclick="profSet('V')">
+                            <i class="bi bi-eye-fill text-info"></i>&nbsp;View Your profile
+                        </li>
+                        <li class="dropdown-item mt-1" onclick="profSet('E')">
+                            <i class="bi bi-pencil-square text-primary"></i>&nbsp;Edit Your profile
+                        </li>
+                        <li class="dropdown-item mt-1" onclick="profSet('C')">
+                            <i class="bi bi-lock text-primary"></i>&nbsp;Change your password
+                        </li>
+                        <li class="dropdown-item mt-1">
+                            <i class="bi bi-trash text-danger"></i>&nbsp;Delete profile
+                        </li>
+                    </ul>
+                </div>
+                <h5 class="text-info m-1" id="actionTitle">
+                    View Your profile
+                </h5>
+                <div class="" id="ActionDisplay">
+                    <!-- This is the beginning of the card to show the profile information -->
+                    <div class="card border-0 shadow pb-2 mb-3 d-block" id="viewProfileCard">
+                        <p class="m-3" id="userName"><span class="text-primary fw-medium">User Name </span>: ceojalsoft</p>
+                        <p class="m-3" id="fullName"><span class="text-primary fw-medium">Full Name </span>: Calvince Owino</p>
+                        <p class="m-3" id="useEmail"><span class="text-primary fw-medium">Your Email  </span>: jalikoa@gmail.com</p>
+                        <p class="m-3" id="userPhone"><span class="text-primary fw-medium">Your Phone </span> : +254799311413</p>
+                        <p class="m-3" id="userAbout"><span class="text-primary fw-medium">About You  </span>: I am a philathropist</p>
+                        <p class="m-3" id="userWhatsapp"><span class="text-primary fw-medium">WhatsApp </span> : https://jalikoa.github.io/jalsoft</p>
+                        <center>
+                            <button class="btn btn-primary m-1" onclick="profSet('E')">
+                                <i class="bi bi-pencil-square"></i>
+                            </button>
+                            <button class="btn btn-danger m-1">
+                                <i class="bi bi-trash"></i>
+                            </button>
+                        </center>
+                    </div>
+                    <!-- End of the card to show the profile information -->
+                     <!-- Beginning of the card to edit the profile credentials -->
+                     <div class="card border-0 ps-2 pe-3 d-none" id="editProfileCard">
+                        <form action="" role="form">
+                            <br>
+                                <div class="input-group position-relative">
+                                  <span class="input-group-text"><i class=" bi bi-person-fill input-group-addon"></i></span>
+                                  <input type="text" name="userFirstName" class="form-control" id="yourFirstName" placeholder="First Name"  required>
+                                </div>
+                                <br>
+                                <div class="input-group position-relative">
+                                  <span class="input-group-text"><i class=" bi bi-person-fill input-group-addon"></i></span>
+                                  <input type="text" name="userLastName" class="form-control" id="yourLastName" placeholder="Last Name"  required>
+                                </div>
+                                <br>
+                                <div class="input-group position-relative">
+                                  <span class="input-group-text"><i class=" bi bi-telephone-fill input-group-addon"></i></span>
+                                  <input type="tel" name="userPhone" class="form-control" id="yourUserPhone" placeholder="Phone"  required>
+                                </div>
+                                <br>
+                                <div class="input-group position-relative">
+                                  <span class="input-group-text"><i class=" bi bi-person-lines-fill input-group-addon"></i></span>
+                                  <input type="text" name="userBio" class="form-control" id="yourBio" placeholder="About You (Bio)"  required>
+                                </div>
+                                <br>
+                                <div class="input-group position-relative">
+                                  <span class="input-group-text"><i class=" bi bi-envelope-fill input-group-addon"></i></span>
+                                  <input type="email" name="userEmail" class="form-control" id="yourUserEmail" placeholder="Your Email"  required>
+                                </div>
+                                <br>
+                                <div class="input-group position-relative">
+                                  <span class="input-group-text"><i class=" bi bi-person-fill input-group-addon"></i></span>
+                                  <input type="text" name="userName" class="form-control" id="yourUsername" placeholder="username (public)"  required>
+                                </div>
+                                <br>
+                                  <div class="input-group position-relative">
+                                    <span class="input-group-text"><i class=" bi bi-link-45deg input-group-addon"></i></span>
+                                    <input type="url" name="fblink" class="form-control" id="yourFbLink" placeholder="Fb or WhatsApp link"  required>
+                                  </div>
+                                  <br>
+                                <div class="input-group position-relative">
+                                  <span class="input-group-text"><i class=" bi bi-geo-alt-fill input-group-addon"></i></span>
+                                  <input type="text" name="userCountry" class="form-control" id="yourCountry" placeholder="Your Country"  required>
+                                </div>
+                                <br>
+                                <div class="input-group">
+                                  <span class="input-group-text"><i class=" bi bi-lock-fill"></i></span>
+                                  <input type="password" name="password" autocomplete="current-password" class="form-control" id="yourPassword" placeholder="Enter your password to complete your action" required>
+                                </div>
+                                <br>
+                            <div class="col-12 mb-4">
+                             <center> <button class="login-btn  w-100" type="submit">Save Changes</button></center>
+                            </div>
+                        </form>
+                     </div>
+                     <!-- End card edit profile -->
+                      <!-- Begin card change password -->
+                       <div class="card border-0 shadow d-none" id="ChangePassCard">
+                            <br>
+                            <form action="" role="form" class="m-3">
+                                <div class="input-group mb-2">
+                                    <input type="password" class="form-control" autocomplete="current-password" placeholder="Current password">
+                                </div>
+                                <div class="input-group mb-2">
+                                    <input type="password" class="form-control" placeholder="New Password">
+                                </div>
+                                <div class="input-group mb-2">
+                                    <input type="password" class="form-control" placeholder="Confirm New Password">
+                                </div>
+                                <center>
+                                    <button class="login-btn"><i class="bi bi-gear"></i> Change</button>
+                                </center>
+                            </form>
+                            <br>
+                       </div>
+                       <!-- End card to change password -->
+                </div>
+            </div>
+        </div>
+   <!-- Add more things here to add more functionalities to the page as expected -->
     </div>
     
 </body>
@@ -202,6 +341,7 @@
 <script src="../assets/js/bootstrap.bundle.min.js"></script>
 <script src="../assets/js/general.js"></script>
 <script src="../assets/js/aosInit.js"></script>
+<script src="../assets/js/profile_handler.js"></script>
 <script src="../assets/js/jquery-3.6.0.min.js"></script>
 <script src="../assets/js/sweetalert2@11.js"></script>
 </html>

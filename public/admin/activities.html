@@ -14,11 +14,8 @@
     <link rel="stylesheet" href="../assets/css/style.css">
     <style>
     /**
-    Reminder add new activity 
-    Activity get listed 
     Activity load more as scroll 
     Delete activity with confirmation
-
     */
     </style>
 </head>
@@ -129,7 +126,7 @@
                 </div>
                 <div class="dropdown">
                     <div class="prof-holder border-0 d-flex flex-direction-row" data-bs-toggle="dropdown">
-                        <span class="me-1 p-0 userName">Calvince Owino</span>
+                        <span class="me-1 p-0">Calvince Owino</span>
                         <img class="m-0" src="../assets/img/messages-3.jpg" alt="">
                     </div>
                     <ul class="dropdown-menu text-muted">
@@ -137,22 +134,22 @@
                             <center><img class="m-0 prof-pic-preview" src="../assets/img/messages-3.jpg" alt="" id="prof-pic-holder"></center>
                         </li>
                         <center>
-                            <p class="m-1 text-secondary p-0 m-0 fw-medium" id="name-holder">Calvince Owino</p>
+                            <p class="m-1 text-secondary p-0 m-0 fw-medium userName" id="name-holder">Calvince Owino</p>
                             <p class="m-1 text-secondary p-0 m-0 fw-medium" id="user-type">Admin</p>
                         </center>
-                        <hr class="dropdow-divider">
+                        <hr class="dropdown-divider">
                         <li class="dropdown-item">
                             <a href="./profile.html" class="text-secondary"><i class="bi bi-pencil-square"></i> Edit profile</a>
                         </li>
-                        <hr class="dropdow-divider">
+                        <hr class="dropdown-divider">
                         <li class="dropdown-item">
                             <a href="./profile.html" class="text-secondary"><i class="bi bi-gear-fill"></i> Profile settings</a>
                         </li>
-                        <hr class="dropdow-divider">
+                        <hr class="dropdown-divider">
                         <li class="dropdown-item">
                             <a href="" class="text-secondary"><i class="bi bi-box-arrow-right"></i>Logout</a>
                         </li>
-                        <hr class="dropdow-divider">
+                        <hr class="dropdown-divider">
                     </ul>
                 </div>
             </div>
@@ -237,7 +234,7 @@
         <h4 class="text-secondary m-3" data-aos="fade-down" data-aos-delay="800">
             Dashboard/activities
         </h4>
-        <div class="row">
+        <div>
             <div class="col col-12 col-sm-8 col-md-6 col-lg-5">
                 <form action="" role="form">
                     <div class="input-group" data-aos="fade-left" data-aos-delay="800">
@@ -247,8 +244,8 @@
                 </form>
             </div>
         </div>
-        <div class="row" data-aos="fade-up" data-aos-delay="500">
-            <div class="col w-100">
+        <div data-aos="fade-up" data-aos-delay="500">
+            <div class="col col-12 col-sm-11">
                 <div class="card recent-activities border-0 w-100 mt-3">
                     <h6 class="text-success m-2">
                         Recently added activities
@@ -295,7 +292,7 @@
                                     <button class="btn btn-primary me-1">
                                         <i class="bi bi-pencil-square"></i> Edit
                                     </button>
-                                    <button class="btn btn-danger me-1">
+                                    <button class="btn btn-danger me-1" onclick="deleteActivity('1','12')">
                                         <i class="bi bi-trash"></i> Delete
                                     </button>
                                 </center>
@@ -389,14 +386,13 @@
                      <!-- The end of the activity card -->
                 </div>
             </div>
-        </div>
-        
-    </div>
-    
+        </div> 
+    </div> 
 </body>
 <script src="../assets/js/aos.js"></script>
 <script src="../assets/js/aosInit.js"></script>
 <script src="../assets/js/general.js"></script>
+<script src="../assets/js/activity_handler.js"></script>
 <script src="../assets/js/bootstrap.bundle.min.js"></script>
 <script src="../assets/js/jquery-3.6.0.min.js"></script>
 <script src="../assets/js/sweetalert2@11.js"></script>

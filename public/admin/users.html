@@ -194,9 +194,89 @@
         </ul>
     </div>
     <div class="main-body">
-        
+        <h5 class="text-secondary m-2">
+            Dashboard/Users
+        </h5>
+        <div class="col-12 col-sm-12">
+            <form action="" role="form" class="ms-2 mt-4">
+                <div class="col col-sm-8 col-lg-6">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search for user here">
+                        <button class="btn btn-info"><i class="bi bi-search"></i></button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <style>
+            .user-holder {
+                width:200px;
+                flex-shrink:1;
+            }
+            .user-holder img {
+                width:100%;
+                object-fit:cover;
+            }
+            .usersCard {
+                display: flex;
+                flex-direction: row;
+                justify-content:space;
+            }
+        </style>
+            <!-- This is the begginning of the sample users cards -->
+             <!-- Begin sample -->
+             <div class="col ms-3 mt-2 me-2">
+                <select name="entriesPerPage" class="mb-2" id="entriesPerPage">
+                    <option value="5">5</option>
+                    <option value="25">25</option>
+                    <option value="50">50</option>
+                    <option value="all">All</option>
+                </select>
+                <label for="entriesPerPage"> entries per page</label>
+                <table class="table table-condensed table-bordered table-hover table-striped">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>User name</th>
+                            <th>Country</th>
+                            <th>Phone</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>ceojalsoft</td>
+                            <td>Kenya</td>
+                            <td>0799311413</td>
+                            <td>
+                                    <button class="btn btn-primary"><i class="bi bi-person-x"></i></button>
+                                    <button class="btn btn-danger"><i class="bi bi-trash"></i></button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>ceojalsoft</td>
+                            <td>Kenya</td>
+                            <td>0799311413</td>
+                            <td>
+                                    <button class="btn btn-primary"><i class="bi bi-person-x"></i></button>
+                                    <button class="btn btn-danger"><i class="bi bi-trash"></i></button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>ceojalsoft</td>
+                            <td>Kenya</td>
+                            <td>0799311413</td>
+                            <td>
+                                    <button class="btn btn-primary"><i class="bi bi-person-x"></i></button>
+                                    <button class="btn btn-danger"><i class="bi bi-trash"></i></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+             </div>     
     </div>
-    
 </body>
 <script src="../assets/js/aos.js"></script>
 <script src="../assets/js/general.js"></script>
