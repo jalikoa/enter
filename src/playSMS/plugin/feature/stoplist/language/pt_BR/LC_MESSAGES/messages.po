@@ -1,0 +1,45 @@
+msgid ""
+msgstr ""
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-10-11 22:14+0700\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Add blocked mobile numbers"
+msgstr "Adicionar celulares bloqueados"
+
+msgid "Blocked mobile"
+msgstr "Celular bloqueado"
+
+msgid "Comma separated values for multiple mobile numbers"
+msgstr "Múltiplos valores separados por vírgula"
+
+msgid "Delete"
+msgstr "Excluír"
+
+msgid "Manage stoplist"
+msgstr "Gerenciar stoplist"
+
+msgid "Mobile"
+msgstr "Celular"
+
+msgid "Mobile numbers"
+msgstr "Números de celular"
+
+msgid "Mobile numbers have been blocked"
+msgstr "Os números de celular foram bloqueados"
+
+msgid "Mobile numbers have been deleted"
+msgstr "Os números de celular foram excluídos"
+
+msgid "Multiple mobile numbers must be comma-separated"
+msgstr "Múltiplos números de celular devem ser separados por vírgula"
+
+msgid "Save"
+msgstr "Salvar"
+
+msgid "Select"
+msgstr "Selecionar"
+
+msgid "You must fill all fields"
+msgstr "Você deve preencher todos os campos"

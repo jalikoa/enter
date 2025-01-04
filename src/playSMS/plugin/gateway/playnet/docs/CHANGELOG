@@ -1,0 +1,6 @@
+Version 2.0
+- remove local and remote username and password, use callback auth and limit
+- remove webservices hook, use callback now
+
+Version 1.0
+- fork of uplink and heavily modified

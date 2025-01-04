@@ -1,0 +1,235 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-03-19 17:59+0700\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: pt_PT\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.7.5\n"
+
+msgid "Account has been unbanned"
+msgstr "Foi removido o banir da conta"
+
+msgid "All reports"
+msgstr "Todos os relatórios"
+
+msgid "Amount"
+msgstr "Montante"
+
+msgid "Are you sure you want to delete these items ?"
+msgstr "Tem certeza que deseja eliminar esses itens?"
+
+msgid "Ban date/time"
+msgstr "Banido Data e Hora"
+
+msgid "Banned users list"
+msgstr "Lista de utilizadores banidos"
+
+msgid "Billing"
+msgstr "Faturação"
+
+msgid "Charge"
+msgstr ""
+
+#, fuzzy
+msgid "Count"
+msgstr "Contador"
+
+msgid "Credit"
+msgstr "Créditos"
+
+msgid "Current IP address"
+msgstr "Endereço IP atual"
+
+msgid "Deleted"
+msgstr "Eliminado"
+
+msgid "Delivered"
+msgstr "Entregue"
+
+msgid "Download"
+msgstr ""
+
+msgid "Email"
+msgstr ""
+
+#, php-format
+msgid "Export %s records as CSV"
+msgstr ""
+
+msgid "Failed"
+msgstr "Falhou"
+
+msgid "Feature"
+msgstr "Funcionadas"
+
+#, fuzzy
+msgid "Feature messages"
+msgstr "Minhas mensagens das características"
+
+#, php-format
+msgid "Found %s records"
+msgstr ""
+
+msgid "From"
+msgstr "De"
+
+#, fuzzy
+msgid "From date/time"
+msgstr "Banido Data e Hora"
+
+msgid "Gateway"
+msgstr ""
+
+msgid "Handled"
+msgstr ""
+
+#, fuzzy
+msgid "Inbox messages"
+msgstr "Minhas mensagens enviadas"
+
+msgid "Keyword"
+msgstr "palavra-chave"
+
+msgid "Last update"
+msgstr "Última atualização"
+
+msgid "List of my credit transactions"
+msgstr "Lista da minhas Transações de crédito"
+
+#, php-format
+msgid "Maximum records for export is %s"
+msgstr ""
+
+msgid "Message"
+msgstr "Mensagem"
+
+msgid "My credit transactions"
+msgstr "Transações dos meus créditos"
+
+#, fuzzy
+msgid "My inbox"
+msgstr "Todas as Caixas de entrada"
+
+msgid "My report"
+msgstr "Meu Relatorio"
+
+msgid "Parent"
+msgstr ""
+
+msgid "Pending"
+msgstr "Pendente"
+
+msgid "Rate"
+msgstr ""
+
+msgid "Receiver"
+msgstr ""
+
+msgid "Report"
+msgstr "Relatório"
+
+msgid "Report all users"
+msgstr "Relatório de todos utilizadores"
+
+msgid "Report banned users"
+msgstr "Relatório utilizadores banidos"
+
+msgid "Report whose online"
+msgstr "Relatórios utilizadores online"
+
+msgid "SMSC"
+msgstr ""
+
+msgid "SMSC or gateway"
+msgstr ""
+
+msgid "Sandbox"
+msgstr ""
+
+msgid "Search"
+msgstr ""
+
+#, fuzzy
+msgid "Search message"
+msgstr "Minhas mensagens das características"
+
+#, fuzzy
+msgid "Selected feature messages has been deleted"
+msgstr "Mensagens enviadas selecionadas foram apagadas"
+
+#, fuzzy
+msgid "Selected inbox messages has been deleted"
+msgstr "Mensagens recebidas selecionadas foram apagadas"
+
+#, fuzzy
+msgid "Selected sent messages has been deleted"
+msgstr "Mensagens recebidas selecionadas foram apagadas"
+
+msgid "Sender"
+msgstr ""
+
+msgid "Sent"
+msgstr "Enviado"
+
+#, fuzzy
+msgid "Sent messages"
+msgstr "Minhas mensagens enviadas"
+
+msgid "Server time"
+msgstr ""
+
+msgid "Status"
+msgstr "Estado"
+
+msgid "Time"
+msgstr "Tempo"
+
+msgid "To"
+msgstr "Para"
+
+#, fuzzy
+msgid "To date/time"
+msgstr "Banido Data e Hora"
+
+msgid "Total"
+msgstr ""
+
+msgid "Transaction datetime"
+msgstr "Data e hora da Transação"
+
+msgid "Unable to unban account"
+msgstr "Não é possível remover ban da conta"
+
+msgid "Unhandled"
+msgstr ""
+
+msgid "User"
+msgstr "Utilizador"
+
+msgid "User agent"
+msgstr "Agente do utilizador"
+
+#, fuzzy
+msgid "Username"
+msgstr "Nome de Utilizador"
+
+msgid "Whose online"
+msgstr "Quem está online"
+
+msgid "cost"
+msgstr "Preço"
+
+msgid "count"
+msgstr "Contador"
+
+msgid "rate"
+msgstr "Taxa"
+
+msgid "username"
+msgstr "Nome de Utilizador"

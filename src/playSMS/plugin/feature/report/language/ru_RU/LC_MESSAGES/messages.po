@@ -1,0 +1,234 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: Alexey Dvoryanchikov <gdemoyinternet@ya.ru>\n"
+"Language-Team: \n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.4\n"
+
+msgid "Account has been unbanned"
+msgstr "Пользователь разблокирован"
+
+msgid "All reports"
+msgstr "Все отчёты"
+
+msgid "Amount"
+msgstr "Количество"
+
+msgid "Are you sure you want to delete these items ?"
+msgstr "Вы уверены, что хотите удалить эти элементы?"
+
+msgid "Ban date/time"
+msgstr "Время блокировки"
+
+msgid "Banned users list"
+msgstr "Список заблокированных пользователей"
+
+msgid "Billing"
+msgstr "Потрачено"
+
+msgid "Charge"
+msgstr ""
+
+#, fuzzy
+msgid "Count"
+msgstr "количество"
+
+msgid "Credit"
+msgstr "Баланс"
+
+msgid "Current IP address"
+msgstr "Текущий IP адрес"
+
+msgid "Deleted"
+msgstr "Удалено"
+
+msgid "Delivered"
+msgstr "Доставлено"
+
+msgid "Download"
+msgstr ""
+
+msgid "Email"
+msgstr "Email"
+
+#, php-format
+msgid "Export %s records as CSV"
+msgstr ""
+
+msgid "Failed"
+msgstr "Ошибок"
+
+msgid "Feature"
+msgstr "Функции"
+
+#, fuzzy
+msgid "Feature messages"
+msgstr "Все исходящие сообщения"
+
+#, php-format
+msgid "Found %s records"
+msgstr ""
+
+msgid "From"
+msgstr "От"
+
+#, fuzzy
+msgid "From date/time"
+msgstr "Время блокировки"
+
+msgid "Gateway"
+msgstr ""
+
+msgid "Handled"
+msgstr ""
+
+#, fuzzy
+msgid "Inbox messages"
+msgstr "Сообщение"
+
+msgid "Keyword"
+msgstr "Ключевое слово"
+
+msgid "Last update"
+msgstr "Последнее обновление"
+
+msgid "List of my credit transactions"
+msgstr "Список моих переводов"
+
+#, php-format
+msgid "Maximum records for export is %s"
+msgstr ""
+
+msgid "Message"
+msgstr "Сообщение"
+
+msgid "My credit transactions"
+msgstr "Мои переводы"
+
+#, fuzzy
+msgid "My inbox"
+msgstr "Все входящие"
+
+msgid "My report"
+msgstr "Мой отчёт"
+
+msgid "Parent"
+msgstr ""
+
+msgid "Pending"
+msgstr "Ожидает"
+
+msgid "Rate"
+msgstr ""
+
+msgid "Receiver"
+msgstr ""
+
+msgid "Report"
+msgstr "Отчёт"
+
+msgid "Report all users"
+msgstr "Отчёт по пользователям"
+
+msgid "Report banned users"
+msgstr "Заблокированные пользователи"
+
+msgid "Report whose online"
+msgstr "Пользователи в системе"
+
+msgid "SMSC"
+msgstr "SMSC"
+
+msgid "SMSC or gateway"
+msgstr ""
+
+msgid "Sandbox"
+msgstr "Необработанные"
+
+msgid "Search"
+msgstr ""
+
+#, fuzzy
+msgid "Search message"
+msgstr "Все исходящие сообщения"
+
+#, fuzzy
+msgid "Selected feature messages has been deleted"
+msgstr "Выбранное исходящее сообщение было удалено"
+
+#, fuzzy
+msgid "Selected inbox messages has been deleted"
+msgstr "Выбранное входящее сообщение было удалено"
+
+#, fuzzy
+msgid "Selected sent messages has been deleted"
+msgstr "Выбранное входящее сообщение было удалено"
+
+msgid "Sender"
+msgstr ""
+
+msgid "Sent"
+msgstr "Отправлено"
+
+#, fuzzy
+msgid "Sent messages"
+msgstr "Сообщение"
+
+msgid "Server time"
+msgstr ""
+
+msgid "Status"
+msgstr "Состояние"
+
+msgid "Time"
+msgstr "Время"
+
+msgid "To"
+msgstr "Получатель"
+
+#, fuzzy
+msgid "To date/time"
+msgstr "Время блокировки"
+
+msgid "Total"
+msgstr "Всего"
+
+msgid "Transaction datetime"
+msgstr "Время транзакции"
+
+msgid "Unable to unban account"
+msgstr "Не удалось разблокировать пользователя"
+
+msgid "Unhandled"
+msgstr ""
+
+msgid "User"
+msgstr "Пользователь"
+
+msgid "User agent"
+msgstr "User agent пользователя"
+
+#, fuzzy
+msgid "Username"
+msgstr "имя пользователя"
+
+msgid "Whose online"
+msgstr "Пользователи в системе"
+
+msgid "cost"
+msgstr "стоимость"
+
+msgid "count"
+msgstr "количество"
+
+msgid "rate"
+msgstr "цена"
+
+msgid "username"
+msgstr "имя пользователя"

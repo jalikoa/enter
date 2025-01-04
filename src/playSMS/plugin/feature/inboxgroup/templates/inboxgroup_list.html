@@ -1,0 +1,30 @@
+{{ DIALOG_DISPLAY }}
+<h2>{{ Group inbox }}</h2>
+<p>{{ Add group inbox }}
+<div class=table-responsive>
+<table class=playsms-table-list>
+	<thead>
+		<tr>
+			<th width=20%>{{ Receiver number }}</th>
+			<th width=30%>{{ Keywords }}</th>
+			<th width=15%>{{ Members }}</th>
+			<th width=15%>{{ Catch-all }}</th>
+			<th width=10%>{{ Status }}</th>
+			<th width=10%>{{ Action }}</th>
+		</tr>
+	</thead>
+	<tbody>
+		<loop.data>
+		<tr class={{ data.tr_class }}>
+			<td>{{ data.in_receiver }}</td>
+			<td>{{ data.keywords }}</td>
+			<td><strong>{{ data.members }}</strong></td>
+			<td><strong>{{ data.catchall }}</strong></td>
+			<td><strong>{{ data.status }}</strong></td>
+			<td><strong>{{ data.action }}</strong></td>
+		</tr>
+		</loop.data>
+	</tbody>
+</table>
+</div>
+<p>{{ Add group inbox }}

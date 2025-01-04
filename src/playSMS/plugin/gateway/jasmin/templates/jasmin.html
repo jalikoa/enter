@@ -1,0 +1,68 @@
+{{ DIALOG_DISPLAY }}
+<h2>{{ Manage }} {{ gateway_name }}</h2>
+<form action=index.php?app=main&inc=gateway_jasmin&op=manage_save method=post>
+	{{ CSRF_FORM }}
+	<table class=playsms-table>
+		<tbody>
+			<tr>
+				<td class=label-sizer>{{ Gateway }}</td>
+				<td>{{ gateway_name }}</td>
+			</tr>
+			<tr>
+				<td>{{ Jasmin send SMS URL }}</td>
+				<td><input type=text maxlength=255 name=url value="{{ url }}"></td>
+			</tr>
+			<tr>
+				<td>{{ Callback URL }}</td>
+				<td>
+					<span>{{ callback_url }}</span>
+				</td>
+			</tr>
+			<tr>
+				<td>{{ Callback authcode }}</td>
+				<td>
+					<input type=text maxlength=255 name=callback_authcode value="{{ callback_authcode }}">
+					{{ HINT_CALLBACK_AUTHCODE }}
+				</td>
+			</tr>
+			<tr>
+				<td>{{ Callback access }}</td>
+				<td>
+					<input type=text maxlength=255 name=callback_access value="{{ callback_access }}">
+					{{ HINT_CALLBACK_ACCESS }}
+				</td>
+			</tr>
+			<tr>
+				<td>{{ API username }}</td>
+				<td><input type=text size=30 maxlength=30 name=api_username value="{{ api_username }}"></td>
+			</tr>
+			<tr>
+				<td>{{ API password }}</td>
+				<td><input type=password size=30 maxlength=30 name=api_password value=""> {{ HINT_FILL_PASSWORD }}</td>
+			</tr>
+			<tr>
+				<td>{{ Module sender ID }}</td>
+				<td>
+					<input type=text size=16 maxlength=16 name=module_sender value="{{ module_sender }}">
+					{{ HINT_MODULE_SENDER }}
+				</td>
+			</tr>
+			<tr>
+				<td>{{ Module timezone }}</td>
+				<td>
+					<input type=text size=5 maxlength=5 name=datetime_timezone value="{{ datetime_timezone }}">
+					{{ HINT_TIMEZONE }}
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<p><input type=submit class=button value="{{ Save }}">
+</form>
+<p>
+	{{ Notes }}:<br />
+	- {{ REMOTE_PUSH_DLR }}<br />
+	- {{ CALLBACK_URL_ACCESSIBLE }}<br />
+	- {{ CALLBACK_AUTHCODE }}<br />
+	- {{ CALLBACK_ACCESS }}<br />
+</p>
+<p>{{ BUTTON_BACK }}

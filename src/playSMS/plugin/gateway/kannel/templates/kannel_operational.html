@@ -1,0 +1,29 @@
+<table class=playsms-table>
+	<tbody>
+		<tr>
+			<td>{{ Kannel admin URL }}</td>
+			<td><input type=text maxlength=255 name=admin_url value="{{ admin_url }}"></td>
+		</tr>
+		<tr>
+			<td>{{ Kannel admin password }}</td>
+			<td>
+				<input type=text maxlength=255 name=admin_password value="">
+				{{ HINT_FILL_PASSWORD }}
+			</td>
+		</tr>
+		<tr>
+			<td>{{ Kannel status }}</td>
+			<td>
+				<textarea rows='20' style='height: 25em; width: 100%; font-family: monospace; font-size: 10px;'
+					disabled>{{ kannel_status }}</textarea>
+			</td>
+		</tr>
+	</tbody>
+</table>
+<p><input type=submit class=button value="{{ Save }}">
+<p>
+	<input type='button' value="{{ Update status }}" class='button'
+		onClick="parent.location.href='index.php?app=main&inc=gateway_kannel&op=manage_update'">
+	<input type='button' value="{{ Restart Kannel }}" class='button'
+		onClick="parent.location.href='index.php?app=main&inc=gateway_kannel&op=manage_restart'">
+</p>

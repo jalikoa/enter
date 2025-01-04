@@ -1,0 +1,80 @@
+<table width='100%'>
+	<tbody>
+
+	<tr><td>{{ DIALOG_DISPLAY }}</td></tr>
+	<tr>
+		<td align="center">
+
+		<table class="playsms-login-box">
+			<tbody>
+
+			<tr>
+				<td>
+				<form action="{{ URL_ACTION }}" method=POST>
+				{{ CSRF_FORM }}
+				<table width="80%" align="center">
+					<tbody>
+
+					<if.enable_logo>
+					<tr>
+						<td>
+							<a href="{{ HTTP_PATH_BASE }}"><img class="playsms-logo" src="{{ logo_url }}" alt="{{ WEB_TITLE }}"></a>
+						</td>
+					</tr>
+					</if.enable_logo>
+
+					<if.show_web_title>
+					<tr>
+						<td align="center">
+							<h1><a href="{{ HTTP_PATH_BASE }}">{{ WEB_TITLE }}</a></h1>
+						</td>
+					</tr>
+					</if.show_web_title>
+
+					<tr>
+						<td><input type=text class=form-control placeholder="{{ Username or email }}" name=username value='{{ $lastpost['username'] }}' maxlength=100></td>
+					</tr>
+					<tr>
+						<td><input type=password class=form-control placeholder="{{ Password }}" name=password maxlength=50></td>
+					</tr>
+
+					<if.enable_captcha>
+					<tr>
+						<td><div style="padding-top: 5px; padding-bottom: 5px;"><img id="captcha-image" class="playsms-auth-captcha" src="{{ CAPTCHA_IMAGE }}"></div></td>
+					</tr>
+					<tr>
+						<td><input type=text class=form-control placeholder="{{ Verify captcha }}" name=captcha maxlength=100</td>
+					</tr>
+					</if.enable_captcha>
+
+					<tr>
+						<td><div style="padding-top: 10px;"><input type=submit class=button value='{{ Login }}'></div></td>
+					</tr>
+					<tr><td>&nbsp;</td></tr>
+
+					<tr>
+						<td>
+							<if.enable_register>
+							<p><a href="{{ URL_REGISTER }}">{{ Register an account }}</a></p>
+							</if.enable_register>
+							<if.enable_forgot>
+							<p><a href="{{ URL_FORGOT }}">{{ Recover password }}</a></p>
+							</if.enable_forgot>
+						</td>
+					</tr>
+					<tr><td>&nbsp;</td></tr>
+
+					</tbody>
+				</table>
+				</form>
+				</td>
+			</tr>
+
+			</tbody>
+		</table>
+
+		</td>
+	</tr>
+
+	</tbody>
+</table>

@@ -1,0 +1,45 @@
+msgid ""
+msgstr ""
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-09-29 17:59+0700\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Add blocked IP addresses"
+msgstr "Adicionar endereço de IP bloqueado"
+
+msgid "Blocked IP address"
+msgstr "Endereço de IP bloqueado"
+
+msgid "Comma separated values for multiple IP addresses"
+msgstr "Utilizar vírgula para separar vários endereços IP"
+
+msgid "Delete"
+msgstr "Excluir"
+
+msgid "IP address"
+msgstr "Endereço IP"
+
+msgid "IP addresses"
+msgstr "Endereços IP"
+
+msgid "IP addresses have been blocked"
+msgstr "O endereço IP foi bloqueado"
+
+msgid "IP addresses have been deleted"
+msgstr "Os endereços IP foram excluídos"
+
+msgid "Manage firewall"
+msgstr "Gerenciar firewall"
+
+msgid "Multiple IP addresses must be comma-separated"
+msgstr "Multipos endereços IPs devem ser separados por vírgula"
+
+msgid "Save"
+msgstr "Salvar"
+
+msgid "Select"
+msgstr "Selecionar"
+
+msgid "You must fill all fields"
+msgstr "Preencha todos os campos"

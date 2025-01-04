@@ -1,0 +1,35 @@
+{{ DIALOG_DISPLAY }}
+<h2>{{ Manage }} {{ gateway_name }}</h2>
+<ul class='nav nav-tabs nav-justified' id='playsms-tab'>
+	<li class=active><a href='#tabs-configuration' data-toggle=tab>{{ Configuration }}</a></li>
+	<li><a href='#tabs-operational' data-toggle=tab>{{ Operational }}</a></li>
+</ul>
+<form action=index.php?app=main&inc=gateway_kannel&op=manage_save method=post>
+	{{ CSRF_FORM }}
+	<div class=tab-content>
+		<div id='tabs-configuration' class='tab-pane fade in active'>
+			{{ kannel_configuration_tpl }}
+		</div>
+		<div id='tabs-operational' class='tab-pane fade'>
+			{{ kannel_operational_tpl }}
+		</div>
+		<script type="text/javascript" src="{{ http_path_plug }}/themes/common/jscss/jquery.cookie.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function () {
+				$('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+					$.cookie('gateway_kannel_last_tab', $(e.target).attr('href'));
+				});
+
+				//activate latest tab, if it exists:
+				var lastTab = $.cookie('gateway_kannel_last_tab');
+				if (lastTab) {
+					$('ul.nav-tabs').children().removeClass('active');
+					$('a[href=' + lastTab + ']').parents('li:first').addClass('active');
+					$('div.tab-content').children().removeClass('in active');
+					$(lastTab).addClass('in active');
+				}
+			});
+		</script>
+	</div>
+</form>
+<p>{{ BUTTON_BACK }}
