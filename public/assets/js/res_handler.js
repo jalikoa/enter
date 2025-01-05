@@ -3,13 +3,15 @@
  * like comment reply to comment downgrade add fav enable/disable commenting
  */
 
-var resText,resType,resName,resFile,resForm,commentsDiv,likeBtn,dgrBtn,favBtn,vid;
+var resText,resType,resName,resFile,resForm,commentsDiv,likeBtn,dgrBtn,favBtn,vid,isLike,likeBtn;
+isLike = true;
 resText = byId('resText');
 resType = byId('resType');
 resName = byId('resName');
 resFile = byId('resFile');
 resForm = byId('resForm');
 vid = document.querySelectorAll('video');
+likeBtn = document.querySelectorAll('#likeBtn')
 commentsDiv = byId('commentsDiv');
 resForm.addEventListener('submit',(e)=>{
 e.preventDefault();
@@ -30,7 +32,6 @@ resType.onchange = ()=>{
         resText.classList.add('d-none');
         byId('resourceText').removeAttribute('required');
     }
-
 }
 function showComments(resId){
     commentsDiv.classList.toggle('d-none');
@@ -42,7 +43,10 @@ function showComments(resId){
     const ctr = document.createElement('center');
     ctr.appendChild(spn);
     commentsDiv.appendChild(ctr);
-    const content = `<hr><h6 class="ms-3 text-primary">Comments</h6>`;
+    const content = `<div class="ms-2 input-group max-4">
+                       <input type="text" class="form-control" required placeholder="Comment here">
+                       <button class="btn btn-secondary"><i class="bi bi-send"></i></button>
+                    </div><hr><h6 class="ms-3 text-primary">Comments</h6>`;
     commentsDiv.innerHTML = content;
     for(let i = 1;i < 210;i++){
         const cnt = document.createElement('div');
@@ -71,8 +75,25 @@ function showComments(resId){
         
     }
 }
-function likeRes(resId){
-
+// Add logics here to give user feedback when to unlike if not yet updated in the database
+for (let i=0;i<likeBtn.length;i++){
+    likeBtn[i].addEventListener('click',()=>{
+        if(likeBtn[i].classList.contains('bi-hand-thumbs-up')){
+            likeBtn[i].classList.remove('bi-hand-thumbs-up');
+            likeBtn[i].classList.add('text-primary');
+            likeBtn[i].classList.add('bi-hand-thumbs-up-fill');
+        } else {
+            likeBtn[i].classList.remove('bi-hand-thumbs-up-fill');
+            likeBtn[i].classList.remove('text-primary');
+            likeBtn[i].classList.add('bi-hand-thumbs-up');
+        }
+    })
+}
+function like(resId){
+    if(isLike){
+        isLike = !isLike;
+        
+    }
 }
 function dgrRes(resId){
  
@@ -100,5 +121,4 @@ for(let i = 0;i < vid.length;i++){
 window.addEventListener('mousemove',(e)=>{
     byId('hey').style.top = e.pageY+'px';
     byId('hey').style.left = e.x+'px';
-    console.log(e);
 });

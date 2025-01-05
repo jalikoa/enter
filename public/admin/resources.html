@@ -299,13 +299,57 @@
                         <div class="res-body">
                             <video src="../assets/img/j.mp4" controls loop></video>
                         </div>
-                        <div class="res-reaction mt-3 mb-3">
-                            <i class="bi bi-hand-thumbs-up ms-2"></i>
+                        <div class="res-desc m-2">
+                            <p class="text-small text-secondary">
+                                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptates et quod perspiciatis dicta, consectetur quasi deserunt eveniet fugit, voluptatibus distinctio, vero eos? Unde, culpa molestiae. A omnis sed unde doloribus!
+                            </p>
+                        </div>
+                        <div class="res-reaction mt-0 mb-3">
+                            <i class="bi bi-hand-thumbs-up ms-2" onclick="like('4')" id="likeBtn"></i>
                             <i class="bi bi-hand-thumbs-down ms-2"></i>
                             <i class="bi bi-heart ms-2"></i>
                             <i class="bi bi-chat-right-text ms-4"></i>
                         </div>
                     </div>
+                    <!-- End video card -->
+                     <!-- begginning the book card -->
+                    <div class="card border-0 shadow max-400 m-2">
+                        <div class="res-meta-info">
+                            <div class="res-img">
+                                <img src="../assets/img/default.png" alt="">
+                            </div>
+                            <div class="other-meta">
+                                <h6 class="text-secondary">Book demo</h6>
+                            </div>
+                        </div>
+                        <div class="res-bod">
+                            <div class="file-holder bg-light">
+                                <div class="inner-file position-relative bd-r-10">
+                                    <button class="position-absolute top-0 end-0 m-1 btn btn-primary"><i class="bi bi-download"></i></button>
+                                    <p class="file-name bg-hehe ps-2 bd-r-5">
+                                        How to make trees in the moon.pdf 
+                                    </p>
+                                    <p class="file-desc">
+                                        Learn the importance fo conserving planting and make thins work out for you in a little while.
+                                    </p>
+                                    <span class="position-absolute bottom-0 start-0 ms-2 mb-1 fileSize bg-hehe rounded-pill ps-2 pe-2">26.35 Mbs</span>
+                                    <span class="position-absolute bottom-0 end-0 me-2 mb-1 uploadDate bg-hehe rounded-pill ps-2 pe-2">5 days ago</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="res-desc m-2">
+                            <p class="text-small text-secondary">
+                                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptates et quod perspiciatis dicta, consectetur quasi deserunt eveniet fugit, voluptatibus distinctio, vero eos? Unde, culpa molestiae. A omnis sed unde doloribus!
+                            </p>
+                        </div>
+                        <div class="res-reaction mt-0 mb-3">
+                            <i class="bi bi-hand-thumbs-up ms-2" onclick="like('4')" id="likeBtn"></i>
+                            <i class="bi bi-hand-thumbs-down ms-2"></i>
+                            <i class="bi bi-heart ms-2"></i>
+                            <i class="bi bi-chat-right-text ms-4"></i>
+                        </div>
+                    </div>
+                    <!-- End book card -->
               <!-- beginning next card -->
                     <div class="card border-0 shadow max-400 m-2">
                         <div class="res-meta-info">
@@ -322,7 +366,7 @@
                             </p>
                         </div>
                         <div class="res-reaction mt-3 mb-1">
-                            <i class="bi bi-hand-thumbs-up ms-2"></i>
+                            <i class="bi bi-hand-thumbs-up ms-2" onclick="like('4')" id="likeBtn"></i>
                             <i class="bi bi-hand-thumbs-down ms-2"></i>
                             <i class="bi bi-heart ms-2"></i>
                             <i class="bi bi-chat-right-text ms-4" onclick="showComments('3')"></i>
