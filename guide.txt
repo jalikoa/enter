@@ -2,7 +2,7 @@ The admiin has the following responsibilities
     Have a brief overview of the site 
     Aprove posts 
     Aprove a discussion forum
-    Vuew users and manage the users of the community
+    View users and manage the users of the community
     View feedbacks and queries
     View donations and manage the donations made
     Send messages inbox and on email to thank the people who donated 
@@ -14,4 +14,8 @@ The admiin has the following responsibilities
     Complete the part of user auth that is reset password and enter otp for the user to verify their accounts
 
     Activity 0-image,1-video,2-text
+    Rec Algorithm
+    Prof manage
+    Send data to backend ajax files
+    Release newsletter page
     

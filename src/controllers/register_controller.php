@@ -31,7 +31,11 @@ if (isset($_POST["register"])){
         // Adding the logics here now to help validate the image uploade the profile picture 
        $regRes = $register->register_user($conn);
        if($regRes){
-        echo json_encode(["success" => true,"message" => "Registration successfull you can now login after verifying account.","uid" => base64_encode($register->getI($conn))]);
+        if($register->send_otp()){
+          echo json_encode(["success" => true,"message" => "Registration successfull you can now login after verifying account.","uid" => base64_encode($register->getI($conn))]);
+        } else {
+          echo json_encode(["success" => false,"message" => "Your were registered but there was a problem sending email please contact us at info@futureguardians.com for help"]);
+        }
        }
       } else {
         echo json_encode(["success" => false,"message" => "Sorry user exists with the provided credentials"]);

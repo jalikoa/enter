@@ -10,6 +10,7 @@
  * @see contact at +254799311413
  */
 namespace jalikoa\FGIprogramme;
+require_once '../src/mailer/sendmail.php';
 class register{
     private $firstname;
     private $lastname;
@@ -57,9 +58,15 @@ class register{
     }
 
     public function send_otp(){
-        // Add the logics here to send otp simple one here is
-        $res = mail($this->email,"Verify OTP","Please enter the following one time password to verify your account:".$this->otp);
-        return ($res)?true:false;
+        // sending otp with mailer
+        $mesSubject = 'Thank You for Joining us';
+        $mesBody = '<h1>Greetings!</h1><p>Thank you for registering with the Future Guardians Initiative. Stay tuned for updates!</p>
+        <p style="color:rgb(0,0,100);font-weight:bold;">Your OTP is'.$this->otp.'</p>
+        <button style="padding:10px 10px;color:rgb(255, 255, 255);font-weight:500;background:rgb(0,100,0);border:none;border-radius:20px;">Not You</button>
+    <br />';
+        $altBody = 'Hey there and Welcome you are just a few steps from setting up your account! Enter this otp please to continue '.$this->otp;
+        $address = $this->email;
+        sendMail($mesSubject,$mesBody,$altBody,$address);
     }
     public function getI($conn){
         $check = "SELECT id FROM users WHERE email = '$this->email'";
