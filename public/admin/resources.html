@@ -266,6 +266,46 @@
                             <i class="bi bi-chat-right-text ms-4"></i>
                         </div>
                     </div>
+                    <!-- begginning the video card -->
+                    <div class="card border-0 shadow max-400 m-2">
+                        <div class="res-meta-info">
+                            <div class="res-img">
+                                <img src="../assets/img/default.png" alt="">
+                            </div>
+                            <div class="other-meta">
+                                <h6 class="text-secondary">Video demo</h6>
+                            </div>
+                        </div>
+                        <div class="res-body">
+                            <video src="../assets/img/j.mp4" controls loop></video>
+                        </div>
+                        <div class="res-reaction mt-3 mb-3">
+                            <i class="bi bi-hand-thumbs-up ms-2"></i>
+                            <i class="bi bi-hand-thumbs-down ms-2"></i>
+                            <i class="bi bi-heart ms-2"></i>
+                            <i class="bi bi-chat-right-text ms-4"></i>
+                        </div>
+                    </div>
+                    <!-- begginning the video card -->
+                    <div class="card border-0 shadow max-400 m-2">
+                        <div class="res-meta-info">
+                            <div class="res-img">
+                                <img src="../assets/img/default.png" alt="">
+                            </div>
+                            <div class="other-meta">
+                                <h6 class="text-secondary">Video demo</h6>
+                            </div>
+                        </div>
+                        <div class="res-body">
+                            <video src="../assets/img/j.mp4" controls loop></video>
+                        </div>
+                        <div class="res-reaction mt-3 mb-3">
+                            <i class="bi bi-hand-thumbs-up ms-2"></i>
+                            <i class="bi bi-hand-thumbs-down ms-2"></i>
+                            <i class="bi bi-heart ms-2"></i>
+                            <i class="bi bi-chat-right-text ms-4"></i>
+                        </div>
+                    </div>
               <!-- beginning next card -->
                     <div class="card border-0 shadow max-400 m-2">
                         <div class="res-meta-info">
@@ -287,11 +327,13 @@
                             <i class="bi bi-heart ms-2"></i>
                             <i class="bi bi-chat-right-text ms-4" onclick="showComments('3')"></i>
                         </div>
-                        <div class="comments">
+                        <div class="comments fade show d-none" id="commentsDiv">
                             <hr>
                             <h6 class="ms-3 text-primary">
                                 Comments
                             </h6>
+                            <!-- comments will be dynamically added here -->
+                             <center><h6 class="text-danger">No comments</h6></center>
                         </div>
                     </div>
               </div>
@@ -347,7 +389,8 @@
             </div>
           </div>
         </div>
-      </div><!-- End Modal add or edit-->   
+      </div><!-- End Modal add or edit-->  
+      <div class="hey position-absolute" id="hey"></div> 
 </body>
 <script src="../assets/js/aos.js"></script>
 <script src="../assets/js/general.js"></script>
