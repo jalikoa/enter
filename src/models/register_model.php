@@ -61,12 +61,12 @@ class register{
         // sending otp with mailer
         $mesSubject = 'Thank You for Joining us';
         $mesBody = '<h1>Greetings!</h1><p>Thank you for registering with the Future Guardians Initiative. Stay tuned for updates!</p>
-        <p style="color:rgb(0,0,100);font-weight:bold;">Your OTP is'.$this->otp.'</p>
+        <p style="color:rgb(0,0,100);font-weight:bold;">Your OTP is '.$this->otp.'</p>
         <button style="padding:10px 10px;color:rgb(255, 255, 255);font-weight:500;background:rgb(0,100,0);border:none;border-radius:20px;">Not You</button>
     <br />';
         $altBody = 'Hey there and Welcome you are just a few steps from setting up your account! Enter this otp please to continue '.$this->otp;
         $address = $this->email;
-        sendMail($mesSubject,$mesBody,$altBody,$address);
+       return sendMail($mesSubject,$mesBody,$altBody,$address);
     }
     public function getI($conn){
         $check = "SELECT id FROM users WHERE email = '$this->email'";

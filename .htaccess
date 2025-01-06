@@ -2,8 +2,8 @@ RewriteEngine On
 DefaultLanguage en
 AddDefaultCharset utf-8
 ServerSignature Off
-RewriteRule ^src/ - [F,L]
-Options -Indexes
+#RewriteRule ^src/ - [F,L]
+#Options -Indexes
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*)$ public/index.php [QSA,L]
