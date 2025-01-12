@@ -1,5 +1,8 @@
 var activityName,activityDescription,activityFile,activityForm;
-
+activityName = byId('activityName');
+activityDescription = byId('activityDes');
+activityFile = byId('activityImage');
+activityForm= byId('activityForm');
 function deleteActivity(){
     Swal.fire({
         title: 'Please confirm!',
@@ -28,7 +31,7 @@ function AddActivity(){
 
     }
     addXhr.onerror = ()=>{
-        
+
     }
     const data = new FormData();
     // append the necesary here 
@@ -44,6 +47,9 @@ function fetchRecentActivity(){
 
 }
 function isShort(len,str){
+    return(str.length <= len)?true:false;
+}
+function isLong(len,str){
     return(str.length >= len)?true:false;
 }
 function isText(text){
