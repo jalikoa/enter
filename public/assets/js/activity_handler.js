@@ -21,6 +21,10 @@ function deleteActivity(){
 }
 activityForm.addEventListener('submit',(e)=>{
     e.preventDefault();
+    // Validate the lengths of the input
+    if(isShort(5,activityName)){
+          
+    }
     AddActivity();
 })
 function AddActivity(){
@@ -47,7 +51,7 @@ function fetchRecentActivity(){
 
 }
 function isShort(len,str){
-    return(str.length <= len)?true:false;
+    return (str.length <= len)?true:false;
 }
 function isLong(len,str){
     return(str.length >= len)?true:false;
@@ -55,4 +59,15 @@ function isLong(len,str){
 function isText(text){
     let textRegExp = /^[A-Za-zÀ-ÿ\s]+(?:['’][A-Za-zÀ-ÿ]+)*$/;
     return (textRegExp.test(text))?true:false;
+}
+function toast(icon,message){
+    Swal.fire({
+        toast: true,
+        position: 'top-end',
+        icon: icon,
+        title: message,
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true, 
+      });
 }
