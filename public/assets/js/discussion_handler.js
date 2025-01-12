@@ -170,6 +170,7 @@ function populateChats(list){
         messagesHolder.append(sentDiv);
             }
         }
+        messagesHolder.scrollTop = messagesHolder.scrollHeight;
     }
     messagesHolder.scrollTo(messagesHolder.style.height.value);
     checkNewMessage();
