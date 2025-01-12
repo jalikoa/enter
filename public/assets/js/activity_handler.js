@@ -22,9 +22,22 @@ function deleteActivity(){
 activityForm.addEventListener('submit',(e)=>{
     e.preventDefault();
     // Validate the lengths of the input
-    if(isShort(5,activityName)){
-          
-    }
+    if(isShort(5,activityName.value)){
+          toast('error','Activity name cannot be less than five charcters');
+          return;
+    } else if(isLong(40,activityName.value)){
+        toast('error','Activity name cannot exceed 40 characters');
+    } else if(isShort(15,activityDescription.value)){
+        toast('error','Activity Description cannot be less than fifteen charcters');
+        return;
+  } else if(isLong(40,activityDescription.value)){
+      toast('error','Activity Description cannot exceed 500 characters');
+   }  //else if(isShort(5,activityImage.value)){
+//     toast('error','Activity Image cannot be less than five charcters');
+//     return;
+// } else if(isLong(40,activityImage.value)){
+//   toast('error','Activity Image cannot exceed 40 characters');
+// } 
     AddActivity();
 })
 function AddActivity(){
@@ -41,7 +54,7 @@ function AddActivity(){
     // append the necesary here 
     addXhr.send(data);
 }
-function fetchActivities(){
+function fetchActivities(limit){
 
 }
 function searchActivity(){
