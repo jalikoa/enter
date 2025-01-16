@@ -1,11 +1,11 @@
 const cacheName = 'v1';
 const cacheAssets = [
-  'http://localhost/fgi/public/',
-  'http://localhost/fgi/public/index.html',
-  'http://localhost/fgi/public/assets/css/style.css',
-  'http://localhost/fgi/public/assets/js/app.js',
-  'http://localhost/fgi/public/favicon.png',
-  'http://localhost/fgi/public/home.html'
+  'https://1228-197-136-187-86.ngrok-free.app/fgi/public/',
+  'https://1228-197-136-187-86.ngrok-free.app/fgi/public/index.html',
+  'https://1228-197-136-187-86.ngrok-free.app/fgi/public/assets/css/style.css',
+  'https://1228-197-136-187-86.ngrok-free.app/fgi/public/assets/js/app.js',
+  'https://1228-197-136-187-86.ngrok-free.app/fgi/public/favicon.png',
+  'https://1228-197-136-187-86.ngrok-free.app/fgi/public/home.html'
 ];
 self.addEventListener('install', (e) => {
   e.waitUntil(

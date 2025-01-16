@@ -105,7 +105,7 @@ if(isset($_GET["uid"])){
     document.getElementById('otpForm').addEventListener('submit',(e)=>{
         e.preventDefault();
         const xhr = checkXml();
-        xhr.open('POST',"http://localhost/fgi/public/index.php",true);
+        xhr.open('POST',"https://1228-197-136-187-86.ngrok-free.app/fgi/public/index.php",true);
         xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
         xhr.onload = ()=>{
             console.log(xhr.responseText);

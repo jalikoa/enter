@@ -406,7 +406,7 @@ if(isset($_GET["auth"])){
     document.getElementById('contactUsForm').addEventListener('submit',(e)=>{
         e.preventDefault();
         xhr = checkXml();
-        xhr.open('POST','http://localhost/fgi/public/index.php',true);
+        xhr.open('POST','https://1228-197-136-187-86.ngrok-free.app/fgi/public/index.php',true);
         xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
         xhr.onload = ()=>{
             console.log(xhr.responseText);
@@ -446,7 +446,7 @@ if(isset($_GET["auth"])){
     }
     function logout(){
         lreq = checkXml();
-        lreq.open("POST",'http://localhost/fgi/public/index.php',true);
+        lreq.open("POST",'https://1228-197-136-187-86.ngrok-free.app/fgi/public/index.php',true);
         lreq.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
         lreq.onload = ()=>{
             console.log(lreq.responseText);
@@ -480,7 +480,7 @@ if(isset($_GET["auth"])){
     window.onload = updateOnline();
     function updateOnline(){
         const uoxhr = checkXml();
-        uoxhr.open("POST",'http://localhost/fgi/public/index.php',true);
+        uoxhr.open("POST",'https://1228-197-136-187-86.ngrok-free.app/fgi/public/index.php',true);
         uoxhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
         uoxhr.onload = ()=>{
             console.log(uoxhr.responseText);
