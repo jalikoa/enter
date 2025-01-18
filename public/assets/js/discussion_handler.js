@@ -81,10 +81,39 @@ function sendMessage(sessid,dissId,message,type,replyto){
     const data = `sendmessage=${enc('true')}&sessid=${enc(sessid)}&discussionid=${enc(dissId)}&message=${enc(message)}&type=${enc(type)}&reply_to=${enc(replyto)}`;
     sendXhr.send(data);
 }
-function editMessage(){
+function editMessage(messId,sessid){
+    let newMess = edMessInp.value;
+    const edXhr = checkXml();
+    // Add logics to confirm that the data is text
+    // Add more logics here to encrypt the user messages
+    edXhr.open('POST',route,true);
+    setHeader(edXhr);
+    const data = `editMessage=${enc('true')}&sessid=${enc(sessid)}&messId=${enc(messId)}&newMess=${enc(newMess)}`;
+    edXhr.onload = ()=>{
+        if(edXhr.response.status == 200){
+            try {
+                const response = JSON.parse(edXhr.responseText);
+                if(response.success){
+                    // Update the dom
+                } else {
 
+                }
+            } catch (error) {
+                swal.fire(
+                    'Sorry',
+                    'An uncaught exeption occurred',
+                    'error'
+                );
+            }
+        } else {
+            swal.fire({
+                
+            });
+        }
+    }
+    edXhr.send(data);
 }
-function deleteMessage(){
+function deleteMessage(messId){
 
 }
 function fetchMembers(){
@@ -150,6 +179,7 @@ function populateChats(list){
         sentDiv.classList.add('message-sent');
         sentDiv.classList.add('position-relative');
         sentDiv.classList.add('mt-3');
+        sentDiv.setAttribute('id',`${list[i].id}`);
         sentDiv.innerHTML = cont;
         messagesHolder.append(sentDiv);
         } else {
