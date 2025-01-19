@@ -17,6 +17,9 @@
 </head>
 
 <body>
+  <div class="spinner-holder d-flex" id="loaderIndicator">
+    <div class="spinner-border text-primary spin-style"></div>
+ </div>
     <div class="container">
         <div class="row d-flex justify-content-center">
             <div class="col col-12 col-sm-10 col-md-8 col-lg-5 col-xl-5 mb-5"  data-aos="zoom-in" data-aos-delay="500">
@@ -72,6 +75,7 @@
         </div>
     </div>
 </body>
+<script src="./assets/js/general.js"></script>
 <script>
     function aosInit(){
         AOS.init({
@@ -88,7 +92,7 @@
     document.getElementById('logForm').addEventListener('submit',(e)=>{
       e.preventDefault();
       const xhr = checkXml();
-      xhr.open('POST','https://1228-197-136-187-86.ngrok-free.app/fgi/public/index.php',true);
+      xhr.open('POST',route,true);
       xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
       xhr.onload = ()=>{
         console.log(xhr.responseText);

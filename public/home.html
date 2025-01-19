@@ -26,6 +26,9 @@
 </head>
 
 <body>
+    <div class="spinner-holder d-flex" id="loaderIndicator">
+        <div class="spinner-border text-primary spin-style"></div>
+     </div>
     <div class="bg-head-top" id="bgFindHeight">
 
     </div>
@@ -362,7 +365,7 @@
     document.getElementById('contactUsForm').addEventListener('submit',(e)=>{
         e.preventDefault();
         xhr = checkXml();
-        xhr.open('POST','https://1228-197-136-187-86.ngrok-free.app/fgi/public/index.php',true);
+        xhr.open('POST',route,true);
         xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
         xhr.onload = ()=>{
             console.log(xhr.responseText);

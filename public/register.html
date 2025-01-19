@@ -25,6 +25,9 @@
     =================================================-->
     <!-- Beginning of the main body -->
     <div class="container">
+      <div class="spinner-holder d-flex" id="loaderIndicator">
+        <div class="spinner-border text-primary spin-style"></div>
+     </div>
         <div class="row d-flex justify-content-center">
             <div class="col col-12 col-sm-10 col-md-8 col-lg-5 col-xl-5 mb-5"  data-aos="zoom-in" data-aos-delay="500">
                 <div class="card w-100 h-100 border-0 shadow mt-2 ms-1">
@@ -114,6 +117,7 @@
         </div>
     </div>
 </body>
+<script src="./assets/js/general.js"></script>
 <script>
     function aosInit(){
         AOS.init({
@@ -142,7 +146,7 @@
       }
       // more validation should be added for the user to protect the server
       const xhr = checkXml();
-      xhr.open('POST','http://localhost/fgi/public/index.php',true);
+      xhr.open('POST',route,true);
       xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded')
       xhr.onload = function(){
           console.log(xhr.responseText);

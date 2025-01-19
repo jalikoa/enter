@@ -732,6 +732,8 @@ if(isset($_GET["auth"])){
     </div>
 </footer>
 </body>
+<!-- This is the audio to be played for the new messages -->
+<audio src="../assets/music/error-8-206492.mp3" class="d-none" id="newMessAudio"></audio>
 <script>
 </script>
 <script>

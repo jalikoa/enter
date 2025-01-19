@@ -17,39 +17,8 @@ if(isset($_GET["uid"])){
     <link rel="stylesheet" href="./assets/css/bootstrap.css">
     <link rel="stylesheet" href="./assets/css/font-awesome.min.css">
     <link rel="stylesheet" href="./assets/css/sweetalert2.min.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
     <link rel="stylesheet" href="./assets/icons/bootstrap-icons.min.css">
-    <style>
-        body {
-            background-color: #b3f3c123;
-            /* font-family: Arial; */
-        }
-        .initiative_logo {
-            width: 200px;
-            height: 200px;
-        }
-        .future-green{
-            color:#056D1B;
-        }
-        .bg-future-green {
-            background: #4FA40F;
-            color:#fff;
-        }
-        .login-btn {
-            background: #4FA40F;
-            width:150px;
-            border:none;
-            color:#fff;
-            padding:5px 5px;
-            border-radius:10px;
-            font-weight: 500px;
-        }
-        .purple {
-            color:#CA076C;
-        }
-        .deco-none {
-            text-decoration:none;
-        }
-    </style>
 </head>
 
 <body>
@@ -91,6 +60,7 @@ if(isset($_GET["uid"])){
         </div>
     </div>
 </body>
+<script src="./assets/js/general.js"></script>
 <script>
     const otp = document.getElementById('yourUserOTP');
     function aosInit(){
@@ -105,7 +75,7 @@ if(isset($_GET["uid"])){
     document.getElementById('otpForm').addEventListener('submit',(e)=>{
         e.preventDefault();
         const xhr = checkXml();
-        xhr.open('POST',"https://1228-197-136-187-86.ngrok-free.app/fgi/public/index.php",true);
+        xhr.open('POST',route,true);
         xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
         xhr.onload = ()=>{
             console.log(xhr.responseText);

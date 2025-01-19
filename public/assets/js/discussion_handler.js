@@ -12,10 +12,12 @@
 // Get new messages without reloading the page 
 // Update that the user is typing on the other end
 // Make the ui to more or quite professinall
-var addDiscussionForm,disName,disImage,disAbout,disType,disWhoMess,messageBox,messagesHolder,messagesForm;
-let sendTypeR,sendMessR,newMList,messLen;
+var addDiscussionForm,disName,disImage,disAbout,disType,disWhoMess,messageBox,messagesHolder,messagesForm,newMessAudio;
+let sendTypeR,sendMessR,newMList,messLen,meSend,upd;
 sendTypeR = true;
 sendMessR = true;
+meSend = false;
+upd = true;
 addDiscussionForm = byId('addDiscussionForm');
 disName = byId('discName');
 messagesForm = byId('messagesForm');
@@ -25,6 +27,7 @@ disType = byId('discType');
 disWhoMess = byId('whoMess');
 messageBox =byId('messageBox');
 messagesHolder = byId('messagesHolder');
+newMessAudio = byId('newMessAudio');
 messageBox.addEventListener('input',()=>{
     if(sendTypeR){
         updateTyping();
@@ -73,6 +76,7 @@ function sendMessage(sessid,dissId,message,type,replyto){
     // I will add more here so that the message is validated before it is sent here like encryption but for the role of testing and h
     // having a prototype this should be just the way that it is 
     const sendXhr = checkXml();
+    meSend = true;
     sendXhr.open('POST',route,true);
     setHeader(sendXhr);
     sendXhr.onload = ()=>{
@@ -166,13 +170,14 @@ function populateChats(list){
     messLen = list.length;
     for(let i = 0;i < list.length;i++){
         if(list[i].you){
-            const cont = `<span class="senderCred d-flex">
+            const cont = `<span class="senderCred d-flex position-relative">
+                <span class="position-absolute ${list[i].online} bottom-0 start-0 ms-4"></span>
                 <img src="../assets/img/messages-2.jpg" alt="">
                 <span class="h-30 overflow-hidden fw-medium text-small">You</span>
                 <span class="h-30 overflow-hidden">${list[i].country}</span>
             </span>
-            <p class="message-text-text mb-4" style="font-size:14px;">${list[i].message}</p>
-            <span class="received-time text-small position-absolute start-0 m-1 bottom-0"> 00:34 AM</span>
+            <p class="message-text-text mb-3" style="font-size:14px;">${list[i].message}</p>
+            <span class="received-time text-small position-absolute start-0 m-1 bottom-0">${list[i].timesent}</span>
             <span class="sent-status bi text-primary bi-check2-all position-absolute end-0 m-1 bottom-0"></span>`;
         const sentDiv = document.createElement('div');
         sentDiv.classList.add('message-text');
@@ -184,13 +189,15 @@ function populateChats(list){
         messagesHolder.append(sentDiv);
         } else {
             if(!list[i].you){
-                const cont = `<span class="senderCred d-flex">
+                const cont = `<span class="senderCred d-flex position-relative">
+                <span class="position-absolute top-0 start-0 ms-5" id='${list[i].id+'typ'}'><i class="text-xs ${list[i].typing} ">typing</i></span>
+                <span class="position-absolute ${list[i].online} bottom-0 start-0 ms-4" id='${list[i].id+'onl'}'></span>
                 <img src="../assets/img/messages-3.jpg" alt="">
                 <span class="h-30 overflow-hidden fw-medium">${list[i].username}</span>
                 <span class="h-30 overflow-hidden">${list[i].country}</span>
             </span>
             <p class="message-text-text mb-4">${list[i].message}</p>
-            <span class="received-time text-small position-absolute start-0 m-1 bottom-0"> 00:34 AM</span>`;
+            <span class="received-time text-small position-absolute start-0 m-1 bottom-0">${list[i].timesent}</span>`;
         const sentDiv = document.createElement('div');
         sentDiv.classList.add('message-text');
         sentDiv.classList.add('message-received');
@@ -205,6 +212,30 @@ function populateChats(list){
     messagesHolder.scrollTo(messagesHolder.style.height.value);
     checkNewMessage();
 }
+function updateOnlTyp(list) {
+    let upd = false;
+    for (let i = 0; i < list.length; i++) {
+        if (list[i] && list[i].id && list[i].typing && list[i].online) {
+            let typ = document.getElementById(`${list[i].id + 'typ'}`);
+            if (typ) {
+                typ.innerHTML = `<i class="text-xs ${list[i].typing} ">typing</i>`;
+            }
+
+            let onl = document.getElementById(`${list[i].id + 'onl'}`);
+            if (onl) {
+                if (onl.classList.contains('online')) {
+                    onl.classList.remove('online');
+                }
+                if (onl.classList.contains('offline')) {
+                    onl.classList.remove('offline');
+                }
+                onl.classList.add(`${list[i].online}`);
+            }
+        }
+    }
+    upd = true;
+}
+
 function checkNewMessage(){
     const fetchNewMess = checkXml();
     fetchNewMess.open('POST',route,true);
@@ -219,8 +250,19 @@ function checkNewMessage(){
             if(response.success){
                 if(response.messList.length  > messLen){
                     populateChats(response.messList);
+                    if(!meSend){
+                        newMessAudio.play();
+                    } else {
+                        meSend = false;
+                    }
+                    if(upd){
+                        updateOnlTyp(response.messList);
+                    }
                 } else {
-                    checkNewMessage();
+                    setTimeout(() => checkNewMessage(), 5000);
+                    if(upd){
+                        updateOnlTyp(response.messList);
+                    }
                 }
             } else {
                 swal.fire('Sorry',`${response.message}`,'error');

@@ -58,11 +58,17 @@ class message {
         m.discussion,
         m.type,
         m.reply_to,
-        m.created_at AS timesent,
+        	CASE 
+            WHEN TIMESTAMPDIFF(MINUTE,m.created_at,NOW())<=1440
+            	THEN DATE_FORMAT(m.created_at,'Today %H:%i') 
+                ELSE DATE_FORMAT(m.created_at,'%W %D %M %H:%i') 
+             END AS timesent,
         u.username,
         u.country,
-        u.last_seen AS online,
-        d.typing,
+        CASE WHEN TIMESTAMPDIFF(SECOND,u.last_seen,NOW())<= 30
+        THEN 'online' ELSE 'offline' END AS online,
+        CASE WHEN TIMESTAMPDIFF(SECOND,d.typing,NOW())<= 10
+        THEN 'typing' ELSE 'nottyping' END AS typing,
         u.bio,
         u.image  FROM `messages` AS m
          JOIN users AS u 

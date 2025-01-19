@@ -390,6 +390,7 @@ if(isset($_GET["auth"])){
 <script src="../assets/js/aosInit.js"></script>
 <script src="../assets/js/general.js"></script>
 <script>
+    var sessid = '<?php echo $auth?>';
     var userName,userEmail,userCountry,userQuery,bgFindHeight;
     userName = document.getElementById('username');
     userEmail = document.getElementById('useremail');
@@ -406,7 +407,7 @@ if(isset($_GET["auth"])){
     document.getElementById('contactUsForm').addEventListener('submit',(e)=>{
         e.preventDefault();
         xhr = checkXml();
-        xhr.open('POST','https://1228-197-136-187-86.ngrok-free.app/fgi/public/index.php',true);
+        xhr.open('POST',route,true);
         xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
         xhr.onload = ()=>{
             console.log(xhr.responseText);
@@ -446,7 +447,7 @@ if(isset($_GET["auth"])){
     }
     function logout(){
         lreq = checkXml();
-        lreq.open("POST",'https://1228-197-136-187-86.ngrok-free.app/fgi/public/index.php',true);
+        lreq.open("POST",route,true);
         lreq.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
         lreq.onload = ()=>{
             console.log(lreq.responseText);
@@ -477,28 +478,6 @@ if(isset($_GET["auth"])){
         const data = `logout=${encodeURIComponent('true')}&sessid=${encodeURIComponent('<?php echo $auth?>')}`;
         lreq.send(data);
     }
-    window.onload = updateOnline();
-    function updateOnline(){
-        const uoxhr = checkXml();
-        uoxhr.open("POST",'https://1228-197-136-187-86.ngrok-free.app/fgi/public/index.php',true);
-        uoxhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
-        uoxhr.onload = ()=>{
-            console.log(uoxhr.responseText);
-            const response = JSON.parse(uoxhr.responseText);
-            if(!response.success){
-                swal.fire(
-                    'Sorry',
-                    `${response.message}`,
-                    'error'
-                );
-            }
-            window.setTimeout(() => {
-                updateOnline();
-            }, 2000);
-        }
-        const data = `updateonline=${encodeURIComponent('true')}&sessid=${encodeURIComponent('<?php echo $auth?>')}`;
-        uoxhr.send(data);
-    }
     var menuButton,menuIcon,phoneSidebar;
     menuButton = byId('menuButton');
     menuIcon = byId('menuIcon');
@@ -518,4 +497,5 @@ if(isset($_GET["auth"])){
         }
     })
 </script>
+<script src="../assets/js/update_online.js"></script>
 </html>

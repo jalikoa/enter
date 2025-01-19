@@ -8,7 +8,7 @@ const loadInd = document.getElementById('loaderIndicator');
         AOSInit();
     }
   
-    const route = 'https://1228-197-136-187-86.ngrok-free.app/fgi/public/index.php';
+    const route = 'http://localhost/fgi/public/index.php';
     function checkXml(){
         if(window.XMLHttpRequest){
           return new XMLHttpRequest();
