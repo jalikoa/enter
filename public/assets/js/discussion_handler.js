@@ -118,7 +118,28 @@ function editMessage(messId,sessid){
     edXhr.send(data);
 }
 function deleteMessage(messId){
+    const delXhr = checkXml();
+    delXhr.open('POST',route,true);
+    setHeader(delXhr);
+    delXhr.onload = ()=>{
+        if(delXhr.status == 200){
+            try{
+                response = JSON.parse(delXhr.responseText);
+                if(response.success){
+                    // Show a toast message to the user here 
+                    // then delete the message from the ui~
+                } else {
 
+                }
+            } catch (e){
+
+            }
+        } else {
+            swal.fire();
+        }
+    }
+    const data = `delMess=${enc('true')}$messageId=${enc(messId)}&sessId=${enc(sessid)}`;
+    delXhr.send(data);
 }
 function fetchMembers(){
 
