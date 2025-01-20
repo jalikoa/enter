@@ -32,6 +32,28 @@ if(isset($_GET["auth"])){
     <div class="spinner-holder d-flex" id="loaderIndicator">
         <div class="spinner-border text-primary spin-style"></div>
      </div>
+     <!-- This is the beginning if the div for the edit message modal -->
+     <button class="d-none" id="jalikoaEditBtn" data-bs-toggle="modal" data-bs-target="#EditMessageModal"><bi class="bi-plus-circle"></bi></button>
+      <!-- Modal for adding or editing member -->
+      <div class="modal fade" id="EditMessageModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <center><h5 class="modal-title text-success" id="whatToDo">Edit Message</h5></center>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="input-group">
+                    <input type="text" id="edInp" placeholder="New message here" required class="form-control">
+                    <button class="btn btn-secondary"><i class="bi bi-send"></i></button>
+                </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" id="closeFormModal" class="btn btn-secondary d-none" data-bs-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div><!-- End Modal add or edit-->
     <!-- The beginning of the navbar -->
     <header class="bg-future-green">
         <div class="container-fluid d-flex dnav">

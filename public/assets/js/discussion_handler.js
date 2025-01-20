@@ -85,9 +85,12 @@ function sendMessage(sessid,dissId,message,type,replyto){
     const data = `sendmessage=${enc('true')}&sessid=${enc(sessid)}&discussionid=${enc(dissId)}&message=${enc(message)}&type=${enc(type)}&reply_to=${enc(replyto)}`;
     sendXhr.send(data);
 }
-function editMessage(messId){
+function editMessage(messId,message){
     console.log(`Hey there you are about to edit message with this ID ${messId}`);
-    let newMess = edMessInp.value;
+    byId('jalikoaEditBtn').click();
+    byId('edInp').value = message;
+    byId('edInp').focus();
+    let newMess = byId('edInp').value;
     const edXhr = checkXml();
     // Add logics to confirm that the data is text
     // Add more logics here to encrypt the user messages
@@ -111,9 +114,9 @@ function editMessage(messId){
                 );
             }
         } else {
-            swal.fire({
+            // swal.fire({
                 
-            });
+            // });
         }
     }
     edXhr.send(data);
@@ -266,7 +269,7 @@ function populateChats(list){
                             Sent this text ${list[i].timesent}
                         </p>
                         <li class="dropdown-item">
-                            <a href="#" onclick="editMessage(${list[i].id})" class="text-secondary"><i class="text-primary bi bi-pencil-square"></i> Edit message</a>
+                            <a href="#" onclick="editMessage('${list[i].id}','${list[i].message}')" class="text-secondary"><i class="text-primary bi bi-pencil-square"></i> Edit message</a>
                         </li>
                         <hr class="dropdow-divider">
                         <li class="dropdown-item">
