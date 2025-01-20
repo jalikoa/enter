@@ -258,7 +258,6 @@ function populateChats(list){
         if(list[i].you){
             const cont = `
             <span class="senderCred d-flex position-relative">
-                <span class="position-absolute ${list[i].online} bottom-0 start-0 ms-4"></span>
                 <img src="../assets/img/messages-2.jpg" alt="">
                 <span class="h-30 overflow-hidden fw-medium text-small">You</span>
                 <span class="h-30 overflow-hidden">${list[i].country}</span>
@@ -349,7 +348,7 @@ function updateOnlTyp(list) {
         if (list[i] && list[i].id && list[i].typing && list[i].online) {
             let typ = document.getElementById(`${list[i].id + 'typ'}`);
             if (typ) {
-                typ.innerHTML = `<i class="text-xs ${list[i].typing} ">typing</i>`;
+                typ.innerHTML = `<i class="text-xs ${list[i].typing} ">typing...</i>`;
             }
 
             let onl = document.getElementById(`${list[i].id + 'onl'}`);

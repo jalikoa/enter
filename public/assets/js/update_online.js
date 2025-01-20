@@ -1,8 +1,7 @@
-window.onload = updateOnline();
     function updateOnline(){
         const uoxhr = checkXml();
         uoxhr.open("POST",route,true);
-        uoxhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+        setHeader(uoxhr);
         uoxhr.onload = ()=>{
             console.log(uoxhr.responseText);
             const response = JSON.parse(uoxhr.responseText);
@@ -13,8 +12,11 @@ window.onload = updateOnline();
                     'error'
                 );
             }
-                updateOnline();
+               window.setTimeout(()=>{
+                updateOnline()
+               },2000);
         }
         const data = `updateonline=${encodeURIComponent('true')}&sessid=${encodeURIComponent(sessid)}`;
         uoxhr.send(data);
     }
+updateOnline();

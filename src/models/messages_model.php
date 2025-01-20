@@ -65,9 +65,9 @@ class message {
              END AS timesent,
         u.username,
         u.country,
-        CASE WHEN TIMESTAMPDIFF(SECOND,u.last_seen,NOW())<= 30
+        CASE WHEN TIMESTAMPDIFF(SECOND,u.last_seen,NOW())<= 10
         THEN 'online' ELSE 'offline' END AS online,
-        CASE WHEN TIMESTAMPDIFF(SECOND,d.typing,NOW())<= 10
+        CASE WHEN TIMESTAMPDIFF(SECOND,d.typing,NOW())<= 5
         THEN 'typing' ELSE 'nottyping' END AS typing,
         u.bio,
         u.image  FROM `messages` AS m

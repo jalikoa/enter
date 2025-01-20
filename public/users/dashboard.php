@@ -168,7 +168,7 @@ if(isset($_GET["auth"])){
                         </li>
                         <hr class="dropdow-divider">
                         <li class="dropdown-item">
-                            <a href="" class="text-secondary"><i class="bi bi-box-arrow-right"></i>Logout</a>
+                            <a href="#" onclick="logout()" class="text-secondary"><i class="bi bi-box-arrow-right"></i>Logout</a>
                         </li>
                         <hr class="dropdow-divider">
                     </ul>

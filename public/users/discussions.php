@@ -768,4 +768,5 @@ if(isset($_GET["auth"])){
 <script src="../assets/js/bootstrap.bundle.min.js"></script>
 <script src="../assets/js/jquery-3.6.0.min.js"></script>
 <script src="../assets/js/sweetalert2@11.js"></script>
+<script src="../assets/js/update_online.js"></script>
 </html>
