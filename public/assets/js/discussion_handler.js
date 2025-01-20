@@ -85,7 +85,8 @@ function sendMessage(sessid,dissId,message,type,replyto){
     const data = `sendmessage=${enc('true')}&sessid=${enc(sessid)}&discussionid=${enc(dissId)}&message=${enc(message)}&type=${enc(type)}&reply_to=${enc(replyto)}`;
     sendXhr.send(data);
 }
-function editMessage(messId,sessid){
+function editMessage(messId){
+    console.log(`Hey there you are about to edit message with this ID ${messId}`);
     let newMess = edMessInp.value;
     const edXhr = checkXml();
     // Add logics to confirm that the data is text
@@ -118,6 +119,7 @@ function editMessage(messId,sessid){
     edXhr.send(data);
 }
 function deleteMessage(messId){
+    console.log(`Hey there you are about to delete message with this ID ${messId}`);
     const delXhr = checkXml();
     delXhr.open('POST',route,true);
     setHeader(delXhr);
@@ -141,14 +143,74 @@ function deleteMessage(messId){
     const data = `delMess=${enc('true')}$messageId=${enc(messId)}&sessId=${enc(sessid)}`;
     delXhr.send(data);
 }
-function fetchMembers(){
-
+function fetchMembers(dissId){
+    const fetchMemXhr = checkXml();
+    fetchMemXhr.open('POST',route,true);
+    setHeader(fetchMemXhr);
+    fetchMemXhr.onload = ()=>{
+        if(fetchMemXhr.status == 200){
+            try{
+                const response = JSON.parse(fetchMemXhr.responseText);
+                if(response.success){
+                    // Get the user list ad populate them to the list 
+                } else {
+                    // Relay the erro to the user 
+                }
+            } catch (e){
+                // Relay the error to the user
+            }
+        } else {
+            swal.fire();
+        }
+    }
+    const data = `fetchMembers=${enc('true')}&dissid=${enc(dissId)}&sessid=${sessid}`;
+    fetchMemXhr.send(data);
 }
-function deleteMember(){
-
+function deleteMember(memberId,dissid){
+    const delMemXhr = checkXml();
+    delMemXhr.open('POST',route,true);
+    setHeader(delMemXhr);
+    delMemXhr.onload = ()=>{
+        if(delMemXhr.status == 200){
+            try{
+                const response = JSON.parse(delMemXhr.responseText);
+                if(response.success){
+                    // Get the user list ad populate them to the list 
+                } else {
+                    // Relay the erro to the user 
+                }
+            } catch (e){
+                // Relay the error to the user
+            }
+        } else {
+            swal.fire();
+        }
+    }
+    const data = `delMembers=${enc('true')}&dissid=${enc(dissId)}&memberid=${enc(memberId)}&sessid=${sessid}`;
+    delMemXhr.send(data);
 }
 function checkAdmin(){
-
+    const chU_a = checkXml();
+    chU_a.open('POST',route,true);
+    setHeader(chU_a);
+    chU_a.onload = ()=>{
+        if(chU_a.status == 200){
+            try{
+                const response = JSON.parse(chU_a.responseText);
+                if(response.success){
+                    // Get the user list ad populate them to the list 
+                } else {
+                    // Relay the erro to the user 
+                }
+            } catch (e){
+                // Relay the error to the user
+            }
+        } else {
+            swal.fire();
+        }
+    }
+    const data = `checkUAdmin=${enc('true')}&dissid=${enc(dissId)}&sessid=${sessid}`;
+    chU_a.send(data);
 }
 function updateTyping(){
     sendTypeR = !sendTypeR;
@@ -191,11 +253,36 @@ function populateChats(list){
     messLen = list.length;
     for(let i = 0;i < list.length;i++){
         if(list[i].you){
-            const cont = `<span class="senderCred d-flex position-relative">
+            const cont = `
+            <span class="senderCred d-flex position-relative">
                 <span class="position-absolute ${list[i].online} bottom-0 start-0 ms-4"></span>
                 <img src="../assets/img/messages-2.jpg" alt="">
                 <span class="h-30 overflow-hidden fw-medium text-small">You</span>
                 <span class="h-30 overflow-hidden">${list[i].country}</span>
+                <div class="dropdown border-0">
+                    <span data-bs-toggle="dropdown"><i class="bi bi-three-dots-vertical"></i></span>
+                    <ul class="dropdown-menu">
+                        <p class="text-small text-info">
+                            Sent this text ${list[i].timesent}
+                        </p>
+                        <li class="dropdown-item">
+                            <a href="#" onclick="editMessage(${list[i].id})" class="text-secondary"><i class="text-primary bi bi-pencil-square"></i> Edit message</a>
+                        </li>
+                        <hr class="dropdow-divider">
+                        <li class="dropdown-item">
+                            <a href="#" onclick="deleteMessage(deleteMessage(messId))" class="text-secondary"><i class="text-primary bi bi-reply-all-fill"></i> Forward</a>
+                        </li>
+                        <!-- <li class="dropdown-item">
+                            <a href="#" onclick="" class="text-secondary"><i class="text-primary bi bi-pencil-square"></i> Edit message</a>
+                        </li> -->
+                        <hr class="dropdow-divider">
+                        <li class="dropdown-item">
+                            <a href="#" onclick="deleteMessage(${list[i].id})" class="text-secondary"><i class="text-danger bi bi-trash-fill"></i> Delete Message</a>
+                        </li>
+                        <hr class="dropdow-divider">
+                        <br class="dropdow-divider">
+                    </ul>
+                </div>
             </span>
             <p class="message-text-text mb-3" style="font-size:14px;">${list[i].message}</p>
             <span class="received-time text-small position-absolute start-0 m-1 bottom-0">${list[i].timesent}</span>
@@ -210,12 +297,31 @@ function populateChats(list){
         messagesHolder.append(sentDiv);
         } else {
             if(!list[i].you){
-                const cont = `<span class="senderCred d-flex position-relative">
+                const cont = `
+                <span class="senderCred d-flex position-relative">
                 <span class="position-absolute top-0 start-0 ms-5" id='${list[i].id+'typ'}'><i class="text-xs ${list[i].typing} ">typing</i></span>
                 <span class="position-absolute ${list[i].online} bottom-0 start-0 ms-4" id='${list[i].id+'onl'}'></span>
                 <img src="../assets/img/messages-3.jpg" alt="">
                 <span class="h-30 overflow-hidden fw-medium">${list[i].username}</span>
                 <span class="h-30 overflow-hidden">${list[i].country}</span>
+                <div class="dropdown border-0">
+                    <span data-bs-toggle="dropdown"><i class="bi bi-three-dots-vertical"></i></span>
+                    <ul class="dropdown-menu">
+                        <p class="text-small text-info">
+                            Sent this text ${list[i].timesent}
+                        </p>
+                        <li class="">
+                            <div class="res-reaction mb-1">
+                                <i class="bi bi-hand-thumbs-up ms-2"></i>
+                                <i class="bi bi-hand-thumbs-down ms-2"></i>
+                                <i class="bi bi-heart ms-2"></i>
+                                <i class="bi bi-reply-all-fill ms-4" onclick="replyComment('3')"></i>
+                            </div>
+                        </li>
+                        <hr class="dropdow-divider">
+                        <br class="dropdow-divider">
+                    </ul>
+                </div>
             </span>
             <p class="message-text-text mb-4">${list[i].message}</p>
             <span class="received-time text-small position-absolute start-0 m-1 bottom-0">${list[i].timesent}</span>`;
@@ -224,6 +330,7 @@ function populateChats(list){
         sentDiv.classList.add('message-received');
         sentDiv.classList.add('position-relative');
         sentDiv.classList.add('mt-3');
+        sentDiv.classList.add('position-relative');
         sentDiv.innerHTML = cont;
         messagesHolder.append(sentDiv);
             }

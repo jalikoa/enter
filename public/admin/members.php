@@ -319,48 +319,7 @@ if(isset($_GET["auth"])){
                             </tr>
                         </thead>
                         <tbody id="membersListTable">
-                            <tr>
-                                <td>1</td>
-                                <td>Calvince Owino</td>
-                                <td>t313jaliko@gmail.com</td>
-                                <td>+254799311413</td>
-                                <td>Kenya</td>
-                                <td>Member</td>
-                                <td>
-                                    <div class="m-0 p-0">
-                                        <button class="btn btn-primary m-1"><i class="bi bi-pencil-square"></i></button>
-                                        <button class="btn btn-danger m-1"><i class="bi bi-trash"></i></button>
-                                    </div>
-                                </td><!-- -Delete or edit member --->
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>Calvince Owino</td>
-                                <td>t313jaliko@gmail.com</td>
-                                <td>+254799311413</td>
-                                <td>Kenya</td>
-                                <td>Member</td>
-                                <td>
-                                    <div class="m-0 p-0">
-                                        <button class="btn btn-primary m-1"><i class="bi bi-pencil-square"></i></button>
-                                        <button class="btn btn-danger m-1"><i class="bi bi-trash"></i></button>
-                                    </div>
-                                </td><!-- -Delete or edit member --->
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>Calvince Owino</td>
-                                <td>t313jaliko@gmail.com</td>
-                                <td>+254799311413</td>
-                                <td>Kenya</td>
-                                <td>Member</td>
-                                <td>
-                                    <div class="m-0 p-0">
-                                        <button class="btn btn-primary m-1"><i class="bi bi-pencil-square"></i></button>
-                                        <button class="btn btn-danger m-1"><i class="bi bi-trash"></i></button>
-                                    </div>
-                                </td><!-- -Delete or edit member --->
-                            </tr>
+                           <!-- The values of the members will be dynamically fed here  -->
                         </tbody>
                     </table>
                 </div>
