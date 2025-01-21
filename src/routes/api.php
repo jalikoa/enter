@@ -29,7 +29,7 @@
     elseif(isset($_POST["fetchmebers"])){
         require_once "../src/controllers/members_controller.php";
     } 
-    elseif(isset($_POST["adnewdiscussion"])){
+    elseif(isset($_POST["addnewdiscussion"])){
         require_once "../src/controllers/discussions_controller.php";
     } 
     elseif(isset($_POST["updateTyping"])){

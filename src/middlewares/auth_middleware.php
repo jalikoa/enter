@@ -3,11 +3,7 @@ namespace jalikoa\FGIprogramme;
 // Simple session based authentiacation
 class Auth {
     public function check_logged_in($sessid){
-        if(isset($_SESSION[$sessid])){
-            return true;
-        } else {
-            return false;
-        }
+        return (isset($_SESSION[$sessid]))?true:false;
     }
     public function auth_admin($uid,$conn){
         $check = "SELECT * FROM users WHERE id = '$uid'";

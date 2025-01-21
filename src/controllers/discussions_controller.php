@@ -24,22 +24,22 @@ require_once "../src/middlewares/auth_middleware.php";
 use jalikoa\FGIprogramme\discussion;
 use jalikoa\FGIprogramme\Auth;
 use jalikoa\FGIprogramme\file_handler;
-if(isset($_POST["adddiscussion"])){
-    $sesid = sanitize($_POST["sessid"]);
-    $name = santize($_POST["discussionname"]);
+if(isset($_POST["addnewdiscussion"])){
+    $sessid = sanitize($_POST["sessid"]);
+    $name = sanitize($_POST["discussionname"]);
     $image = $_FILES["discussionimage"];
     $filedest = "./uploads/";
     $name = $_FILES["discussionimage"]["name"];
-    $about = santize($_POST["discussionabout"]);
-    $type = santize($_POST["discuaaiontype"]);
-    $whomes = santize($_POST["whomess"]);
+    $about = sanitize($_POST["discussionabout"]);
+    $type = sanitize($_POST["discussiontype"]);
+    $whomes = sanitize($_POST["whomess"]);
     $auth = new Auth();
     if($auth->check_logged_in($sessid)){
-        $userid = $_SESSION[$sesid];
+        $userid = $_SESSION[$sessid];
         $admin = $userid;
         $discussion = new discussion();
         $fhanlder = new file_handler();
-        if($fhanlder->){
+        if($fhanlder->move_uploaded_file($image,$filedest)){
 
         }
     } else {
@@ -57,7 +57,7 @@ if(isset($_POST["deletediscussion"])){
         $discussion = new discussion();
         if($discussion->isAdmin($conn,$userid)){
             if($discussion->delete_discussion($conn,$disid)){
-                echo json_encode("success"=>false,"message"=>"Deleted! It is sad to see leaving!Join us again")
+                echo json_encode(["success"=>false,"message"=>"Deleted! It is sad to see leaving!Join us again"]);
             } else {
                 echo json_encode(["success"=>false,"message"=>"Not deleted please try again later"]);
             }
@@ -72,7 +72,7 @@ if(isset($_POST["deletediscussion"])){
 if(isset($_POST["editdiscussion"])){
 
 }
-if(iset($_POST["fetchdiscussioninfo"])){
+if(isset($_POST["fetchdiscussioninfo"])){
 
 }
 if(isset($_POST["adddiscussionmember"])){
@@ -86,13 +86,14 @@ if(isset($_POST["blockuser"])){
 }
 if(isset($_POST["clearchats"])){
     $sessid = $_POST['sessid'];
+    $disid = $_POST['dissid'];
     $auth = new Auth();
     if($auth->check_logged_in($sessid)){
         $discussion = new discussion();
-        if($discussion->){
+        if($discussion->delete_messages($conn,$disid)){
 
         } else {
-            echo json_encode("success"=>false,"message"=>"");
+            echo json_encode(["success"=>false,"message"=>""]);
         }
     } else {
         echo json_encode(["success"=>false,"message"=>"Please Login to complete this action"]);

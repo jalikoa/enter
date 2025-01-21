@@ -57,16 +57,16 @@ addDiscussionForm.addEventListener('submit',(e)=>{
     } else {
         const adDiXhr = checkXml();
         adDiXhr.open('POST',route,true);
-        setHeader(adDiXhr);
         adDiXhr.onload =()=>{
             console.log(adDiXhr.responseText);
         }
         const data = new FormData();
-        data.append('adnewdiscussion','true');
+        data.append('addnewdiscussion','true');
         data.append('discussionname',disName.value);
         data.append('discussionimage',disImage.files[0]);
         data.append('discussionabout',disAbout.value);
         data.append('discussiontype',disType.value);
+        data.append('sessid',sessid);
         data.append('whomess',disWhoMess.value);
         adDiXhr.send(data);
     }
@@ -389,7 +389,7 @@ function checkNewMessage(){
                         updateOnlTyp(response.messList);
                     }
                 } else {
-                    setTimeout(() => checkNewMessage(), 5000);
+                    setTimeout(() => checkNewMessage(), 500);
                     if(upd){
                         updateOnlTyp(response.messList);
                     }
