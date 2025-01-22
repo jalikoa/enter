@@ -53,7 +53,11 @@ class file_handler {
         $this->name .= $extention;
     }
     public function upload($file,$dir){
-        $res = move_uploaded_file($file,$dir);
+        $tmp_name = $file['tmp_name'];
+        if(!file_exists($dir)){
+            mkdir($dir,0777,true);
+        }
+        $res = move_uploaded_file($tmp_name,$dir.'/'.$this->genName().'.'.$this->get_ext($file));
         return ($res)?true:false;
     }
     public function getSize($file){
@@ -61,6 +65,6 @@ class file_handler {
         return filesize($file);
     }
     public function isLarger($value,$max){
-        return ()?true:false;
+        return ($value > $max)?true:false;
     }
 }
