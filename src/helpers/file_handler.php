@@ -16,19 +16,35 @@ class file_handler {
     public function size(){
         return $this->size;
     }
-    public function setName($name){
+    /**
+     * @param {file} $file - file to get the mime type
+     */
+    public function get_mime($file){
+        return mime_content_type($file['tmp_name']);
+    }
+    public function get_ext($file){
+        $tmpName = $file["tmp_name"];
+        $extension = pathinfo($tmpName,PATHINFO_EXTENSION);
+        return $extension;
+    }
+    public function setName($name = null) {
+        if ($name === null) {
+            $name = $this->genName();
+        }
         $this->name = $name;
-    }
-    public function isImage($extension){
+    }    
+    public function isImage($file){
+        $this->get_ext($file);
         $img = new array('jpg','jpeg','png','gif');
-        return (in_array($extension,$img))?true:false;
+        return (in_array(strtolower($extension),$img))?true:false;
     }
-    public function isVideo($extension){
-        $vid= new array('mov','mp4');
-        return (in_array($extension,$vid))?true:false;
+    public function isVideo($file){
+        $extension = $this->get_ext($file);
+        $vid_ext = new array('mov','mp4');
+        return (in_array(strtolower($extension),$vid_ext))?true:false;
     }
-    public function isDocument($extension){
-
+    public function isDocument($file){
+        
     }
     public function genName($extension){
         $extension = strtolower(end(explode('.',$name)));
