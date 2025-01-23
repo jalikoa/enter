@@ -375,7 +375,7 @@ function populateChats(list){
     checkNewMessage();
 }
 function updateOnlTyp(list) {
-    let upd = false;
+    upd = false;
     for (let i = 0; i < list.length; i++) {
         if (list[i] && list[i].id && list[i].typing && list[i].online) {
             let typ = document.getElementById(`${list[i].id + 'typ'}`);
@@ -397,7 +397,6 @@ function updateOnlTyp(list) {
     }
     upd = true;
 }
-
 function checkNewMessage(){
     const fetchNewMess = checkXml();
     fetchNewMess.open('POST',route,true);

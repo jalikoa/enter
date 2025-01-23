@@ -68,7 +68,7 @@ class message {
         u.country,
         CASE WHEN TIMESTAMPDIFF(SECOND,u.last_seen,NOW())<= 10
         THEN 'online' ELSE 'offline' END AS online,
-        CASE WHEN TIMESTAMPDIFF(SECOND,d.typing,NOW())<= 5
+        CASE WHEN TIMESTAMPDIFF(SECOND,d.typing,NOW())<= 1
         THEN 'typing' ELSE 'nottyping' END AS typing,
         u.bio,
         u.image  FROM `messages` AS m
