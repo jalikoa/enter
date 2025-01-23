@@ -39,7 +39,7 @@ class discussion{
         return ($res)?true:false;
     }
     public function delete_member($conn,$userid){
-        $del = "DELETE FROM dissmembers WHERE id = '$userid'";
+        $del = "DELETE FROM dissmembers WHERE id = '$userid' AND discussion_id = '$dissid'";
         $res = $conn->query($sql);
         return ($res)?true:false;
     }
@@ -49,12 +49,12 @@ class discussion{
     public function check_m_exist($conn,$name){
         $check = "SELECT * FROM users WHERE id = '$name'";
         $res = $conn->query($sql);
-        $d = ($res->num_rows > 0)?$res->fetch_assoc():'0';
-        $this->cred = ($res->num_rows > 0)?$d["id"]:'0';
+        $d = ($res->num_rows > 0)?$res->fetch_assoc():null;
+        $this->cred = $d;
         return ($res->num_rows > 0)?true:false;
     }
     public function isAdmin($conn,$uid){
-        $check = "SELECT * FROM dissmembers WHERE id = '$uid'";
+        $check = "SELECT * FROM dissmembers WHERE id = '$uid' AND discussion_id = '$dissid'";
         $res = $conn->query($check);
         return ($res->fetch_assoc()["role"]=="0")?true:false;
     }
@@ -70,6 +70,7 @@ class discussion{
 
     }
     public function delete_discussion($conn,$disid){
+        // Here need a transaction to delete the messagesa as well as the discusion itself
         $delete = "DELETE FROM discussions WHERE id = '$disid'";
         $res = $conn->query($delete);
         return ($res)?true:false;
