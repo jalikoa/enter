@@ -30,7 +30,7 @@ if(isset($_POST["sendmessage"])){
         $reply_to = sanitize($_POST["reply_to"]);
         if ($message->Check_is_member($conn,$userid,$discussion)){
             if($message->setCred($sender,$messag,$discussion,$type,$reply_to)){
-                if($message->check_is_blocked() == '0'){
+                if($message->check_is_blocked($conn,$userid,$discussion) == '0'){
                     if($message->send_message($conn)){
                         echo json_encode(["success"=>true,"message"=>"message sent"]);
                     } else {

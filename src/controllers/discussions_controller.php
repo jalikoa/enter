@@ -99,27 +99,71 @@ if(isset($_POST["editdiscussion"])){
 
 }
 if(isset($_POST["fetchdiscussioninfo"])){
-
+    $sessid = $_POST['sessid'];
+    $dissid = $_POST['dissid'];
+    $auth = new Auth();
+    if($auth->check_logged_in($sessid)){
+        $userid = $_SESSION[$sessid];
+        $discussion = new discussion();
+        if($discussion->Check_is_member($conn,$userid,$dissid)){
+            echo json_encode(["Success"=>true,"Message"=>"Group info fetched successfully","cred"=>get_dis_info($conn,$dissid)]);
+        } else {
+            echo json_encode(["success"=>false,"message"=>"Acces denied Only members have access to this info"]);
+        }
+    } else {
+        echo json_encode(["success"=>false,"message"=>"Please Login to complete this action"]);
+    }
 }
 if(isset($_POST["adddiscussionmember"])){
-
+    $sessid = $_POST['sessid'];
+    $dissid = $_POST['dissid'];
+    $memberId = $_POST['memberId'];
+    $auth = new Auth();
+    if($auth->check_logged_in($sessid)){
+        $userid = $_SESSION
+        $discussion = new discussion();
+        if($discussion->isAdmin($conn,$userid)){
+        //  Adding discussion member can be restricted to admin or as well the members when allowed to do so 
+        } else {
+            echo json_encode(["success"=>false,"message"=>"Only Admin is authorised to do this"]);
+        }
+    } else {
+        echo json_encode(["success"=>false,"message"=>"Please Login to complete this action"]);
+    }
 }
 if(isset($_POST["showtyping"])){
 
 }
 if(isset($_POST["blockuser"])){
-
-}
-if(isset($_POST["clearchats"])){
     $sessid = $_POST['sessid'];
-    $disid = $_POST['dissid'];
+    $dissid = $_POST['dissid'];
     $auth = new Auth();
     if($auth->check_logged_in($sessid)){
         $discussion = new discussion();
-        if($discussion->delete_messages($conn,$disid)){
-
+        if($discussion->isAdmin($conn,$userid)){
+            // Blocking the user should be only restricted to the admin
         } else {
-            echo json_encode(["success"=>false,"message"=>""]);
+            echo json_encode(["success"=>false,"message"=>"Only Admin is authorised to do this"]);
+        }
+    } else {
+        echo json_encode(["success"=>false,"message"=>"Please Login to complete this action"]);
+    }
+}
+if(isset($_POST["clearchats"])){
+    $sessid = $_POST['sessid'];
+    $dissid = $_POST['dissid'];
+    $auth = new Auth();
+    if($auth->check_logged_in($sessid)){
+        $userid = $_SESSION[$sessid];
+        $discussion = new discussion();
+        if($discussion->isAdmin($conn,$userid)){
+            if($discussion->delete_messages($conn,$dissid)){
+                echo json_encode(["success"=>true,"message"=>"Messages deleted succesfully"]);
+            } else {
+                echo json_encode(["success"=>false,"message"=>"Try again later an unknown error occured"]);
+            }
+        } else {
+            echo json_encode(["success"=>false,"message"=>"Only Admin is authorised to do this"]);
         }
     } else {
         echo json_encode(["success"=>false,"message"=>"Please Login to complete this action"]);

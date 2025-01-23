@@ -30,10 +30,11 @@ class message {
             return true;
         }
     }
-    public function check_is_blocked(){
+    public function check_is_blocked($conn,$useid,$dissid){
         //Add logics in this function and aim at checkin when user is blocked by admin in the forum
-        return '0';
-
+        $check = "SELECT status FROM dissmembers WHERE user_id ='$useid' AND discussion_id = '$dissid'";
+        $res = $conn->query($check);
+        return ($res->fetch_assoc()['status']);
     }
     public function send_message($conn){
         $send = "INSERT INTO messages (sender,message,discussion,type,reply_to) VALUES ('$this->sender','$this->message','$this->discussion','$this->type','$this->reply_to')";

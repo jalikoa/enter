@@ -81,6 +81,38 @@ function sendMessage(sessid,dissId,message,type,replyto){
     setHeader(sendXhr);
     sendXhr.onload = ()=>{
         console.log(sendXhr.responseText);
+        if(sendXhr.status == 200){
+            try {
+                const response = JSON.parse(sendXhr.responseText);
+                if(response.success){
+                    Swal.fire(
+                        {toast:true,
+                          position:'top-end',
+                          icon:'success',
+                          title: `${response.message}`,
+                          showConfirmButton: false,
+                          timer: 3000,
+                          timerProgressBar: true,
+                        }
+                    )
+                } else {
+                    Swal.fire(
+                        {toast:true,
+                          position:'top-end',
+                          icon:'error',
+                          title: `${response.message}`,
+                          showConfirmButton: false,
+                          timer: 3000,
+                          timerProgressBar: true,
+                        }
+                    )
+                }
+            } catch(e){
+                swal.fire('Sorry','An uncaught exception occurred please try again later','error');
+            }
+        } else {
+
+        }
     }
     const data = `sendmessage=${enc('true')}&sessid=${enc(sessid)}&discussionid=${enc(dissId)}&message=${enc(message)}&type=${enc(type)}&reply_to=${enc(replyto)}`;
     sendXhr.send(data);

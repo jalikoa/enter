@@ -58,9 +58,12 @@ class discussion{
         $res = $conn->query($check);
         return ($res->fetch_assoc()["role"]=="0")?true:false;
     }
-    public function block_member(){
+    public function block_member($dissid,$memberid,$type){
         //Block from accessing the group
         //Block member from sending message
+        $block = "UPDATE dissmembers SET `status` = '$type' WHERE user_id = '$memberid' AND discussion_id = '$dissid'";
+        $res = $conn->query($block);
+        return ($res)?true:false;
     }
     
     public function check_discussion_exist($conn){
@@ -162,5 +165,10 @@ public function get_dis_list(){
     }
     public function get_dis_members(){
         return $this->discussion_members;
+    }
+    public function Check_is_member($conn,$userid,$dissid){
+        $check = "SELECT * FROM dissmembers WHERE user_id = '$userid' AND discussion_id = '$dissid'";
+        $res=$conn->query($check);
+        return ($res->num_rows > 0)?true:false;
     }
 }
