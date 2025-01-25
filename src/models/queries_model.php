@@ -24,17 +24,35 @@ class Query {
     public function fetch_queries($limit,$offset,$order){
         $fetch = "SELECT * FROM contact_us  ORDER BY created_at '$order' LIMIT '$limit' OFFSET '$offset'";
         $res = $this->$conn->query($fetch);
-        $this->query_list = ($res->num_rows > 0)?$res->fetch_assoc:null;
+        if($res->num_rows > 0){
+            while($row=$res->fetch_assoc()){
+                $this->query_list[] = $row;
+            }
+        } else {
+            $this->query_list = null;
+        }
         return ($res)?true:false;
     }
-    public function delete_queries($id){
+    public function search_query($keyword){
+        $search = "SELECT FROM contact_us WHERE name REGEXP '$keyword' OR email REGEXP '$keyword' OR message REGEXP '$keyword'";
+        $res = $this->conn->query($search);
+        if($res->num_rows > 0){
+            while($row=$res->fetch_assoc()){
+                $this->query_list[] = $row;
+            }
+        } else {
+            $this->query_list = null;
+        }
+        $this->query_list = ($res->num_rows > 0)?:null;
+    }
+    public function delete_queries(){
         $del = "DELETE FROM contact_us";
         $res = $this->conn->query($del);
         return ($res)true?:false;
     }
     public function delete_query($id){
         $del = "DELETE FROM contact_us WHERE id = '$id'";
-        $res = $this->con->query($del);
+        $res = $this->conn->query($del);
         return ($res)?true:false;
     }
     public function get_query_list(){
