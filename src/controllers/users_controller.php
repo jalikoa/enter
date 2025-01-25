@@ -35,7 +35,7 @@ if(isset($_POST["adduser"])){
     $password = password_hash(sanitize($_POST["userpassword"]),PASSWORD_BCRYPT);
     $th = $register->setCred($firstname,$lastname,$username,$phone,$email,$bio,$password,$status,$role,$fblink,$country);
       if(!$register->check_user_exists($conn)){
-        // Adding the logics here now to help validate the image uploade the profile picture 
+        // Adding the logics here now to help validate the image uploaded the profile picture 
        $regRes = $register->register_user($conn);
        if($regRes){
         echo json_encode(["success" => true,"message" => "Registration successfull the user can now login after verifying the account.","uid" => base64_encode($register->getI($conn))]);
@@ -45,25 +45,43 @@ if(isset($_POST["adduser"])){
       }
 }
 if(isset($_POST["deleteuser"])){
-    $userid = sanitize($_POST["userid"]);
+    $usid = sanitize($_POST["userid"]);
     $usermodel = new users();
-    if($usermodel->check_u_exists($conn,$userid)){
-        if($usermodel->deleteUser($conn,$userid)){
-            echo json_encode(["success" => true,"message" => "User deleted succesfully"]);
-        } else {
-            echo json_encode(["success" => false,"message" => "User not deleted please try again later"]);
+    $auth = new Auth();
+    if($auth->check_logged_in($sessid)){
+        $userid = $_SESSION[$sessid];
+        if($usermodel->check_u_exists($conn,$usid)){
+            if($usermodel->deleteUser($conn,$usid)){
+                echo json_encode(["success" => true,"message" => "User deleted succesfully"]);
+            } else {
+                echo json_encode(["success" => false,"message" => "User not deleted please try again later"]);
+            }
+        }else{
+            echo json_encode(["success" => false,"message" => "sorry no user exists with the credentials that you have provided"]);
         }
-    }else{
-        echo json_encode(["success" => false,"message" => "sorry no user exists with the credentials that you have provided"]);
+        } else {
+            echo json_encode(["success" => false,"message" => "Action denied ! Only admins can do this !"]);
+        }
+    } else {
+        echo json_encode(["success" => false,"message" => "Please ensure that you log in to procceed"]);
     }
-}
 if(isset($_POST["fetchusers"])){
         $limit = sanitize($_POST["limit"]);
         $usermodel = new users();
-        if($usermodel->fetch_users($conn,$limit)){
-           echo json_encode(["success" => true,"message" => "users list fetched succesfully","list" => $usermodel->get_users_list()]);
+        $auth = new Auth();
+        if($auth->check_logged_in($sessid)){
+            $userid = $_SESSION[$sessid];
+            if($auth->auth_admin($userid,$conn)){
+                if($usermodel->fetch_users($conn,$limit)){
+                    echo json_encode(["success" => true,"message" => "users list fetched succesfully","list" => $usermodel->get_users_list()]);
+                 } else {
+                     echo json_encode(["success" => false,"message" => "Sorry no user is found in the database"]);
+                 }
+            } else {
+                echo json_encode(["success" => false,"message" => "Action denied ! Only admins can do this !"]);
+            }
         } else {
-            echo json_encode(["success" => false,"message" => "Sorry no user is found in the database"]);
+            echo json_encode(["success" => false,"message" => "Please ensure that you log in to procceed"]);
         }
 }
 if(isset($_POST["blockuser"])){
@@ -74,7 +92,7 @@ if(isset($_POST["blockuser"])){
     if($auth->check_logged_in($sessid)){
         if($auth->auth_admin($userid,$conn)){
             if($usermodel->check_u_exists($conn,$userid)){
-                if($usermodel->unblockUser($conn,$usid)){
+                if($usermodel->blockUser($conn,$usid)){
                     echo json_encode(["success" => true,"message" => "User succesfully blocked"]);
                 } else {
                     echo json_encode(["success" => false,"message" => "An uncaught exception occurred please try again later please"]);
@@ -90,13 +108,14 @@ if(isset($_POST["blockuser"])){
     }
 }
 if(isset($_POSt["unblockuser"])){
-    $userid = sanitize($_POST["userid"]);
+    $usid = sanitize($_POST["userid"]);
     $sessid = sanitize($_POST["sessid"]);
     $usermodel = new user();
     $auth = new Auth();
     if($auth->check_logged_in($sessid)){
+        $userid = $_SESSION[$sessid];
         if($auth->auth_admin($userid,$conn)){
-            if($usermodel->check_u_exists($conn,$userid)){
+            if($usermodel->check_u_exists($conn,$usid)){
                 if($usermodel->blockUser($conn,$usid)){
                     echo json_encode(["success" => true,"message" => "User succesfully unblocked"]);
                 } else {
@@ -118,10 +137,11 @@ if(isset($_POST["gettotalusers"])){
     $usermodel = new user();
     $auth = new Auth();
     if($auth->check_logged_in($sessid)){
-        if($usermodel->fetch_total_users($conn)){
-            echo json_encode(["success" => true,"message" => "Total users fetched","total" => $usermodel->getTotal()]);
-        } else {
-            echo json_encode(["success" => false,"message" => "Sorry could not get users list"]);
+        $userid = $_SESSION[$sessid];
+        if($auth->auth_admin($userid,$conn)){
+            echo json_encode(["success" => true,"message" => "Total users fetched","total" => $usermodel->get_total_users($conn)]);
+        }  else {
+            echo json_encode(["success"=>false,"message"=>"Access denied!Only Admin is authorised to do this!"]);
         }
     } else {
         echo json_encode(["success" => false,"message" => "Please login to continue"]);

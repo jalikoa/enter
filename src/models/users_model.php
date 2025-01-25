@@ -50,19 +50,15 @@ class users  {
         $this->cred = ($res->num_rows > 0)?$res->fetch_assoc():'0';
         return ($res->num_rows > 0)?true:false;
     }
-    public function add_new_user(){
-        //update this function in the controller to use the registration_model model
-    }
-    public function fetch_total_users($conn){
-        $get = "SELECT COUNT(id) FROM `users` WHERE role = '1' AND status = '1'";
-        $res = $conn->query($get);
-        $this->total = $res->fetch_assoc()["COUNT(id)"];
-        return ($res->num_rows > 0)?true:false;
-    }
     public function getTotal(){
         return $this->total;
     }
     public function get_users_list(){
         return $this->list;
+    }
+    function get_total_users($conn){
+        $get = "SELECT COUNT(id) FROM users";
+        $res = $conn->query($get);
+        return $res->fetch_assoc()["COUNT(id)"];
     }
 }

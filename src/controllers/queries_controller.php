@@ -75,7 +75,7 @@ if(isset($_POST["deletequeries"])){
    }
 }
 if(isset($_POST["respondquery"])){
-
+    // Update this function to make it possible for the admin to reply to the queries single handedly 
 }
 if(isset($_POST["deletequery"])){
     $queryid = sanitize($_POST['queryid']);
