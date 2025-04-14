@@ -71,6 +71,15 @@ addDiscussionForm.addEventListener('submit',(e)=>{
         adDiXhr.send(data);
     }
 });
+document.addEventListener('keydown', (e) => {
+    if (e.key === "Enter") {
+        if (document.activeElement === messageBox) {
+            sendMessage(sessid,'1',messageBox.value,'0','0');
+            messageBox.value = "";
+            messageBox.blur();
+        }
+    }
+});
 function sendMessage(sessid,dissId,message,type,replyto){
     // The type of the message here is either edited original or more as time goes
     // I will add more here so that the message is validated before it is sent here like encryption but for the role of testing and h

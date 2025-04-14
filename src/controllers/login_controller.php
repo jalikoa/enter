@@ -28,7 +28,7 @@
                     echo json_encode(["success" => false,"message" => "There was a problem logging you in please try again later"]);
                 }
             } else {
-                echo json_encode(["success" => false,"message" => "Incorrect Email or password"]);
+                echo json_encode(["success" => false,"message" => "Incorrect password for this account"]);
             }
         }else {
             echo json_encode(["success" => false,"message" => "Please verify your account","verify" => true]);
