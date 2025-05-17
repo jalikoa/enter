@@ -160,11 +160,11 @@ if(isset($_GET["auth"])){
                         </center>
                         <hr class="dropdow-divider">
                         <li class="dropdown-item">
-                            <a href="" class="text-secondary"><i class="bi bi-pencil-square"></i> Edit profile</a>
+                            <a href="./profile.php?auth=<?php echo $auth;?>" class="text-secondary"><i class="bi bi-pencil-square"></i> Edit profile</a>
                         </li>
                         <hr class="dropdow-divider">
                         <li class="dropdown-item">
-                            <a href="" class="text-secondary"><i class="bi bi-gear-fill"></i> Profile settings</a>
+                            <a href="./profile.php?auth=<?php echo $auth;?>" class="text-secondary"><i class="bi bi-gear-fill"></i> Profile settings</a>
                         </li>
                         <hr class="dropdow-divider">
                         <li class="dropdown-item">

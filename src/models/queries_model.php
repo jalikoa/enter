@@ -48,7 +48,7 @@ class Query {
     public function delete_queries(){
         $del = "DELETE FROM contact_us";
         $res = $this->conn->query($del);
-        return ($res)true?:false;
+        return ($res)?true:false;
     }
     public function delete_query($id){
         $del = "DELETE FROM contact_us WHERE id = '$id'";

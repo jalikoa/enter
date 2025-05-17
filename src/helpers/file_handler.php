@@ -56,7 +56,6 @@ class file_handler {
         if(!file_exists($dir)){
             mkdir($dir,0777,true);
         }
-        echo $this->get_name();
         $res = move_uploaded_file($tmp_name,$dir.$this->get_name());
         return ($res)?true:false;
     }
@@ -73,5 +72,14 @@ class file_handler {
     }
     public function get_name(){
         return $this->name;
+    }
+    public static function streamFile() {
+        $baseDir = __DIR__ . "/../uploads";
+        $relativeName = basename($_GET['name']);
+        $fullPath = $baseDir . DIRECTORY_SEPARATOR . $relativeName;
+        header("Content-Type: " . mime_content_type($fullPath));
+        header("Content-Length: " . filesize($fullPath));
+        readfile($fullPath);
+        exit;
     }
 }

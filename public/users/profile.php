@@ -1,34 +1,41 @@
+<?php
+session_start();
+if(isset($_GET["auth"])){
+    $auth = htmlspecialchars($_GET["auth"]);
+    if(!isset($_SESSION[$auth])){
+        header("location:../login.html");
+    }
+} else {
+    header("location:../login.html");
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome to future guardians initiative</title>
-    <link rel="shortcut icon" href="../favicon.png" type="image/x-icon">
+    <title>User dashboard</title>
     <link rel="stylesheet" href="../assets/css/animate.min.css">
     <link rel="stylesheet" href="../assets/css/aos.css">
     <link rel="stylesheet" href="../assets/css/bootstrap.css">
     <link rel="stylesheet" href="../assets/css/font-awesome.min.css">
     <link rel="stylesheet" href="../assets/css/sweetalert2.min.css">
-    <link rel="stylesheet" href="../assets/icons/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="../assets/icons/bootstrap-icons.css">
     <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="shortcut icon" href="../favicon.png" type="image/x-icon">
     <style>
     </style>
 </head>
-
 <body>
     <!-- This is the beginning of the spinner body it will spin as the page loads info -->
     <div class="spinner-holder d-flex" id="loaderIndicator">
         <div class="spinner-border text-primary spin-style"></div>
      </div>
-    <!-- The beginning of the navbar -->
+    <!-- This is the beginning of the header -->
     <header class="bg-future-green">
         <div class="container-fluid d-flex dnav">
-            <button class="btn btn-light m-1" id="menuButton">
-                <bi class="bi-justify" id="menuIcon"></bi>
-             </button>
-            <a href="dashboard.html" class="logo-holder">
-                <a href="./dashboard.html" class="navbar-brand"><center class="d-flex align-items-center"><img src="../favicon.png" alt="" class="rounded-corners mb-2 mt-1 header-initiative_logo"><h5 class="ms-3 p-0 fgi">Future Guardians initiative</h3></center></a>
+            <a href="index.html" class="logo-holder">
+                <a href="./home.html" class="navbar-brand"><center class="d-flex align-items-center"><img src="../favicon.png" alt="" class="rounded-corners mb-2 mt-1 header-initiative_logo"><h5 class="ms-3 p-0 fgi">Future Guardians initiative</h3></center></a>
             </a>
             <div class="not-prof-sec mt-3 d-flex flex-direction-row p-0">
                 <span class="ms-3 me-3 position-relative notii" data-bs-toggle="dropdown">
@@ -126,7 +133,7 @@
                 </div>
                 <div class="dropdown">
                     <div class="prof-holder border-0 d-flex flex-direction-row" data-bs-toggle="dropdown">
-                        <span class="me-1 p-0 userName">Calvince Owino</span>
+                        <span class="me-1 p-0">Calvince Owino</span>
                         <img class="m-0" src="../assets/img/messages-3.jpg" alt="">
                     </div>
                     <ul class="dropdown-menu text-muted">
@@ -134,41 +141,42 @@
                             <center><img class="m-0 prof-pic-preview" src="../assets/img/messages-3.jpg" alt="" id="prof-pic-holder"></center>
                         </li>
                         <center>
-                            <p class="m-1 text-secondary p-0 m-0 fw-medium" id="name-holder">Calvince Owino</p>
+                            <p class="m-1 text-secondary p-0 m-0 fw-medium userName" id="name-holder">Calvince Owino</p>
                             <p class="m-1 text-secondary p-0 m-0 fw-medium" id="user-type">Admin</p>
                         </center>
-                        <hr class="dropdow-divider">
+                        <hr class="dropdown-divider">
                         <li class="dropdown-item">
-                            <a href="" class="text-secondary"><i class="bi bi-pencil-square"></i> Edit profile</a>
+                            <a href="./profile.php?auth=<?php echo $auth;?>" class="text-secondary"><i class="bi bi-pencil-square"></i> Edit profile</a>
                         </li>
-                        <hr class="dropdow-divider">
+                        <hr class="dropdown-divider">
                         <li class="dropdown-item">
-                            <a href="" class="text-secondary"><i class="bi bi-gear-fill"></i> Profile settings</a>
+                            <a href="./profile.php?auth=<?php echo $auth;?>" class="text-secondary"><i class="bi bi-gear-fill"></i> Profile settings</a>
                         </li>
-                        <hr class="dropdow-divider">
+                        <hr class="dropdown-divider">
                         <li class="dropdown-item">
                             <a href="" class="text-secondary"><i class="bi bi-box-arrow-right"></i>Logout</a>
                         </li>
-                        <hr class="dropdow-divider">
+                        <hr class="dropdown-divider">
                     </ul>
                 </div>
             </div>
         </div>
     </header>
      <!-- This is the end of the header -->
-     <div class="nav-sidebar">
+    <!-- This is the beginning of the navbar in phone -->
+    <nav>
+        <Section>
+            
+        </Section>
+    </nav>
+    <!-- This is thr beginnig of the nav in the desktop versions -->
+    <div class="nav-sidebar">
         <ul class="navbar-container">
             <li class="navbar-item alert alert-success border-0">
-                <a href="./dashboard.html" class="navbar-link fw-medium text-muted"><i class="bi bi-house-door-fill"></i> Home</a>
+                <a href="<?php echo "dashboard.php?auth=".$auth?>" class="navbar-link fw-medium text-muted"><i class="bi bi-house-door-fill"></i> Home</a>
             </li>
             <li class="navbar-item">
-                <a href="./discussions.html" class="navbar-link fw-medium text-secondary"><i class="bi bi-person-lines-fill"></i> Discussions</a>
-            </li>
-            <li class="navbar-item">
-                <a href="./users.html" class="navbar-link fw-medium text-secondary"><i class="bi bi-people-fill"></i> Users</a>
-            </li>
-            <li class="navbar-item">
-                <a href="./activities.html" class="navbar-link fw-medium text-secondary"><i class="bi bi-tropical-storm"></i> Activities</a>
+                <a href="./discussions.php?auth=<?php echo $auth;?>"" class="navbar-link fw-medium text-secondary"><i class="bi bi-person-lines-fill"></i> Discussions</a>
             </li>
             <li class="navbar-item">
                 <a href="./donations.html" class="navbar-link fw-medium text-secondary"><img src="../assets/img/Coin Hand.png" class="nav-image" alt=""> Donations</a>
@@ -177,42 +185,7 @@
                 <a href="./queries.html" class="navbar-link fw-medium text-secondary"><i class="bi bi-chat-right-dots"></i> Queries</a>
             </li>
             <li class="navbar-item">
-                <a href="./members.php?auth=<?php echo $sessid;?>" class="navbar-link fw-medium text-secondary"><i class="bi bi-people"></i> Members</a>
-            </li>
-            <li class="navbar-item">
-                <a href="./resources.html?images='1'" class="navbar-link fw-medium text-secondary"><i class="bi bi-image-fill"></i> Images</a>
-            </li>
-            <li class="navbar-item">
-                <a href="./resources.html?books='1'" class="navbar-link fw-medium text-secondary"><i class="bi bi-book-half"></i> Books</a>
-            </li>
-            <li class="navbar-item">
-                <a href="./resources.html?videos='1'" class="navbar-link fw-medium text-secondary"><i class="bi bi-camera-reels"></i> Videos</a>
-            </li>
-        </ul>
-    </div>
-    <!-- The beginning of the sidebar in the phone -->
-    <div class="nav-sidebar-phone d-none" id="phoneSidebar">
-        <ul class="navbar-container">
-            <li class="navbar-item alert alert-success border-0">
-                <a href="./dashboard.html" class="navbar-link fw-medium text-muted"><i class="bi bi-house-door-fill"></i> Home</a>
-            </li>
-            <li class="navbar-item">
-                <a href="./discussions.html" class="navbar-link fw-medium text-secondary"><i class="bi bi-person-lines-fill"></i> Discussions</a>
-            </li>
-            <li class="navbar-item">
-                <a href="./users.html" class="navbar-link fw-medium text-secondary"><i class="bi bi-people-fill"></i> Users</a>
-            </li>
-            <li class="navbar-item">
-                <a href="./activities.html" class="navbar-link fw-medium text-secondary"><i class="bi bi-tropical-storm"></i> Activities</a>
-            </li>
-            <li class="navbar-item">
-                <a href="./donations.html" class="navbar-link fw-medium text-secondary"><img src="../assets/img/Coin Hand.png" class="nav-image" alt=""> Donations</a>
-            </li>
-            <li class="navbar-item">
-                <a href="./queries.html" class="navbar-link fw-medium text-secondary"><i class="bi bi-chat-right-dots"></i> Queries</a>
-            </li>
-            <li class="navbar-item">
-                <a href="./members.php?auth=<?php echo $sessid;?>" class="navbar-link fw-medium text-secondary"><i class="bi bi-people"></i> Members</a>
+                <a href="./members.html" class="navbar-link fw-medium text-secondary"><i class="bi bi-people"></i> Members</a>
             </li>
             <li class="navbar-item">
                 <a href="./resources.html?images='1'" class="navbar-link fw-medium text-secondary"><i class="bi bi-image-fill"></i> Images</a>
@@ -226,6 +199,7 @@
         </ul>
     </div>
     <div class="main-body">
+        
         <h5 class="text-secondary m-2">
             Dashboard/Profile
         </h5>
@@ -250,13 +224,13 @@
                 <div class="dropdown position-absolute top-0 end-0 me-3">
                     <i class="bi bi-three-dots-vertical" data-bs-toggle="dropdown"></i>
                     <ul class="dropdown-menu">
-                        <li class="dropdown-item mt-1">
+                        <li class="dropdown-item mt-1" onclick="profSet('V')">
                             <i class="bi bi-eye-fill text-info"></i>&nbsp;View Your profile
                         </li>
-                        <li class="dropdown-item mt-1">
+                        <li class="dropdown-item mt-1" onclick="profSet('E')">
                             <i class="bi bi-pencil-square text-primary"></i>&nbsp;Edit Your profile
                         </li>
-                        <li class="dropdown-item mt-1">
+                        <li class="dropdown-item mt-1" onclick="profSet('C')">
                             <i class="bi bi-lock text-primary"></i>&nbsp;Change your password
                         </li>
                         <li class="dropdown-item mt-1">
@@ -269,7 +243,7 @@
                 </h5>
                 <div class="" id="ActionDisplay">
                     <!-- This is the beginning of the card to show the profile information -->
-                    <div class="card border-0 shadow pb-2 mb-3 d-none">
+                    <div class="card border-0 shadow pb-2 mb-3 d-block" id="viewProfileCard">
                         <p class="m-3" id="userName"><span class="text-primary fw-medium">User Name </span>: ceojalsoft</p>
                         <p class="m-3" id="fullName"><span class="text-primary fw-medium">Full Name </span>: Calvince Owino</p>
                         <p class="m-3" id="useEmail"><span class="text-primary fw-medium">Your Email  </span>: jalikoa@gmail.com</p>
@@ -277,7 +251,7 @@
                         <p class="m-3" id="userAbout"><span class="text-primary fw-medium">About You  </span>: I am a philathropist</p>
                         <p class="m-3" id="userWhatsapp"><span class="text-primary fw-medium">WhatsApp </span> : https://jalikoa.github.io/jalsoft</p>
                         <center>
-                            <button class="btn btn-primary m-1">
+                            <button class="btn btn-primary m-1" onclick="profSet('E')">
                                 <i class="bi bi-pencil-square"></i>
                             </button>
                             <button class="btn btn-danger m-1">
@@ -287,7 +261,7 @@
                     </div>
                     <!-- End of the card to show the profile information -->
                      <!-- Beginning of the card to edit the profile credentials -->
-                     <div class="card border-0 ps-2 pe-3">
+                     <div class="card border-0 ps-2 pe-3 d-none" id="editProfileCard">
                         <form action="" role="form">
                             <br>
                                 <div class="input-group position-relative">
@@ -340,165 +314,42 @@
                             </div>
                         </form>
                      </div>
+                     <!-- End card edit profile -->
+                      <!-- Begin card change password -->
+                       <div class="card border-0 shadow d-none" id="ChangePassCard">
+                            <br>
+                            <form action="" role="form" class="m-3">
+                                <div class="input-group mb-2">
+                                    <input type="password" class="form-control" autocomplete="current-password" placeholder="Current password">
+                                </div>
+                                <div class="input-group mb-2">
+                                    <input type="password" class="form-control" placeholder="New Password">
+                                </div>
+                                <div class="input-group mb-2">
+                                    <input type="password" class="form-control" placeholder="Confirm New Password">
+                                </div>
+                                <center>
+                                    <button class="login-btn"><i class="bi bi-gear"></i> Change</button>
+                                </center>
+                            </form>
+                            <br>
+                       </div>
+                       <!-- End card to change password -->
                 </div>
             </div>
         </div>
    <!-- Add more things here to add more functionalities to the page as expected -->
-
-
-     <!-- THE BEGINNING OF THE FOOTER -->
- <footer data-aos="fade-in" data-aos-delay="600" class="p-5 w-100">
-    <div class="row">
-        <!--  -->
-        <div class="col col-12 col-md-4">
-            <h4><i class="text-info">About us</i></h4>
-            <a href="" class="text-light text-decoration-none">Our mission</a><br>
-            <a href="" class="text-light text-decoration-none">Team</a><br>
-            <a href="" class="text-light text-decoration-none">Partners</a><br>
-        </div>
-        <div class="col col-12 col-md-4">
-            <h4><i class="text-info">Get Involved</i></h4>
-            <a href="" class="text-light text-decoration-none">Volunteer Opportunities</a><br>
-            <a href="" class="text-light text-decoration-none">Donate</a><br>
-            <a href="" class="text-light text-decoration-none">Sign Petitions</a><br>
-        </div>
-        <div class="col col-12 col-md-4">
-            <h4><i class="text-info">Learn</i></h4>
-            <a href="" class="text-light text-decoration-none">Environmental issues</a><br>
-            <a href="" class="text-light text-decoration-none">Climate change</a><br>
-            <a href="" class="text-light text-decoration-none">Pollution</a><br>
-            <a href="" class="text-light text-decoration-none">Biodiversity Loss</a><br>
-            <a href="" class="text-light text-decoration-none">Resource Depletion</a><br>
-            <a href="" class="text-light text-decoration-none">Sustainable Living</a><br>
-            <a href="" class="text-light text-decoration-none">Reduce, Reuse ,Recycle (3R)</a><br>
-            <a href="" class="text-light text-decoration-none">Energy Conservation</a><br>
-            <a href="" class="text-light text-decoration-none">Sustainable Food</a><br>
-            <a href="" class="text-light text-decoration-none">Eco-Friendly Transportation</a><br>
-        </div>
     </div>
-    <div class="row flex-wrap">
-        <div class="col col-12 col-md-8 col-lg-4 " data-aos="fade-up" data-aos-delay="600" id="contact">
-            <h3 class="text-warning"><i>Get in touch</i></h3>
-            <form action="" role="form" id="contactUsForm">
-                <div class="form-floating">
-                    <input type="text" class="form-control" id="username" placeholder="name" required>
-                    <label for="username">Your name</label>
-                </div>
-                <div class="form-floating mt-2">
-                    <input type="email" class="form-control" id="useremail" placeholder="Your Email" required>
-                    <label for="useremail">Your Email</label>
-                </div>
-                <div class="form-floating mt-2">
-                    <input type="text" class="form-control" id="usercountry" placeholder="Your Country" required>
-                    <label for="usercountry">Your Country</label>
-                </div>
-                <div class="form-floating mt-1">
-                    <textarea name="" id="userText" class="form-control" placeholder="Your text here*" style="height:200px;" required></textarea>
-                    <label for="userText">Your text here*</label>
-                </div>
-                <div class="form-group p-3">
-                    <button class="btn btn-warning w-100">Submit</button>
-                </div>
-            </form>
-        </div>
-        <div class="col col-12 col-lg-5 ms-1 justify-self-center" data-aos="fade-up" data-aos-delay="700" >
-            <h3 class="text-info">
-                <i>Quick Links</i>
-            </h3>
-            <p class="bi bi-phone text-light"> +25479931413</p>
-            <p class="bi bi-envelope text-light"> fgi@futureguardians.com</p>
-            <p class="bi bi-facebook text-light"> Future Guardians</p>
-            <p class="bi bi-twitter text-light"> Future Guardians</p>
-            <p class="bi bi-whatsapp text-light"> +25479931413</p>
-            <p class="bi bi-geo-alt text-light"> 99-40223 Kadongo</p>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col w-100">
-            <h5 class="text-success">
-                Meet Our team
-            </h5>
-            <br>
-            <div class="team-holder d-flex">
-                <div class="footer-img-holder">
-                    <img src="../assets/img/jalikoa.jpg" alt="">
-                    <p class="footer-team-name text-light m-0 p-0"><center class="text-light">Michael Mboya</center></p>
-                    <h6 class="fw-medium text-light m-0 p-0 ">
-                        <center>Co-founder</center>
-                    </h6>
-                </div>
-                <div class="footer-img-holder">
-                    <img src="../assets/img/jaliko2.jpg" alt="">
-                    <p class="footer-team-name text-light m-0 p-0"><center class="text-light">Calvince Owino</center></p>
-                    <h6 class="fw-medium text-light m-0 p-0 ">
-                        <center>Co-founder</center>
-                    </h6>
-                </div>
-                <div class="footer-img-holder">
-                    <img src="../assets/img/jalikoa.jpg" alt="">
-                    <p class="footer-team-name text-light m-0 p-0"><center class="text-light">Michael Mboya</center></p>
-                    <h6 class="fw-medium text-light m-0 p-0 ">
-                        <center>Co-founder</center>
-                    </h6>
-                </div>
-                <div class="footer-img-holder">
-                    <img src="../assets/img/jaliko2.jpg" alt="">
-                    <p class="footer-team-name text-light m-0 p-0"><center class="text-light">Calvince Owino</center></p>
-                    <h6 class="fw-medium text-light m-0 p-0 ">
-                        <center>Co-founder</center>
-                    </h6>
-                </div>
-                <div class="footer-img-holder">
-                    <img src="../assets/img/jalikoa.jpg" alt="">
-                    <p class="footer-team-name text-light m-0 p-0"><center class="text-light">Michael Mboya</center></p>
-                    <h6 class="fw-medium text-light m-0 p-0 ">
-                        <center>Co-founder</center>
-                    </h6>
-                </div>
-                <div class="footer-img-holder">
-                    <img src="../assets/img/jaliko2.jpg" alt="">
-                    <p class="footer-team-name text-light m-0 p-0"><center class="text-light">Calvince Owino</center></p>
-                    <h6 class="fw-medium text-light m-0 p-0 ">
-                        <center>Co-founder</center>
-                    </h6>
-                </div>
-            </div>
-            <center>
-                <p class="text-info mt-3">
-                    &copy; Future guardins initiative @jalsoft
-                </p>
-            </center>
-        </div>
-    </div>
-</div>
-</footer>
+    
 </body>
 <script>
+    const sessid = '<?php echo $auth;?>';
 </script>
 <script src="../assets/js/aos.js"></script>
-<script src="../assets/js/aosInit.js"></script>
-<script src="../assets/js/general.js"></script>
 <script src="../assets/js/bootstrap.bundle.min.js"></script>
+<script src="../assets/js/general.js"></script>
+<script src="../assets/js/aosInit.js"></script>
+<script src="../assets/js/profile_handler.js"></script>
 <script src="../assets/js/jquery-3.6.0.min.js"></script>
 <script src="../assets/js/sweetalert2@11.js"></script>
-<script>
-    var menuButton,menuIcon,phoneSidebar;
-    menuButton = byId('menuButton');
-    menuIcon = byId('menuIcon');
-    phoneSidebar = byId('phoneSidebar');
-    menuButton.addEventListener('click',()=>{
-        if(menuIcon.classList.contains('bi-justify')){
-            menuIcon.classList.remove('bi-justify');
-            menuIcon.classList.add('bi-x-lg');
-            phoneSidebar.classList.remove('d-none');
-            phoneSidebar.classList.add('d-block');
-        }
-         else if (menuIcon.classList.contains('bi-x-lg')){
-            menuIcon.classList.remove('bi-x-lg');
-            menuIcon.classList.add('bi-justify');
-            phoneSidebar.classList.remove('d-block');
-            phoneSidebar.classList.add('d-none');
-        }
-    })
-</script>
 </html>

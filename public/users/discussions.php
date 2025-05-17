@@ -169,11 +169,11 @@ if(isset($_GET["auth"])){
                         </center>
                         <hr class="dropdow-divider">
                         <li class="dropdown-item">
-                            <a href="" class="text-secondary"><i class="bi bi-pencil-square"></i> Edit profile</a>
+                            <a href="./profile.php?auth=<?php echo $auth;?>" class="text-secondary"><i class="bi bi-pencil-square"></i> Edit profile</a>
                         </li>
                         <hr class="dropdow-divider">
                         <li class="dropdown-item">
-                            <a href="" class="text-secondary"><i class="bi bi-gear-fill"></i> Profile settings</a>
+                            <a href="./profile.php?auth=<?php echo $auth;?>" class="text-secondary"><i class="bi bi-gear-fill"></i> Profile settings</a>
                         </li>
                         <hr class="dropdow-divider">
                         <li class="dropdown-item">
@@ -229,211 +229,12 @@ if(isset($_GET["auth"])){
         Dasboard/discussions
        </h4>
        <div class="discussions-chat-holder">
-            <div class="discussions-holder">
+            <div id="jaliDiscussions" class="discussions-holder">
                 <!-- Here the list of all the discussions will be listed here -->
-                 <!-- The beginning of the discussion card -->
-                <div class="discussion-holder d-flex">
-                    <div class="dis-img-holder">
-                        <div class="dropdown">
-                            <img src="../assets/img/default.png" class="cursor-pointer" data-bs-toggle="dropdown" alt="">
-                            <ul class="dropdown-menu">
-                                <center>
-                                    <img src="../assets/img/default.png" alt="">
-                                </center>
-                                <li class="dropdown-item">
-                                    <center>
-                                        <h5 class="fw-medium text-secondary">
-                                        Jalikoa Michigan
-                                        </h5>
-                                    </center>
-                                    <center>
-                                        <h6 class="fw-medium text-secondary">
-                                            Member
-                                        </h6>
-                                    </center>
-                                </li>
-                                <hr class="p-0 m-0 dropdown-divider">
-                                <li class="dropdown-item">
-                                    <div class="form-check form-switch">
-                                        <label for="archDisc">Archive discussion</label>
-                                        <input type="checkbox" class="form-check-input" id="archDisc">
-                                    </div>
-                                </li>
-                                <hr class="p-0 m-0 dropdown-divider">
-                                <li class="dropdown-item">
-                                    <a href="#" class="dropdown-link text-dark"><i class="bi bi-box-arrow-left text-secondary"></i>&nbsp; Exit discussion</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="discussion-meta-information ms-1 position-relative">
-                        <span class="rounded-pill badge bg-primary text-small position-absolute top-0 end-0">100+ new messages</span>
-                        <div class="discussion-name-holder mt-4">
-                            <h6 class="fw-medium h-100 text-secondary ms-1 overflow-hidden">
-                                Jalikoa Michigan overflow-hidden overflow-hidden
-                            </h6>
-                        </div>
-                        <div class="last-message-holder">
-                            <p class="text-small text-muted h-100 overflow-hidden">
-                                Now please it is like I am stranded please can some one tell me on how I can make the best of me please it is 
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <!-- End discussion card -->
-                 <!-- The beginning of the discussion card -->
-                <div class="discussion-holder d-flex">
-                    <div class="dis-img-holder">
-                        <div class="dropdown">
-                            <img src="../assets/img/default.png" class="cursor-pointer" data-bs-toggle="dropdown" alt="">
-                            <ul class="dropdown-menu">
-                                <center>
-                                    <img src="../assets/img/default.png" alt="">
-                                </center>
-                                <li class="dropdown-item">
-                                    <center>
-                                        <h5 class="fw-medium text-secondary">
-                                        Jalikoa Michigan
-                                        </h5>
-                                    </center>
-                                    <center>
-                                        <h6 class="fw-medium text-secondary">
-                                            Member
-                                        </h6>
-                                    </center>
-                                </li>
-                                <hr class="p-0 m-0 dropdown-divider">
-                                <li class="dropdown-item">
-                                    <div class="form-check form-switch">
-                                        <label for="archDisc">Archive discussion</label>
-                                        <input type="checkbox" class="form-check-input" id="archDisc">
-                                    </div>
-                                </li>
-                                <hr class="p-0 m-0 dropdown-divider">
-                                <li class="dropdown-item">
-                                    <a href="#" class="dropdown-link text-dark"><i class="bi bi-box-arrow-left text-secondary"></i>&nbsp; Exit discussion</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="discussion-meta-information ms-1 position-relative">
-                        <span class="rounded-pill badge bg-primary text-small position-absolute top-0 end-0">100+ new messages</span>
-                        <div class="discussion-name-holder mt-4">
-                            <h6 class="fw-medium h-100 text-secondary ms-1 overflow-hidden">
-                                Jalikoa Michigan overflow-hidden overflow-hidden
-                            </h6>
-                        </div>
-                        <div class="last-message-holder">
-                            <p class="text-small text-muted h-100 overflow-hidden">
-                                Now please it is like I am stranded please can some one tell me on how I can make the best of me please it is 
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <!-- End discussion card -->
-                 <!-- The beginning of the discussion card -->
-                <div class="discussion-holder d-flex">
-                    <div class="dis-img-holder">
-                        <div class="dropdown">
-                            <img src="../assets/img/default.png" class="cursor-pointer" data-bs-toggle="dropdown" alt="">
-                            <ul class="dropdown-menu">
-                                <center>
-                                    <img src="../assets/img/default.png" alt="">
-                                </center>
-                                <li class="dropdown-item">
-                                    <center>
-                                        <h5 class="fw-medium text-secondary">
-                                        Jalikoa Michigan
-                                        </h5>
-                                    </center>
-                                    <center>
-                                        <h6 class="fw-medium text-secondary">
-                                            Member
-                                        </h6>
-                                    </center>
-                                </li>
-                                <hr class="p-0 m-0 dropdown-divider">
-                                <li class="dropdown-item">
-                                    <div class="form-check form-switch">
-                                        <label for="archDisc">Archive discussion</label>
-                                        <input type="checkbox" class="form-check-input" id="archDisc">
-                                    </div>
-                                </li>
-                                <hr class="p-0 m-0 dropdown-divider">
-                                <li class="dropdown-item">
-                                    <a href="#" class="dropdown-link text-dark"><i class="bi bi-box-arrow-left text-secondary"></i>&nbsp; Exit discussion</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="discussion-meta-information ms-1 position-relative">
-                        <span class="rounded-pill badge bg-primary text-small position-absolute top-0 end-0">100+ new messages</span>
-                        <div class="discussion-name-holder mt-4">
-                            <h6 class="fw-medium h-100 text-secondary ms-1 overflow-hidden">
-                                Jalikoa Michigan overflow-hidden overflow-hidden
-                            </h6>
-                        </div>
-                        <div class="last-message-holder">
-                            <p class="text-small text-muted h-100 overflow-hidden">
-                                Now please it is like I am stranded please can some one tell me on how I can make the best of me please it is 
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <!-- End discussion card -->
-                 <!-- The beginning of the discussion card -->
-                <div class="discussion-holder d-flex">
-                    <div class="dis-img-holder">
-                        <div class="dropdown">
-                            <img src="../assets/img/default.png" class="cursor-pointer" data-bs-toggle="dropdown" alt="">
-                            <ul class="dropdown-menu">
-                                <center>
-                                    <img src="../assets/img/default.png" alt="">
-                                </center>
-                                <li class="dropdown-item">
-                                    <center>
-                                        <h5 class="fw-medium text-secondary">
-                                        Jalikoa Michigan
-                                        </h5>
-                                    </center>
-                                    <center>
-                                        <h6 class="fw-medium text-secondary">
-                                            Member
-                                        </h6>
-                                    </center>
-                                </li>
-                                <hr class="p-0 m-0 dropdown-divider">
-                                <li class="dropdown-item">
-                                    <div class="form-check form-switch">
-                                        <label for="archDisc">Archive discussion</label>
-                                        <input type="checkbox" class="form-check-input" id="archDisc">
-                                    </div>
-                                </li>
-                                <hr class="p-0 m-0 dropdown-divider">
-                                <li class="dropdown-item">
-                                    <a href="#" class="dropdown-link text-dark"><i class="bi bi-box-arrow-left text-secondary"></i>&nbsp; Exit discussion</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="discussion-meta-information ms-1 position-relative">
-                        <span class="rounded-pill badge bg-primary text-small position-absolute top-0 end-0">100+ new messages</span>
-                        <div class="discussion-name-holder mt-4">
-                            <h6 class="fw-medium h-100 text-secondary ms-1 overflow-hidden">
-                                Jalikoa Michigan overflow-hidden overflow-hidden
-                            </h6>
-                        </div>
-                        <div class="last-message-holder">
-                            <p class="text-small text-muted h-100 overflow-hidden">
-                                Now please it is like I am stranded please can some one tell me on how I can make the best of me please it is 
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <!-- End discussion card -->
+                 
             </div>
             <!-- ====== Div no discussion selected start ========== -->
-            <div class="no-chat-selected d-none">
+            <div id="JalsoftNoChat" class="no-chat-selected d-flex">
                 <!-- Shown when there is no chat that has been selected -->
                 <div class="no-chat-holder">
                     <center><img src="../assets/img/comment.svg" alt="no-chat"></center>
@@ -446,21 +247,18 @@ if(isset($_GET["auth"])){
             </div>
             <!-- ====== Div no discussion selected end ========== -->
             <!-- ====== Div discussion selected start ========== -->
-             <style>
-                
-             </style>
-             <div class="dis-chat-selected d-flex flex-column">
+             <div id="JalsoftChatSelected" class="dis-chat-selected d-none flex-column">
                 <div class="discussion-meta-information d-flex">
                     <!-- ========Begin of the discussion image and dropdown ===========-->
                     <div class="dropdown">
-                        <img src="../assets/img/messages-1.jpg" class="dissImage" data-bs-toggle="dropdown" alt="">
+                        <img id="groupImage" src="../assets/img/messages-1.jpg" class="dissImage" data-bs-toggle="dropdown" alt="">
                         <ul class="dropdown-menu">
                             <center>
-                                <img src="../assets/img/messages-1.jpg" class="w-100" alt="">
+                                <img id="groupLogo" src="../assets/img/messages-1.jpg" class="w-100" alt="">
                             </center>
                             <li class="dropdown-item">
                                 <center>
-                                    <h5 class="fw-medium text-secondary h-30 overflow-hidden">
+                                    <h5 id="groupName" class="fw-medium text-secondary h-30 overflow-hidden">
                                     Jalikoa Michigan
                                     </h5>
                                 </center>
@@ -485,12 +283,10 @@ if(isset($_GET["auth"])){
                     </div>
                     <!--========= End discussion image and dropdown ===========-->
                     <div class="discussion-members-name h-60 overflow-hidden">
-                        <h5 class="text-muted fw-medium ms-0 mb-0 mt-0 me-0 h-30 overflow-hidden">Jalikoa Michigan</h5>
-                        <span class="text-small text-secondary">Hans Jalikoa <span class="text-success"><i>typing</i></span>,</span>
-                        <span class="text-small text-secondary">Hans Jalikoa <span class="text-success"><i>typing</i></span>,</span>
-                        <span class="text-small text-secondary">Hans Jalikoa <span class="text-success"><i>typing</i></span>,</span>
-                        <span class="text-small text-secondary">Hans Jalikoa <span class="text-success"><i>typing</i></span>,</span>
-                        
+                        <h5 id="groupNamee"class="text-muted fw-medium ms-0 mb-0 mt-0 me-0 h-30 overflow-hidden">Jalikoa Michigan</h5>
+                        <div id="groupMembers">
+                        <!---=============== Will be Dynamically added here ================--->
+                        </div>
                     </div>
                     <div class="discussion-action d-flex">
                         <button type="button" class="btn m-1 btn-secondary bi bi-telephone-plus-fill" data-bs-toggle="modal" data-bs-target="#audioacallModal">
@@ -755,7 +551,7 @@ if(isset($_GET["auth"])){
 </footer>
 </body>
 <!-- This is the audio to be played for the new messages -->
-<audio src="../assets/music/error-8-206492.mp3" class="d-none" id="newMessAudio"></audio>
+<audio src="../assets/music/interface-124464.mp3" class="d-none" id="newMessAudio"></audio>
 <script>
 </script>
 <script>

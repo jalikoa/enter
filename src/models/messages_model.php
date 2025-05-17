@@ -76,7 +76,7 @@ class message {
          ON u.id = m.sender 
          JOIN dissmembers AS d
           ON d.user_id = u.id 
-          WHERE discussion = '$dissid'
+          WHERE m.discussion = '$dissid' AND d.discussion_id = '$dissid'
           ORDER BY m.id ASC;";
           $res = $conn->query($fetch);
           if($res->num_rows > 0){
@@ -98,5 +98,10 @@ class message {
     }
     public function get_mess_list(){
         return $this->message_list;
+    }
+    public function add_member($userid,$dissid,$role,$conn){
+        $register = "INSERT INTO `dissmembers`(`user_id`, `discussion_id`, `role`) VALUES ('$userid','$dissid','$role')";
+        $res=$conn->query($register);
+        return (bool)$res;
     }
 }

@@ -7,7 +7,7 @@ const loadInd = document.getElementById('loaderIndicator');
         loadInd.classList.add('d-none');
         AOSInit();
     }
-  
+    const fileRoute = 'https://localhost/fgi/public/index.php?getFile=true&name=';
     const route = 'http://localhost/fgi/public/index.php';
     function checkXml(){
         if(window.XMLHttpRequest){

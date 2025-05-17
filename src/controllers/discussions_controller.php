@@ -23,14 +23,16 @@ require_once "../src/helpers/sanitation.php";
 require_once "../src/config/db_config.php";
 require_once "../src/middlewares/auth_middleware.php";
 require_once "../src/helpers/file_handler.php";
+require_once "../src/models/messages_model.php";
 use jalikoa\FGIprogramme\discussion;
 use jalikoa\FGIprogramme\Auth;
+use jalikoa\FGIprogramme\message;
 use jalikoa\FGIprogramme\file_handler;
 if(isset($_POST["addnewdiscussion"])){
     $sessid = sanitize($_POST["sessid"]);
     $name = sanitize($_POST["discussionname"]);
     $image = $_FILES["discussionimage"];
-    $filedest = "./uploads/";
+    $filedest = __DIR__."/../uploads/";
     $img_name = $_FILES["discussionimage"]["name"];
     $about = sanitize($_POST["discussionabout"]);
     $type = sanitize($_POST["discussiontype"]);
@@ -47,7 +49,7 @@ if(isset($_POST["addnewdiscussion"])){
                 $fname = $fhanlder->get_name();
                 if($discussion->setCred($name,$admin,$fname,$about,$type,$whomess)){
                     if(!$discussion->check_discussion_exist($conn)){
-                        if($fhanlder->upload($image,'./uploads/')){
+                        if($fhanlder->upload($image,$filedest)){
                             if($discussion->save_discussion($conn)){
                              echo json_encode(["success"=>true,"message"=>"Discusion added successfully"]);
                             } else {
@@ -114,13 +116,29 @@ if(isset($_POST["fetchdiscussioninfo"])){
         echo json_encode(["success"=>false,"message"=>"Please Login to complete this action"]);
     }
 }
+if(isset($_POST["fetchDiscussionMembers"])){
+    $sessid = $_POST['sessid'];
+    $dissid = $_POST['discussionid'];
+    $auth = new Auth();
+    if($auth->check_logged_in($sessid)){
+        $userid = $_SESSION[$sessid];
+        $discussion = new discussion();
+        if($discussion->Check_is_member($conn,$userid,$dissid)){
+            echo json_encode(["success"=>true,"Message"=>"Group members fetched successfully","cred"=>$discussion->fetch_diss_members($conn,$dissid)]);
+        } else {
+            echo json_encode(["success"=>false,"message"=>"Acces denied Only members have access to this info"]);
+        }
+    } else {
+        echo json_encode(["success"=>false,"message"=>"Please Login to complete this action"]);
+    }
+}
 if(isset($_POST["adddiscussionmember"])){
     $sessid = $_POST['sessid'];
     $dissid = $_POST['dissid'];
     $memberId = $_POST['memberId'];
     $auth = new Auth();
     if($auth->check_logged_in($sessid)){
-        $userid = $_SESSION
+        $userid = $_SESSION[''];
         $discussion = new discussion();
         if($discussion->isAdmin($conn,$userid)){
         //  Adding discussion member can be restricted to admin or as well the members when allowed to do so 
@@ -168,4 +186,54 @@ if(isset($_POST["clearchats"])){
     } else {
         echo json_encode(["success"=>false,"message"=>"Please Login to complete this action"]);
     }
+}
+if(isset($_POST["fetchDiscussions"])){
+    $sessid = $_POST['sessid'];
+    $auth = new Auth();
+    if($auth->check_logged_in($sessid)){
+        $userid = $_SESSION[$sessid];
+        $discussion = new discussion();
+        $list = $discussion->fetch_discussions($conn);
+        if($list){
+            echo json_encode(["success" => true,"message" => $list]);
+        } else {
+        echo json_encode(["success"=>false,"message"=>"No discussions found"]);
+        }
+    } else {
+        echo json_encode(["success"=>false,"message"=>"Please Login to complete this action"]);
+    }
+}
+if(isset($_GET["getFile"])){
+    file_handler::streamFile();
+}
+if(isset($_POST['checkMemberIsInGroup'])){
+    $sessid = $_POST['sessid'];
+    $auth = new Auth();
+    if($auth->check_logged_in($sessid)){
+        $userid = $_SESSION[$sessid];
+        $discussion = sanitize($_POST['discussionid']);
+        $message = new message();
+        $check = $message->Check_is_member($conn,$userid,$discussion);
+        echo json_encode(["success" => $check,"message" => $check?"You are a member of the discussion":"You are not a member of the discussion"]);
+    } else {
+        echo json_encode(["success"=>false,"message"=>"Please Login to complete this action"]);
+    }
+}
+if(isset($_POST['joinGroup'])){
+    $sessid = $_POST['sessid'];
+    $auth = new Auth();
+    if($auth->check_logged_in($sessid)){
+        $userid = $_SESSION[$sessid];
+        $discussion = sanitize($_POST['discussionid']);
+        $message = new message();
+        if($message->Check_is_member($conn,$userid,$discussion)){
+            echo json_encode(["success" => false,"message" =>"You are alreeady a member of the discussion"]);
+        } else {
+            $register = $message->add_member($userid,$discussion ,'0',$conn);
+            echo json_encode(["success" => $register,"message" => $register?"You are now a member of the discussion":"Could not add you as a member of the discussion"]);
+        }
+    } else {
+        echo json_encode(["success"=>false,"message"=>"Please Login to complete this action"]);
+    }
+
 }

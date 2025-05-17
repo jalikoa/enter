@@ -25,8 +25,6 @@ class is_typing {
     public function update($conn){
         $update = "UPDATE dissmembers SET typing = CURRENT_TIMESTAMP where user_id = '$this->userid' AND discussion_id = '$this->dissid'";
         $res = $conn->query($update);
-        echo $this->userid;
-        echo $this->dissid;
         return ($res)?true:false;
     }
 }

@@ -12,13 +12,14 @@
 // Get new messages without reloading the page 
 // Update that the user is typing on the other end
 // Make the ui to more or quite professinall
-var addDiscussionForm,disName,disImage,disAbout,disType,disWhoMess,messageBox,messagesHolder,messagesForm,newMessAudio;
-let sendTypeR,sendMessR,newMList,messLen,meSend,upd;
+var addDiscussionForm,disName,disImage,disAbout,disType,disWhoMess,messageBox,messagesHolder,messagesForm,newMessAudio,jaliDiscussions,JalsoftChatSelected,JalsoftNoChat,groupImage,groupLogo,groupName,groupNamee,closeFormModal,groupMembers;
+let sendTypeR,sendMessR,newMList,messLen,meSend,upd,curGroup;
 sendTypeR = true;
 sendMessR = true;
 meSend = false;
 upd = true;
 addDiscussionForm = byId('addDiscussionForm');
+groupMembers = byId('groupMembers');
 disName = byId('discName');
 messagesForm = byId('messagesForm');
 disImage = byId('discImage');
@@ -28,6 +29,14 @@ disWhoMess = byId('whoMess');
 messageBox =byId('messageBox');
 messagesHolder = byId('messagesHolder');
 newMessAudio = byId('newMessAudio');
+jaliDiscussions = byId('jaliDiscussions');
+JalsoftChatSelected = byId('JalsoftChatSelected');
+JalsoftNoChat = byId('JalsoftNoChat');
+groupImage = byId('groupImage');
+groupLogo = byId('groupLogo');
+groupName = byId('groupName');
+groupNamee = byId('groupNamee');
+closeFormModal = byId('closeFormModal');
 messageBox.addEventListener('input',()=>{
     if(sendTypeR){
         updateTyping();
@@ -36,29 +45,29 @@ messageBox.addEventListener('input',()=>{
 messagesForm.addEventListener('submit',(e)=>{
     e.preventDefault();
     if(sendMessR){
-        sendMessage(sessid,'1',messageBox.value,'0','0');
-        const cont = `<p class="message-text-text mb-4">${messageBox.value}</p>
-                        <span class="received-time text-small position-absolute start-0 m-1 bottom-0"> 00:34 AM</span>
-                        <span class="sent-status bi text-primary bi-check2-all position-absolute end-0 m-1 bottom-0"></span>`;
-        const sentDiv = document.createElement('div');
-        sentDiv.classList.add('message-text');
-        sentDiv.classList.add('message-sent');
-        sentDiv.classList.add('position-relative');
-        sentDiv.classList.add('mt-3');
-        sentDiv.innerHTML = cont;
-        messagesHolder.append(sentDiv);
+        sendMessage(sessid,curGroup,messageBox.value,'0','0');
         messageBox.value = "";
+        messageBox.blur();
     }
 })
 addDiscussionForm.addEventListener('submit',(e)=>{
     e.preventDefault();
     if(isEmpty(disName.value) || isEmpty(disAbout.value) || isEmpty(disType.value) || isEmpty(disWhoMess.value)){
-        swal.fire('Sorry','Action not completed please ensure all the fields are filled','error');
+        Swal.fire(
+            {toast:true,
+              position:'top-end',
+              icon:'error',
+              title: 'Action not completed please ensure all the fields are filled',
+              showConfirmButton: false,
+              timer: 3000,
+              timerProgressBar: true,
+            })
     } else {
         const adDiXhr = checkXml();
         adDiXhr.open('POST',route,true);
         adDiXhr.onload =()=>{
             console.log(adDiXhr.responseText);
+            closeFormModal.click();
         }
         const data = new FormData();
         data.append('addnewdiscussion','true');
@@ -74,7 +83,7 @@ addDiscussionForm.addEventListener('submit',(e)=>{
 document.addEventListener('keydown', (e) => {
     if (e.key === "Enter") {
         if (document.activeElement === messageBox) {
-            sendMessage(sessid,'1',messageBox.value,'0','0');
+            sendMessage(sessid,curGroup,messageBox.value,'0','0');
             messageBox.value = "";
             messageBox.blur();
         }
@@ -93,6 +102,7 @@ function sendMessage(sessid,dissId,message,type,replyto){
         if(sendXhr.status == 200){
             try {
                 const response = JSON.parse(sendXhr.responseText);
+                console.log(response);
                 if(response.success){
                     Swal.fire(
                         {toast:true,
@@ -117,7 +127,15 @@ function sendMessage(sessid,dissId,message,type,replyto){
                     )
                 }
             } catch(e){
-                swal.fire('Sorry','An uncaught exception occurred please try again later','error');
+                Swal.fire(
+                    {toast:true,
+                      position:'top-end',
+                      icon:'error',
+                      title: 'An uncaught exeption occurred',
+                      showConfirmButton: false,
+                      timer: 3000,
+                      timerProgressBar: true,
+                    });
             }
         } else {
 
@@ -148,11 +166,15 @@ function editMessage(messId,message){
 
                 }
             } catch (error) {
-                swal.fire(
-                    'Sorry',
-                    'An uncaught exeption occurred',
-                    'error'
-                );
+                Swal.fire(
+                    {toast:true,
+                      position:'top-end',
+                      icon:'error',
+                      title: 'An uncaught exeption occurred',
+                      showConfirmButton: false,
+                      timer: 3000,
+                      timerProgressBar: true,
+                    })
             }
         } else {
             // swal.fire({
@@ -187,7 +209,7 @@ function deleteMessage(messId){
     const data = `delMess=${enc('true')}$messageId=${enc(messId)}&sessId=${enc(sessid)}`;
     delXhr.send(data);
 }
-function fetchMembers(dissId){
+function fetchMembers(){
     const fetchMemXhr = checkXml();
     fetchMemXhr.open('POST',route,true);
     setHeader(fetchMemXhr);
@@ -207,10 +229,10 @@ function fetchMembers(dissId){
             swal.fire();
         }
     }
-    const data = `fetchMembers=${enc('true')}&dissid=${enc(dissId)}&sessid=${sessid}`;
+    const data = `fetchMembers=${enc('true')}&dissid=${enc(curGroup)}&sessid=${sessid}`;
     fetchMemXhr.send(data);
 }
-function deleteMember(memberId,dissid){
+function deleteMember(memberId,curGroup){
     const delMemXhr = checkXml();
     delMemXhr.open('POST',route,true);
     setHeader(delMemXhr);
@@ -227,10 +249,18 @@ function deleteMember(memberId,dissid){
                 // Relay the error to the user
             }
         } else {
-            swal.fire();
+            Swal.fire(
+                {toast:true,
+                  position:'top-end',
+                  icon:'error',
+                  title: `${response.message}`,
+                  showConfirmButton: false,
+                  timer: 3000,
+                  timerProgressBar: true,
+                })
         }
     }
-    const data = `delMembers=${enc('true')}&dissid=${enc(dissId)}&memberid=${enc(memberId)}&sessid=${sessid}`;
+    const data = `delMembers=${enc('true')}&dissid=${enc(curGroup)}&memberid=${enc(memberId)}&sessid=${sessid}`;
     delMemXhr.send(data);
 }
 function checkAdmin(){
@@ -253,7 +283,7 @@ function checkAdmin(){
             swal.fire();
         }
     }
-    const data = `checkUAdmin=${enc('true')}&dissid=${enc(dissId)}&sessid=${sessid}`;
+    const data = `checkUAdmin=${enc('true')}&dissid=${enc(curGroup)}&sessid=${sessid}`;
     chU_a.send(data);
 }
 function updateTyping(){
@@ -265,7 +295,7 @@ function updateTyping(){
         sendTypeR = !sendTypeR;
         console.log(typingXhr.responseText);
     }
-    const data = `updateTyping=${enc('true')}&sessid=${enc(sessid)}&dissid=${enc('1')}`;
+    const data = `updateTyping=${enc('true')}&sessid=${enc(sessid)}&dissid=${enc(curGroup)}`;
     typingXhr.send(data);
 }
 function fetchMessages(){
@@ -273,24 +303,40 @@ function fetchMessages(){
     fetchMessXhr.open('POST',route,true);
     setHeader(fetchMessXhr);
     fetchMessXhr.onload = ()=>{
-        console.log(fetchMessXhr.responseText);
+        // console.log(fetchMessXhr.responseText);
         let response;
         try{response = JSON.parse(fetchMessXhr.responseText)} catch(e){
-            swal.fire('Sorry','An uncaught exception occured while trying to load chats from the database','error');
-        }
+            Swal.fire(
+                {toast:true,
+                  position:'top-end',
+                  icon:'error',
+                  title: 'An uncaught exeption occurred',
+                  showConfirmButton: false,
+                  timer: 3000,
+                  timerProgressBar: true,
+                });
+            }
         if(response){
             if(response.success){
                 populateChats(response.messList);
             } else {
-                swal.fire('Sorry',`${response.message}`,'error');
+                Swal.fire(
+                    {toast:true,
+                      position:'top-end',
+                      icon:'error',
+                      title: `${response.message}`,
+                      showConfirmButton: false,
+                      timer: 3000,
+                      timerProgressBar: true,
+                    })
             }
         }
     }
-    const data = `fetchmessages=${enc('true')}&sessid=${enc(sessid)}&discussionid=${enc('1')}`;
+    const data = `fetchmessages=${enc('true')}&sessid=${enc(sessid)}&discussionid=${enc(curGroup)}`;
     fetchMessXhr.send(data);
 }
 window.onload = ()=>{
-    fetchMessages();
+    getDiscussionsLists();
 }
 function populateChats(list){
     messagesHolder.innerHTML = "";
@@ -411,10 +457,17 @@ function checkNewMessage(){
     fetchNewMess.open('POST',route,true);
     setHeader(fetchNewMess);
     fetchNewMess.onload = ()=>{
-        // console.log(fetchNewMess.responseText);
         let response;
         try{response = JSON.parse(fetchNewMess.responseText)} catch(e){
-            swal.fire('Sorry','An uncaught exception occured while trying to load chats from the database','error');
+            Swal.fire(
+                {toast:true,
+                  position:'top-end',
+                  icon:'error',
+                  title: 'An uncaught exeption occurred',
+                  showConfirmButton: false,
+                  timer: 3000,
+                  timerProgressBar: true,
+                });
         }
         if(response){
             if(response.success){
@@ -435,10 +488,252 @@ function checkNewMessage(){
                     }
                 }
             } else {
-                swal.fire('Sorry',`${response.message}`,'error');
+                Swal.fire(
+                    {toast:true,
+                      position:'top-end',
+                      icon:'error',
+                      title: `${response.message}`,
+                      showConfirmButton: false,
+                      timer: 3000,
+                      timerProgressBar: true,
+                    })
             }
         }
     }
-    const data = `fetchmessages=${enc('true')}&sessid=${enc(sessid)}&discussionid=${enc('1')}`;
+    const data = `fetchmessages=${enc('true')}&sessid=${enc(sessid)}&discussionid=${enc(curGroup)}`;
     fetchNewMess.send(data);
+}
+function getDiscussionsLists(){
+    const discXhr = checkXml();
+    discXhr.open('POST',route,true);
+    setHeader(discXhr);
+
+    discXhr.onload = () => {
+        console.log(discXhr.responseText);
+        let response;
+        try{response = JSON.parse(discXhr.responseText)} catch(e){
+            Swal.fire(
+                {toast:true,
+                  position:'top-end',
+                  icon:'error',
+                  title: 'An uncaught exeption occurred',
+                  showConfirmButton: false,
+                  timer: 3000,
+                  timerProgressBar: true,
+                });
+        }
+        if(response){
+            if(response.success){
+                populateDiscussions(response.message);
+            } else {
+                Swal.fire(
+                    {toast:true,
+                      position:'top-end',
+                      icon:'error',
+                      title: `${response.message}`,
+                      showConfirmButton: false,
+                      timer: 3000,
+                      timerProgressBar: true,
+                    })
+            }
+        }
+    }
+    const data = `fetchDiscussions=${enc('true')}&sessid=${enc(sessid)}`;
+    discXhr.send(data);
+}
+function populateDiscussions(discussions){
+    jaliDiscussions.innerHTML = '';
+    discussions.map((discussion) => {
+        const div = document.createElement('div');
+        const checkIsMember = checkXml();
+        checkIsMember.open('POST',route,true);
+        setHeader(checkIsMember);
+        checkIsMember.onload = () => {
+        response = JSON.parse(checkIsMember.responseText);
+        const holder = `<div style="cursor:pointer;" class="discussion-holder d-flex">
+                    <div class="dis-img-holder">
+                        <div class="dropdown">
+                            <img src="${fileRoute+discussion.grouplogo}" class="cursor-pointer" data-bs-toggle="dropdown" alt="">
+                            <ul class="dropdown-menu">
+                                <center>
+                                    <img src="${fileRoute+discussion.grouplogo}" alt="">
+                                </center>
+                                <li class="dropdown-item">
+                                    <center>
+                                        <h5 class="fw-medium text-secondary">
+                                        ${discussion.groupname}
+                                        </h5>
+                                    </center>
+                                    <center>
+                                        <h6 class="fw-medium text-secondary">
+                                            ${response.success?'Member':'Not a member'}
+                                        </h6>
+                                    </center>
+                                </li>
+                                <hr class="p-0 m-0 dropdown-divider">
+                                <li class="dropdown-item">
+                                    <div class="form-check form-switch">
+                                        <label for="archDisc">Archive discussion</label>
+                                        <input type="checkbox" class="form-check-input" id="archDisc">
+                                    </div>
+                                </li>
+                                <hr class="p-0 m-0 dropdown-divider">
+                                <li class="dropdown-item">
+                                    <a href="#" class="dropdown-link text-dark"><i class="bi bi-box-arrow-left text-secondary"></i>&nbsp; Exit discussion</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="discussion-meta-information ms-1 position-relative">
+                        <span class="rounded-pill badge bg-primary text-small position-absolute top-0 end-0">${response.success?'100+ new messages':`<span onclick="joinDiscussion('${discussion.id}')">Join Now</span>`}</span>
+                        <div class="discussion-name-holder mt-4">
+                            <h6 class="fw-medium h-100 text-secondary ms-1 overflow-hidden">
+                            ${discussion.groupname}
+                            </h6>
+                        </div>
+                        <div class="last-message-holder">
+                            <p class="text-small text-muted h-100 overflow-hidden">
+                            ${discussion.about}   
+                            </p>
+                        </div>
+                    </div>
+                </div>`;
+                response.success?div.addEventListener('click',()=>{loadGroup(discussion)}):console.log('You have to be a member to read messages');
+                div.innerHTML = holder;
+                jaliDiscussions.append(div);
+            }
+            const data = `checkMemberIsInGroup=${enc('true')}&sessid=${enc(sessid)}&discussionid=${enc(discussion.id)}`;
+            checkIsMember.send(data);
+    })
+}
+function loadGroup(discussion){
+    const checkIsMember = checkXml();
+    checkIsMember.open('POST',route,true);
+    setHeader(checkIsMember);
+    checkIsMember.onload = () => {
+        console.log(checkIsMember.responseText);
+        let response;
+        try{response = JSON.parse(checkIsMember.responseText)} catch(e){
+                Swal.fire(
+                {toast:true,
+                  position:'top-end',
+                  icon:'error',
+                  title: 'An uncaught exception occured while trying to load discussions from the database',
+                  showConfirmButton: false,
+                  timer: 3000,
+                  timerProgressBar: true,
+                });
+        }
+        if(response){
+            curGroup = discussion.id;
+            messagesHolder.innerHTML = "<center class='mt-3 text-danger fw-bold'>No messages found</center>";
+            if(response.success){
+                if(JalsoftNoChat.classList.contains('d-flex')){
+                    JalsoftNoChat.classList.remove('d-flex');
+                    JalsoftNoChat.classList.add('d-none');
+                }
+                
+                groupNamee.innerText = discussion.groupname;
+                groupName.innerText = discussion.groupname;
+                groupImage.src = fileRoute+discussion.grouplogo;
+                groupLogo.src = fileRoute+discussion.grouplogo;
+                if(JalsoftChatSelected.classList.contains('d-none')){
+                    JalsoftChatSelected.classList.remove('d-none');
+                    JalsoftChatSelected.classList.add('d-flex');
+                }
+                fetchDiscussionMembers();
+                fetchMessages();
+            } else {
+                Swal.fire(
+                    {toast:true,
+                      position:'top-end',
+                      icon:'error',
+                      title: `${response.message}`,
+                      showConfirmButton: false,
+                      timer: 3000,
+                      timerProgressBar: true,
+                    })
+            }
+        }
+    }
+    const data = `checkMemberIsInGroup=${enc('true')}&sessid=${enc(sessid)}&discussionid=${enc(discussion.id)}`;
+    checkIsMember.send(data);
+}
+function joinDiscussion(id){
+    console.log('joining: '+id);
+    const joinXhr = checkXml();
+    joinXhr.open('POST',route,true);
+    setHeader(joinXhr);
+    joinXhr.onload = () => {
+        let response;
+        try{response = JSON.parse(joinXhr.responseText)} catch(e){
+            console.log(e.message);
+            Swal.fire(
+                {toast:true,
+                  position:'top-end',
+                  icon:'error',
+                  title: 'An uncaught exeption occurred',
+                  showConfirmButton: false,
+                  timer: 3000,
+                  timerProgressBar: true,
+                });
+        }
+        console.log(response);
+        if(response){
+            if(response.success){
+                Swal.fire(
+                    {toast:true,
+                      position:'top-end',
+                      icon:'success',
+                      title: `${response.message}`,
+                      showConfirmButton: false,
+                      timer: 3000,
+                      timerProgressBar: true,
+                    }
+              )
+            } else {
+                Swal.fire(
+                    {toast:true,
+                      position:'top-end',
+                      icon:'error',
+                      title: `${response.message}`,
+                      showConfirmButton: false,
+                      timer: 3000,
+                      timerProgressBar: true,
+                    })
+            }
+        }
+    }
+    const data = `joinGroup=${enc('true')}&sessid=${enc(sessid)}&discussionid=${enc(id)}`;
+    joinXhr.send(data);
+}
+function fetchDiscussionMembers(){
+    const fetchXhr = checkXml();
+    fetchXhr.open('POST',route,true);
+    setHeader(fetchXhr);
+    fetchXhr.onload = () => {
+        const response = JSON.parse(fetchXhr.responseText);
+        if(response.success){
+            groupMembers.innerHTML = "";
+            response.cred.map((user)=>{
+                const cont = `<span class="text-medium text-success"><i>${user.username}&nbsp;, </i></span>`;
+                const span = document.createElement('span');
+                span.innerHTML = cont;
+                groupMembers.append(span);
+            });
+
+        } else {
+            Swal.fire(
+                {toast:true,
+                  position:'top-end',
+                  icon:'error',
+                  title: `${response.message}`,
+                  showConfirmButton: false,
+                  timer: 3000,
+                  timerProgressBar: true,
+                })
+        }
+    }
+    const data = `fetchDiscussionMembers=${enc('true')}&sessid=${enc(sessid)}&discussionid=${enc(curGroup)}`;
+    fetchXhr.send(data);
 }

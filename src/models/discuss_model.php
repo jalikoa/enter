@@ -93,9 +93,10 @@ class discussion{
         $res = $conn->query($edit);
         return ($res)?true:false;
     }
-    public function fetch_discussions(){
+    public function fetch_discussions($conn){
         //fetch discussions list based on user location or based on the preference
         $fetch = "SELECT d.name AS groupname,
+        d.id,
     d.admin AS adminid,
     d.about,
     d.type,
@@ -106,14 +107,14 @@ class discussion{
     u.bio,
     u.image AS userimage FROM 
 	discussions AS d
-    JOIN users AS u
+    LEFT JOIN users AS u
     ON u.id = d.admin;";
-    $res = $conn->query($sql);
+    $res = $conn->query($fetch);
     if($res->num_rows > 0){
         while($row = $res->fetch_assoc()){
             $this->discussionslist[] = $row; 
         }
-        return true;
+        return $this->discussionslist;
     } else {
         return false;
     }
@@ -137,7 +138,7 @@ public function get_dis_list(){
             while($row = $res->fetch_assoc()){
                 $this->discussion_members[]=$row;
             }
-            return true;
+            return $this->discussion_members;
         } else {
             return false;
         }

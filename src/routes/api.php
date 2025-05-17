@@ -5,6 +5,21 @@
     elseif(isset($_POST["login"])){
         require_once "../src/controllers/login_controller.php"; 
     }
+    elseif(isset($_POST["fetchDiscussions"])){
+        require_once "../src/controllers/discussions_controller.php"; 
+    }
+    elseif(isset($_POST["fetchDiscussionMembers"])){
+        require_once "../src/controllers/discussions_controller.php"; 
+    }
+    elseif(isset($_GET["getFile"])){
+        require_once "../src/controllers/discussions_controller.php"; 
+    }
+    elseif(isset($_POST["checkMemberIsInGroup"])){
+        require_once "../src/controllers/discussions_controller.php"; 
+    }
+    elseif(isset($_POST["joinGroup"])){
+        require_once "../src/controllers/discussions_controller.php"; 
+    }
     elseif(isset($_POST["contactus"])){
         require_once "../src/controllers/contactus_controller.php"; 
     }

@@ -608,21 +608,31 @@ background-color:#88ff00de;
 }
 .typing {
     transition:all 0.1s ease;
-    animation:shake infinite alternate 0.5s;
+    animation:shake infinite linear 0.3s;
 }
 .nottyping {
     display:none;
 }
 @keyframes shake {
     0%{
-        transform: rotate(-5deg);
+        transform: rotateY(-15deg);
         opacity:0.5;
         color:#00750ade;
     }
+    25% {
+        transform: rotateY(15deg);
+        opacity:1;
+        color:#05690dde;
+    }
+    50% {
+        transform: rotateY(-15deg);
+        opacity:0.5;
+        color:#02740bde;
+    }
     100% {
-        transform:rotate(5deg);
+        transform:rotateY(15deg);
         opacity:1;
         color:#516850ee;
-        content:'...';
+        /* content:'...'; */
     }
 }
